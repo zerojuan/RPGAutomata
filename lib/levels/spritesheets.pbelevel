@@ -1,0 +1,46 @@
+<things version="1">
+	<entity name="GuyFrontSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/male/male_01.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>3</xCount>
+				<yCount>1</yCount>
+			</divider>
+		</component>
+	</entity>
+	<entity name="GuyLeftSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/male/male_02.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>3</xCount>
+				<yCount>1</yCount>
+			</divider>
+		</component>
+	</entity>	
+	<entity name="GuyRightSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/male/male_03.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>3</xCount>
+				<yCount>1</yCount>
+			</divider>
+		</component>
+	</entity>	
+	<entity name="GuyBackSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/male/male_04.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>3</xCount>
+				<yCount>1</yCount>
+			</divider>
+		</component>
+	</entity>	
+
+
+	<group name="SpriteSheets">
+		<objectReference name="GuyFrontSheet"/>
+		<objectReference name="GuyLeftSheet"/>
+		<objectReference name="GuyBackSheet"/>
+		<objectReference name="GuyRightSheet"/>
+	</group>
+</things>

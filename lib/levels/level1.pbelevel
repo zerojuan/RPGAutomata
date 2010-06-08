@@ -1,0 +1,61 @@
+<things version="1">
+	<entity name="Scene2D">
+		<component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
+			<sceneView type="com.pblabs.rendering2D.ui.SceneView">
+				<width>640</width>
+				<height>480</height>
+			</sceneView>
+		</component>
+	</entity>
+	<entity name="SpatialDB">
+		<component type="com.pblabs.rendering2D.BasicSpatialManager2D" name="Manager">			
+		</component>
+	</entity>
+	<entity name="Guy">
+		<component type="com.pblabs.rendering2D.SimpleSpatialComponent" name="Spatial">
+			<position>
+				<x>50</x>
+				<y>50</y>
+			</position>
+			<spatialManager componentReference="SpatialDB"/>
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="GuyFrontSheet"/>
+		</component>
+		<component type="com.pblabs.rendering2D.AnimationController" name="FrameAnimation">
+			<animations childType="com.pblabs.rendering2D.AnimationControllerInfo">
+				<front>
+					<frameRate>12</frameRate>
+					<loop>true</loop>
+					<spriteSheet componentReference="GuyFrontSheet"/>
+				</front>
+				<left>
+					<loop>true</loop>
+					<spriteSheet componentReference="GuyLeftSheet"/>
+				</left>
+				<right>
+					<loop>true</loop>
+					<spriteSheet componentReference="GuyRightSheet"/>
+				</right>
+				<back>
+					<loop>true</loop>
+					<spriteSheet componentReference="GuyBackSheet"/>
+				</back>
+			</animations>
+			<defaultAnimation>front</defaultAnimation>
+			<currentFrameReference>@Render.spriteIndex</currentFrameReference>
+			<currentAnimationReference>@Controller.animation</currentAnimationReference>
+			<changeAnimationEvent type="String">GuyChangeAnimation</changeAnimationEvent>
+		</component>
+		<component type="controllers.GuyController" name="Controller">			
+		</component>		
+	</entity>	
+	
+	<group name="LevelOne">
+		<objectReference name="Scene2D"/>
+		<objectReference name="SpatialDB"/>
+		<objectReference name="Guy"/>		
+	</group>
+</things>

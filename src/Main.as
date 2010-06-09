@@ -1,5 +1,8 @@
 ﻿package 
 {
+	import com.pblabs.components.stateMachine.BasicState;
+	import com.pblabs.components.stateMachine.FSMComponent;
+	import com.pblabs.components.stateMachine.PropertyTransition;
 	import com.pblabs.rendering2D.AnimationController;
 	import com.pblabs.rendering2D.AnimationControllerInfo;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
@@ -41,6 +44,9 @@
 			PBE.registerType(SpriteSheetRenderer);
 			PBE.registerType(SceneView);
 			PBE.registerType(BasicSpatialManager2D);
+			PBE.registerType(FSMComponent);
+			PBE.registerType(PropertyTransition);
+			PBE.registerType(BasicState);
 			
 			PBE.registerType(GuyController);
 			

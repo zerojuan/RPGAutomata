@@ -49,8 +49,36 @@
 			<currentAnimationReference>@Controller.animation</currentAnimationReference>
 			<changeAnimationEvent type="String">GuyChangeAnimation</changeAnimationEvent>
 		</component>
-		<component type="controllers.GuyController" name="Controller">			
-		</component>		
+		<component type="controllers.GuyController" name="Controller">		
+			<positionProperty>@Spatial.position</positionProperty>
+			<velocityProperty>@Spatial.velocity</velocityProperty>
+			<currentStateProperty>@FSM.stateMachine.currentStateName</currentStateProperty>
+		</component>
+		<component type="com.pblabs.components.stateMachine.FSMComponent" name="FSM">
+			<stateMachine>
+				<states>
+					<steady type="com.pblabs.components.stateMachine.BasicState">
+						<transitions>
+							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
+								<targetState>walk</targetState>
+								<property>@Controller.boredom</property>
+								<value>100</value>
+							</_0>
+						</transitions>
+					</steady>
+					<walk type="com.pblabs.components.stateMachine.BasicState">
+						<transitions>
+							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
+								<targetState>steady</targetState>
+								<property>@Controller.stamina</property>
+								<value>0</value>
+							</_0>
+						</transitions>
+					</walk>
+				</states>
+				<defaultState>steady</defaultState>
+			</stateMachine>
+		</component>
 	</entity>	
 	
 	<group name="LevelOne">

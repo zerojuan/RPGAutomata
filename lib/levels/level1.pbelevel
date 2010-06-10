@@ -32,27 +32,37 @@
 					<spriteSheet componentReference="GuyFrontSheet"/>
 				</front>
 				<left>
+					<frameRate>12</frameRate>
 					<loop>true</loop>
 					<spriteSheet componentReference="GuyLeftSheet"/>
 				</left>
 				<right>
+					<frameRate>12</frameRate>
 					<loop>true</loop>
 					<spriteSheet componentReference="GuyRightSheet"/>
 				</right>
 				<back>
+					<frameRate>12</frameRate>
 					<loop>true</loop>
 					<spriteSheet componentReference="GuyBackSheet"/>
 				</back>
 			</animations>
-			<defaultAnimation>front</defaultAnimation>
+			<defaultAnimation>left</defaultAnimation>
+			<spriteSheetReference>@Render.spriteSheet</spriteSheetReference>
 			<currentFrameReference>@Render.spriteIndex</currentFrameReference>
 			<currentAnimationReference>@Controller.animation</currentAnimationReference>
 			<changeAnimationEvent type="String">GuyChangeAnimation</changeAnimationEvent>
 		</component>
+		<component type="components.StatComponent" name="Stats">
+			<maxStamina>100</maxStamina>
+			<maxHappiness>100</maxHappiness>
+		</component>
 		<component type="controllers.GuyController" name="Controller">		
+			<stats componentName="Stats"/>
 			<positionProperty>@Spatial.position</positionProperty>
 			<velocityProperty>@Spatial.velocity</velocityProperty>
 			<currentStateProperty>@FSM.stateMachine.currentStateName</currentStateProperty>
+			<animPauseProperty>@FrameAnimation.paused</animPauseProperty>			
 		</component>
 		<component type="com.pblabs.components.stateMachine.FSMComponent" name="FSM">
 			<stateMachine>
@@ -61,8 +71,8 @@
 						<transitions>
 							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
 								<targetState>walk</targetState>
-								<property>@Controller.boredom</property>
-								<value>100</value>
+								<property>@Stats.happiness</property>
+								<value>0</value>
 							</_0>
 						</transitions>
 					</steady>
@@ -70,7 +80,7 @@
 						<transitions>
 							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
 								<targetState>steady</targetState>
-								<property>@Controller.stamina</property>
+								<property>@Stats.stamina</property>
 								<value>0</value>
 							</_0>
 						</transitions>

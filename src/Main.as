@@ -12,6 +12,8 @@
 	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
 	import com.pblabs.rendering2D.SpriteSheetRenderer;
 	import com.pblabs.rendering2D.ui.SceneView;
+	import components.StatComponent;
+	import components.TiledMapConverter;
 	import controllers.GuyController;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -34,9 +36,9 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			PBE.registerType(com.pblabs.rendering2D.BasicSpatialManager2D);
-			PBE.registerType(com.pblabs.rendering2D.AnimationController);
-			PBE.registerType(com.pblabs.rendering2D.AnimationControllerInfo);
+			PBE.registerType(BasicSpatialManager2D);
+			PBE.registerType(AnimationController);
+			PBE.registerType(AnimationControllerInfo);
 			PBE.registerType(CellCountDivider);
 			PBE.registerType(SpriteSheetComponent);
 			PBE.registerType(DisplayObjectScene);
@@ -47,8 +49,10 @@
 			PBE.registerType(FSMComponent);
 			PBE.registerType(PropertyTransition);
 			PBE.registerType(BasicState);
-			
+
+			PBE.registerType(StatComponent);
 			PBE.registerType(GuyController);
+			PBE.registerType(TiledMapConverter);
 			
 			PBE.startup(this);
 			PBE.addResources(new Resources());

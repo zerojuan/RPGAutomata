@@ -10,6 +10,8 @@ package
 		private var level1:Class;
 		[Embed(source = '../lib/levels/spritesheets.pbelevel', mimeType = 'application/octet-stream')]
 		private var spritesheets:Class;
+		[Embed(source = "../lib/office_map.tmx", mimeType = "application/octet-stream")]
+		private var officeMap:Class;
 		
 		[Embed(source = '../lib/images/male/male_01.png')]
 		private var maleUp:Class;
@@ -20,6 +22,12 @@ package
 		[Embed(source = '../lib/images/male/male_03.png')]
 		private var maleDown:Class;
 		
+		[Embed(source = "../lib/images/free_tileset.png")]
+		private var tileset1:Class;
+		[Embed(source = "../lib/images/free_tileset_version_8.png")]
+		private var tileset2:Class;
+		[Embed(source = "../lib/images/office-tileset.png")]
+		private var tileset3:Class;
 	}
 
 }

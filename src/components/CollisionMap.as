@@ -1,14 +1,14 @@
 package components 
 {
 	import com.pblabs.engine.entity.EntityComponent;
+	import com.pblabs.engine.entity.PropertyReference;
 	
 	/**
 	 * Container for a level's geographic data
 	 * @author Julius
 	 */
-	public class GeographyMap extends EntityComponent
-	{
-		
+	public class CollisionMap extends EntityComponent{
+		public var levelCollisions:PropertyReference;
 		
 		
 	}

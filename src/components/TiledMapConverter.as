@@ -23,6 +23,7 @@ package components
 	public class TiledMapConverter extends EntityComponent{
 		
 		public var playerZIndex:int;
+		public var collisionLayer:Array;
 		
 		public function get scene():DisplayObjectScene {
 			return _scene;
@@ -35,8 +36,7 @@ package components
 		/**
          * The filename of the TMX file
          */
-        public function get tmxFilename():String
-        {
+        public function get tmxFilename():String{
             return _tmxMap == null ? null : _tmxMap.filename;
         }
         
@@ -65,10 +65,8 @@ package components
         /**
          * @private
          */
-        public function set tmxMap(value:XMLResource):void
-        {
-            _tmxMap = value;
-            //deleteFrames();
+        public function set tmxMap(value:XMLResource):void{
+            _tmxMap = value;            
         }
 		
 		
@@ -97,13 +95,16 @@ package components
 				bitmapRenderer.bitmapData = new BitmapData(spriteWidth * tileWidth, spriteHeight * tileHeight, true, 0x00ffffff);
 				
 				mapLayers[i] = bitmapRenderer;
-				
-				tileLength = xml.layer[i].data.tile.length();	
+								
 				var tileData:XMLList = xml.layer[i].data;
 				var tiles:Array = new Array();
 				var tileCoordinates:Array = new Array();
-						
-				layers[i] = parseCSV(tileData);;				
+				
+				if (xml.layer[i].properties.property && xml.layer[i].properties.property.attribute("name") == "collision") {					
+					collisionLayer = parseCSV(tileData);
+				}else {
+					layers[i] = parseCSV(tileData);
+				}										
 			}
 												
 			tilesetLength = xml.tileset.length();

@@ -3,26 +3,34 @@
 	import com.pblabs.components.stateMachine.BasicState;
 	import com.pblabs.components.stateMachine.FSMComponent;
 	import com.pblabs.components.stateMachine.PropertyTransition;
+	import com.pblabs.engine.PBE;
+	import com.pblabs.engine.core.InputKey;
 	import com.pblabs.rendering2D.AnimationController;
 	import com.pblabs.rendering2D.AnimationControllerInfo;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
 	import com.pblabs.rendering2D.DisplayObjectScene;
 	import com.pblabs.rendering2D.SimpleSpatialComponent;
+	import com.pblabs.rendering2D.SpriteSheetRenderer;
 	import com.pblabs.rendering2D.spritesheet.CellCountDivider;
 	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
-	import com.pblabs.rendering2D.SpriteSheetRenderer;
 	import com.pblabs.rendering2D.ui.SceneView;
+	
+	import components.CollisionMap;
+	import components.RPGSpatialComponent;
 	import components.StatComponent;
 	import components.TiledMapConverter;
+	
 	import controllers.GuyController;
+	import controllers.RPGPlayerController;
+	
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import com.pblabs.engine.PBE;
 	
 	/**
-	 * ...
+	 * Main class
 	 * @author Julius
 	 */
+	[SWF(width="640", height="480", backgroundColor="#FFFFFF")]
 	public class Main extends Sprite 
 	{
 		
@@ -49,10 +57,14 @@
 			PBE.registerType(FSMComponent);
 			PBE.registerType(PropertyTransition);
 			PBE.registerType(BasicState);
+			PBE.registerType(InputKey);
 
 			PBE.registerType(StatComponent);
 			PBE.registerType(GuyController);
+			PBE.registerType(RPGPlayerController);
 			PBE.registerType(TiledMapConverter);
+			PBE.registerType(components.CollisionMap);
+			PBE.registerType(components.RPGSpatialComponent);
 			
 			PBE.startup(this);
 			PBE.addResources(new Resources());

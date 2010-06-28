@@ -8,6 +8,17 @@
 			<sceneAlignment>
 				TOP_LEFT
 			</sceneAlignment>
+			<trackObject componentReference="Guy"/>
+			<trackOffset>
+				<x>-320</x>
+				<y>-240</y>
+			</trackOffset>
+			<trackLimitRectangle type="flash.geom.Rectangle">
+				<x>-320</x>
+				<y>-240</y>
+				<width>1760</width>
+				<height>1504</height>
+			</trackLimitRectangle>
 		</component>
 	</entity>
 	<entity name="SpatialDB">
@@ -20,13 +31,18 @@
 			<tmxFilename>../lib/office_map.tmx</tmxFilename>
 			<playerZIndex>4</playerZIndex>
 		</component>
+		<component type="components.CollisionMap" name="CollisionMap">
+			<levelCollisions>@Converter.collisionLayer</levelCollisions>
+		</component>	
 	</entity>
 	<entity name="Guy">
-		<component type="com.pblabs.rendering2D.SimpleSpatialComponent" name="Spatial">
-			<position>
-				<x>50</x>
-				<y>50</y>
-			</position>
+		<component type="components.RPGSpatialComponent" name="Spatial">
+			<tileWidth>32</tileWidth>
+			<tileHeight>32</tileHeight>
+			<gridPosition>
+				<x>15</x>
+				<y>15</y>
+			</gridPosition>
 			<spatialManager componentReference="SpatialDB"/>
 		</component>
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
@@ -68,6 +84,20 @@
 			<maxStamina>100</maxStamina>
 			<maxHappiness>100</maxHappiness>
 		</component>
+		<component type="controllers.RPGPlayerController" name="Controller">
+			<positionProperty>@Spatial.position</positionProperty>
+			<velocityProperty>@Spatial.velocity</velocityProperty>
+			<tileWidth>32</tileWidth>
+			<tileHeight>32</tileHeight>
+			<speed>.125</speed>
+			<input childType="com.pblabs.engine.core.InputKey">
+				<GoLeft>LEFT</GoLeft>
+				<GoRight>RIGHT</GoRight>
+				<GoUp>UP</GoUp>
+				<GoDown>DOWN</GoDown>
+			</input>
+		</component>
+		<!--
 		<component type="controllers.GuyController" name="Controller">		
 			<stats componentName="Stats"/>
 			<positionProperty>@Spatial.position</positionProperty>
@@ -100,6 +130,7 @@
 				<defaultState>steady</defaultState>
 			</stateMachine>
 		</component>
+		-->
 	</entity>	
 	
 	<group name="LevelOne">

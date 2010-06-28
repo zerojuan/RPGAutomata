@@ -22,19 +22,15 @@
 		</component>
 	</entity>
 	<entity name="SpatialDB">
-		<component type="com.pblabs.rendering2D.BasicSpatialManager2D" name="Manager">			
-		</component>
-	</entity>
-	<entity name="LevelMap">
 		<component type="components.TiledMapConverter" name="Converter">
 			<scene componentReference="Scene2D"/>
 			<tmxFilename>../lib/office_map.tmx</tmxFilename>
 			<playerZIndex>4</playerZIndex>
 		</component>
-		<component type="components.CollisionMap" name="CollisionMap">
-			<levelCollisions>@Converter.collisionLayer</levelCollisions>
-		</component>	
-	</entity>
+		<component type="components.RPGSpatialManagerComponent" name="Manager">
+			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
+		</component>
+	</entity>	
 	<entity name="Guy">
 		<component type="components.RPGSpatialComponent" name="Spatial">
 			<tileWidth>32</tileWidth>
@@ -48,7 +44,11 @@
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
 			<scene componentReference="Scene2D"/>
-			<spriteSheet componentReference="GuyFrontSheet"/>	
+			<spriteSheet componentReference="GuyFrontSheet"/>
+			<positionOffset>
+				<x>0</x>
+				<y>0</y>
+			</positionOffset>	
 			<zIndex>4</zIndex>
 		</component>
 		<component type="com.pblabs.rendering2D.AnimationController" name="FrameAnimation">
@@ -90,6 +90,7 @@
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<speed>.125</speed>
+			<mapReference componentReference="SpatialDB"/>
 			<input childType="com.pblabs.engine.core.InputKey">
 				<GoLeft>LEFT</GoLeft>
 				<GoRight>RIGHT</GoRight>
@@ -135,8 +136,7 @@
 	
 	<group name="LevelOne">
 		<objectReference name="Scene2D"/>
-		<objectReference name="SpatialDB"/>
-		<objectReference name="LevelMap"/>
+		<objectReference name="SpatialDB"/>		
 		<objectReference name="Guy"/>		
 	</group>
 </things>

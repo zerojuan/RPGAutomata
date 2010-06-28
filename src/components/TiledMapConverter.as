@@ -102,6 +102,7 @@ package components
 				
 				if (xml.layer[i].properties.property && xml.layer[i].properties.property.attribute("name") == "collision") {					
 					collisionLayer = parseCSV(tileData);
+					layers[i] = parseCSV(tileData);
 				}else {
 					layers[i] = parseCSV(tileData);
 				}										

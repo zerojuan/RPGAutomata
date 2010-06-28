@@ -1,14 +1,16 @@
 package controllers 
 {
-	import br.com.stimuli.loading.loadingtypes.VideoItem;
 	
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.core.InputMap;
 	import com.pblabs.engine.entity.PropertyReference;
 	
+	import components.RPGSpatialManagerComponent;
+	
 	import flash.events.Event;
 	import flash.geom.Point;
+
 	/**
 	 * Controller for our RPG character
 	 * @author Julius
@@ -17,6 +19,7 @@ package controllers
 		
 		public var velocityProperty:PropertyReference;
 		public var positionProperty:PropertyReference;
+		public var mapReference:RPGSpatialManagerComponent;
 		public var tileWidth:int;
 		public var tileHeight:int;
 				
@@ -66,22 +69,45 @@ package controllers
 			if(state == MOVING){
 				_xSpeed = tileWidth * _speed;
 				_ySpeed = tileHeight * _speed;
-				switch(direction){
-					case UP: position.y = position.y - _ySpeed;
-							 if(position.y % tileHeight == 0)
+				var map:Array = mapReference.collisionMap;
+				var xGrid:int = Math.round(position.x/tileWidth);
+				var yGrid:int = Math.round(position.y/tileHeight);
+				switch(direction){					
+					case UP: 
+						if(map[yGrid - 1][xGrid] == 0){
+							position.y = position.y - _ySpeed;
+							if(position.y % tileHeight == 0)
 								 state = IDLE;
+						}else{
+							//state = IDLE;
+						}
 							 break;
-					case RIGHT: position.x = position.x + _xSpeed;
+					case RIGHT: 
+						if(map[ yGrid][xGrid + 1] == 0){
+							position.x = position.x + _xSpeed;
 							 if(position.x % tileWidth == 0)
 								 state = IDLE;
+						}else{
+							//state = IDLE;
+						}
 							 break;
-					case DOWN: position.y = position.y + _ySpeed;
-							 if(position.y % tileHeight == 0 )
-								 state = IDLE;
+					case DOWN: 
+						if(map[ yGrid + 1][xGrid] == 0){
+							position.y = position.y + _ySpeed;
+							if(position.y % tileHeight == 0 )
+								state = IDLE;	
+						}else{
+							//state = IDLE;
+						}
 							 break;
-					case LEFT: position.x = position.x - _xSpeed;
-							 if(position.x % tileWidth == 0)
-								 state = IDLE;
+					case LEFT: 
+						if(map[ yGrid][xGrid - 1] == 0){
+							position.x = position.x - _xSpeed;
+							if(position.x % tileWidth == 0)
+								state = IDLE;							
+						}else{
+							//state = IDLE;
+						}
 							 break;
 				}
 			}

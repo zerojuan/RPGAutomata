@@ -17,6 +17,7 @@
 	
 	import components.CollisionMap;
 	import components.RPGSpatialComponent;
+	import components.RPGSpatialManagerComponent;
 	import components.StatComponent;
 	import components.TiledMapConverter;
 	
@@ -43,8 +44,7 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
-			PBE.registerType(BasicSpatialManager2D);
+						
 			PBE.registerType(AnimationController);
 			PBE.registerType(AnimationControllerInfo);
 			PBE.registerType(CellCountDivider);
@@ -65,6 +65,7 @@
 			PBE.registerType(TiledMapConverter);
 			PBE.registerType(components.CollisionMap);
 			PBE.registerType(components.RPGSpatialComponent);
+			PBE.registerType(components.RPGSpatialManagerComponent);
 			
 			PBE.startup(this);
 			PBE.addResources(new Resources());

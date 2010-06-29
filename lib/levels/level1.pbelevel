@@ -46,8 +46,8 @@
 			<scene componentReference="Scene2D"/>
 			<spriteSheet componentReference="GuyFrontSheet"/>
 			<positionOffset>
-				<x>0</x>
-				<y>0</y>
+				<x>16</x>
+				<y>8</y>
 			</positionOffset>	
 			<zIndex>4</zIndex>
 		</component>

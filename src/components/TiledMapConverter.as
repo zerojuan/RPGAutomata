@@ -101,8 +101,7 @@ package components
 				var tileCoordinates:Array = new Array();
 				
 				if (xml.layer[i].properties.property && xml.layer[i].properties.property.attribute("name") == "collision") {					
-					collisionLayer = parseCSV(tileData);
-					layers[i] = parseCSV(tileData);
+					collisionLayer = parseCSV(tileData);					
 				}else {
 					layers[i] = parseCSV(tileData);
 				}										

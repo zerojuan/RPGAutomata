@@ -70,48 +70,38 @@ package controllers
 				_xSpeed = tileWidth * _speed;
 				_ySpeed = tileHeight * _speed;
 				var map:Array = mapReference.collisionMap;
-				var xGrid:int = Math.round(position.x/tileWidth);
-				var yGrid:int = Math.round(position.y/tileHeight);
+				var xGrid:int = Math.ceil(position.x/tileWidth);
+				var yGrid:int = Math.ceil(position.y/tileHeight);				
 				switch(direction){					
 					case UP: 
-						if(map[yGrid - 1][xGrid] == 0){
-							position.y = position.y - _ySpeed;
-							if(position.y % tileHeight == 0)
-								 state = IDLE;
-						}else{
-							//state = IDLE;
-						}
+						if(map[yGrid - 1][xGrid] == 0)
+							position.y = position.y - _ySpeed;													
+						if(position.y % tileHeight == 0)
+							state = IDLE;
 							 break;
-					case RIGHT: 
-						if(map[ yGrid][xGrid + 1] == 0){
-							position.x = position.x + _xSpeed;
-							 if(position.x % tileWidth == 0)
-								 state = IDLE;
-						}else{
-							//state = IDLE;
-						}
+					case RIGHT:
+						xGrid = Math.floor(position.x/tileWidth); //to adjust to rounding errors
+						if(map[ yGrid][xGrid + 1] == 0)
+							position.x = position.x + _xSpeed;												
+						if(position.x % tileWidth == 0)
+							state = IDLE;
 							 break;
 					case DOWN: 
-						if(map[ yGrid + 1][xGrid] == 0){
-							position.y = position.y + _ySpeed;
-							if(position.y % tileHeight == 0 )
-								state = IDLE;	
-						}else{
-							//state = IDLE;
-						}
+						yGrid = Math.floor(position.y/tileHeight); //to adjust to rounding errors
+						if(map[ yGrid + 1][xGrid] == 0)
+							position.y = position.y + _ySpeed;													
+						if(position.y % tileHeight == 0 )
+							state = IDLE;
 							 break;
 					case LEFT: 
-						if(map[ yGrid][xGrid - 1] == 0){
-							position.x = position.x - _xSpeed;
-							if(position.x % tileWidth == 0)
-								state = IDLE;							
-						}else{
-							//state = IDLE;
-						}
+						if(map[ yGrid][xGrid - 1] == 0)
+							position.x = position.x - _xSpeed;																				
+						if(position.x % tileWidth == 0)
+							state = IDLE;
 							 break;
 				}
 			}
-			
+					
 			owner.setProperty(positionProperty, position);
 		}
 				

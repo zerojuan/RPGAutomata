@@ -21,23 +21,63 @@
 			</trackLimitRectangle>
 		</component>
 	</entity>
+	<entity name="UI2D">
+		<component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
+			<sceneView type="com.pblabs.rendering2D.ui.SceneView">
+				<width>640</width>
+				<height>480</height>
+			</sceneView>
+		</component>
+	</entity>
 	<entity name="SpatialDB">
 		<component type="components.TiledMapConverter" name="Converter">
 			<scene componentReference="Scene2D"/>
-			<tmxFilename>../lib/office_map.tmx</tmxFilename>
+			<tmxFilename>../lib/office_map.xml</tmxFilename>
 			<playerZIndex>4</playerZIndex>
 		</component>
 		<component type="components.RPGSpatialManagerComponent" name="Manager">
 			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
 		</component>
 	</entity>	
+	<entity name="Conversations">
+		<component type="components.ConversationManager" name="ConversationManager">
+			<filename>../lib/conversations/conversations.xml</filename>
+		</component>
+	</entity>
+	<entity name="TalkEntity">
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="TextBoxRenderer">
+			<position>
+				<x>0</x>
+				<y>175</y>
+			</position>
+			<layerIndex>10</layerIndex>
+			<alphaProperty>@Controller.talkAlpha</alphaProperty>
+			<spriteSheet componentReference="TextBoxSheet"/>
+			<scene componentReference="UI2D"/>
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="ArrowRenderer">
+			<position>
+				<x>200</x>
+				<y>230</y>
+			</position>
+			<layerIndex>11</layerIndex>
+			<alphaProperty>@Controller.arrowAlpha</alphaProperty>
+			<spriteSheet componentReference="ArrowSheet"/>
+			<scene componentReference="UI2D"/>
+		</component>
+		<component type="controllers.TalkController" name="Controller">
+			<arrowPositionProperty>@ArrowRenderer.position</arrowPositionProperty>
+			<displayObjectProperty>@TextBoxRenderer.displayObject</displayObjectProperty>
+			<player>Guy</player>
+		</component>
+	</entity>
 	<entity name="Guy">
 		<component type="components.RPGSpatialComponent" name="Spatial">
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<gridPosition>
-				<x>15</x>
-				<y>15</y>
+				<x>1</x>
+				<y>20</y>
 			</gridPosition>
 			<spatialManager componentReference="SpatialDB"/>
 		</component>
@@ -87,6 +127,8 @@
 		<component type="controllers.RPGPlayerController" name="Controller">
 			<positionProperty>@Spatial.position</positionProperty>
 			<velocityProperty>@Spatial.velocity</velocityProperty>
+			<gridPositionProperty>@Spatial.gridPosition</gridPositionProperty>
+			<conversationsLibProperty>#Conversations.ConversationManager.conversationLibrary</conversationsLibProperty>
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<speed>.125</speed>
@@ -96,6 +138,8 @@
 				<GoRight>RIGHT</GoRight>
 				<GoUp>UP</GoUp>
 				<GoDown>DOWN</GoDown>
+				<TalkPressed>X</TalkPressed>
+				<Dash>Z</Dash>
 			</input>
 		</component>
 		<!--
@@ -136,7 +180,10 @@
 	
 	<group name="LevelOne">
 		<objectReference name="Scene2D"/>
-		<objectReference name="SpatialDB"/>		
+		<objectReference name="UI2D"/>
+		<objectReference name="SpatialDB"/>
+		<objectReference name="Conversations"/>		
 		<objectReference name="Guy"/>		
+		<objectReference name="TalkEntity"/>
 	</group>
 </things>

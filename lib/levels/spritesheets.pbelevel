@@ -1,4 +1,14 @@
 <things version="1">
+	<entity name="TextBoxSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/textbox.png"/>
+		</component>
+	</entity>
+	<entity name="ArrowSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/arrow.png"/>
+		</component>
+	</entity>
 	<entity name="GuyFrontSheet">
 		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
 			<image filename="../lib/images/male/male_01.png"/>
@@ -38,6 +48,8 @@
 
 
 	<group name="SpriteSheets">
+		<objectReference name="TextBoxSheet"/>
+		<objectReference name="ArrowSheet"/>
 		<objectReference name="GuyFrontSheet"/>
 		<objectReference name="GuyLeftSheet"/>
 		<objectReference name="GuyBackSheet"/>

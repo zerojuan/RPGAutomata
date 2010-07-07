@@ -5,6 +5,7 @@
 	import com.pblabs.components.stateMachine.PropertyTransition;
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.core.InputKey;
+	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.rendering2D.AnimationController;
 	import com.pblabs.rendering2D.AnimationControllerInfo;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
@@ -16,6 +17,7 @@
 	import com.pblabs.rendering2D.ui.SceneView;
 	
 	import components.CollisionMap;
+	import components.ConversationManager;
 	import components.RPGSpatialComponent;
 	import components.RPGSpatialManagerComponent;
 	import components.StatComponent;
@@ -23,6 +25,7 @@
 	
 	import controllers.GuyController;
 	import controllers.RPGPlayerController;
+	import controllers.TalkController;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -45,6 +48,7 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 						
+			PBE.registerType(com.pblabs.engine.entity.IEntity);
 			PBE.registerType(AnimationController);
 			PBE.registerType(AnimationControllerInfo);
 			PBE.registerType(CellCountDivider);
@@ -63,13 +67,19 @@
 			PBE.registerType(GuyController);
 			PBE.registerType(RPGPlayerController);
 			PBE.registerType(TiledMapConverter);
+			PBE.registerType(controllers.TalkController);
 			PBE.registerType(components.CollisionMap);
 			PBE.registerType(components.RPGSpatialComponent);
 			PBE.registerType(components.RPGSpatialManagerComponent);
+			PBE.registerType(components.ConversationManager);
+			
 			
 			PBE.startup(this);
-			PBE.addResources(new Resources());
+			PBE.addResources(new GameResources());
 			
+			PBE.levelManager.addFileReference(0, "../lib/levels/spritesheets.pbelevel");
+			PBE.levelManager.addGroupReference(0, "SpriteSheets");
+				
 			PBE.levelManager.addFileReference(1, "../lib/levels/spritesheets.pbelevel");
 			PBE.levelManager.addFileReference(1, "../lib/levels/level1.pbelevel");
 			PBE.levelManager.addGroupReference(1, "SpriteSheets");

@@ -202,7 +202,7 @@ package components
 		}
 		
 		protected function onXMLFailed(resource:XMLResource):void {
-			Logger.error(this, "onXMLFailed", "Failed to load '" + (resource ? resource.filename : "(unknown)") + "'");
+			Logger.error(this, "onXMLFailed", "HOMG! Failed to load '" + (resource ? resource.filename : "(unknown)") + "'");
 		}
 		
 		private var tileLength:uint;

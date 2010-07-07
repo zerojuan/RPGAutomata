@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conversations>
 	<conversation id="test">
-		<talk actor="ME">
+		<talk actor="ME" actorId="0">
 			HELLO ME?! This is a very very long stream!
 		</talk>
-		<talk actor="YOU">
+		<talk actor="YOU" actorId="1">
 			HELLO YOU! And this too? What up!
 		</talk>
 	</conversation>

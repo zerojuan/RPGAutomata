@@ -9,6 +9,15 @@
 			<image filename="../lib/images/arrow.png"/>
 		</component>
 	</entity>
+	<entity name="ActorImageSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/actor-image.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>5</xCount>
+				<yCount>1</yCount>
+			</divider>
+		</component>
+	</entity>
 	<entity name="GuyFrontSheet">
 		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
 			<image filename="../lib/images/male/male_01.png"/>
@@ -50,6 +59,7 @@
 	<group name="SpriteSheets">
 		<objectReference name="TextBoxSheet"/>
 		<objectReference name="ArrowSheet"/>
+		<objectReference name="ActorImageSheet"/>
 		<objectReference name="GuyFrontSheet"/>
 		<objectReference name="GuyLeftSheet"/>
 		<objectReference name="GuyBackSheet"/>

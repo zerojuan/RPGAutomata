@@ -45,6 +45,16 @@
 		</component>
 	</entity>
 	<entity name="TalkEntity">
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="ActorImageRenderer">
+			<position>
+				<x>-250</x>
+				<y>175</y>
+			</position>
+			<layerIndex>11</layerIndex>
+			<alphaProperty>@Controller.talkAlpha</alphaProperty>
+			<spriteSheet componentReference="ActorImageSheet"/>
+			<scene componentReference="UI2D"/>
+		</component>
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="TextBoxRenderer">
 			<position>
 				<x>0</x>
@@ -69,6 +79,7 @@
 			<arrowPositionProperty>@ArrowRenderer.position</arrowPositionProperty>
 			<displayObjectProperty>@TextBoxRenderer.displayObject</displayObjectProperty>
 			<player>Guy</player>
+			<actorIndexReference>@ActorImageRenderer.spriteIndex</actorIndexReference>
 		</component>
 	</entity>
 	<entity name="Guy">

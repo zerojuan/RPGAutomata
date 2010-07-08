@@ -1,5 +1,7 @@
 ﻿package 
 {
+	import com.pblabs.animation.Animator;
+	import com.pblabs.animation.AnimatorComponent;
 	import com.pblabs.components.stateMachine.BasicState;
 	import com.pblabs.components.stateMachine.FSMComponent;
 	import com.pblabs.components.stateMachine.PropertyTransition;
@@ -10,6 +12,7 @@
 	import com.pblabs.rendering2D.AnimationControllerInfo;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
 	import com.pblabs.rendering2D.DisplayObjectScene;
+	import com.pblabs.rendering2D.SimpleShapeRenderer;
 	import com.pblabs.rendering2D.SimpleSpatialComponent;
 	import com.pblabs.rendering2D.SpriteSheetRenderer;
 	import com.pblabs.rendering2D.spritesheet.CellCountDivider;
@@ -18,6 +21,7 @@
 	
 	import components.CollisionMap;
 	import components.ConversationManager;
+	import components.FamitsuAnimator;
 	import components.RPGSpatialComponent;
 	import components.RPGSpatialManagerComponent;
 	import components.StatComponent;
@@ -53,9 +57,13 @@
 			PBE.registerType(AnimationControllerInfo);
 			PBE.registerType(CellCountDivider);
 			PBE.registerType(SpriteSheetComponent);
+			PBE.registerType(com.pblabs.animation.AnimatorComponent);
+			PBE.registerType(com.pblabs.animation.Animator);
+			PBE.registerType(com.pblabs.animation.AnimatorType);
 			PBE.registerType(DisplayObjectScene);
 			PBE.registerType(SimpleSpatialComponent);
 			PBE.registerType(SpriteSheetRenderer);
+			PBE.registerType(com.pblabs.rendering2D.SimpleShapeRenderer);
 			PBE.registerType(SceneView);
 			PBE.registerType(BasicSpatialManager2D);
 			PBE.registerType(FSMComponent);
@@ -72,6 +80,7 @@
 			PBE.registerType(components.RPGSpatialComponent);
 			PBE.registerType(components.RPGSpatialManagerComponent);
 			PBE.registerType(components.ConversationManager);
+			PBE.registerType(components.FamitsuAnimator);
 			
 			
 			PBE.startup(this);

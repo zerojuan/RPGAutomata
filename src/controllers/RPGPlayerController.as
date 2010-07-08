@@ -1,6 +1,7 @@
 package controllers 
 {
 	
+	import com.pblabs.animation.AnimatorComponent;
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.core.InputMap;
@@ -19,9 +20,12 @@ package controllers
 		
 		public var velocityProperty:PropertyReference;
 		public var positionProperty:PropertyReference;
+		public var prevGridPositionProperty:PropertyReference;
 		public var gridPositionProperty:PropertyReference;
 		public var conversationsLibProperty:PropertyReference;
 		public var mapReference:RPGSpatialManagerComponent;
+		
+		public var animatorComponent:AnimatorComponent;
 		
 		public var isTalking:Boolean = false;
 		
@@ -70,53 +74,85 @@ package controllers
         }
 		
 		public override function onTick(tickRate:Number):void {
-			var position:Point = owner.getProperty(positionProperty);			
+						
 			checkInput();
 			
-			if(state == MOVING){
+			if(state == MOVING){				
+				var map:Array = mapReference.collisionMap;		
+				var prevGridPosition:Point = owner.getProperty(prevGridPositionProperty);
+				var gridPosition:Point = owner.getProperty(gridPositionProperty);
+				if(_position){
+					_prevPosition = _position.clone(); 
+				}
+				_position = owner.getProperty(positionProperty);
+				
+				if(_position.equals(_prevPosition)){
+					_idleMoment++;
+					if(_idleMoment >= _idleTolerance){
+						_idleMoment = 0;
+						setIdle();
+					}
+				}
+				
 				_xSpeed = tileWidth * _speed;
 				_ySpeed = tileHeight * _speed;
-				var map:Array = mapReference.collisionMap;				
-				_prevX = _xGrid;
-				_prevY = _yGrid;
-				_xGrid = Math.ceil(position.x/tileWidth);
-				_yGrid = Math.ceil(position.y/tileHeight);
+									
+				_prevX = prevGridPosition.x;
+				_prevY = prevGridPosition.y;
+				
+				_xGrid = Math.ceil(_position.x/tileWidth);
+				_yGrid = Math.ceil(_position.y/tileHeight);
 				if(map[_yGrid][_xGrid] != 0){
 					_xGrid = _prevX;
-					_yGrid = _prevY;
-				}
+					_yGrid = _prevY;								
+					PBE.log(this, "STUCK!! at [" +_xGrid + "," +_yGrid +"]");
+					state = IDLE;					
+				}				
 				switch(direction){					
 					case UP: 
-						if(map[_yGrid - 1][_xGrid] == 0)
-							position.y = position.y - _ySpeed;													
-						if(position.y % tileHeight == 0)
-							state = IDLE;
+						if(map[_yGrid - 1][_xGrid] == 0){
+							_position.y = _position.y - _ySpeed;
+							_yGrid -= 1;
+						}
+						if(_position.y % tileHeight == 0){
+							setIdle();
+						}
+							
 							 break;
 					case RIGHT:
-						_xGrid = Math.floor(position.x/tileWidth); //to adjust to rounding errors
-						if(map[ _yGrid][_xGrid + 1] == 0)
-							position.x = position.x + _xSpeed;												
-						if(position.x % tileWidth == 0)
-							state = IDLE;
+						_xGrid = Math.floor(_position.x/tileWidth); //to adjust to rounding errors
+						if(map[ _yGrid][_xGrid + 1] == 0){
+							_position.x = _position.x + _xSpeed;
+							_xGrid += 1;
+						}
+						if(_position.x % tileWidth == 0){
+							setIdle();
+						}
 							 break;
 					case DOWN: 
-						_yGrid = Math.floor(position.y/tileHeight); //to adjust to rounding errors
-						if(map[ _yGrid + 1][_xGrid] == 0)
-							position.y = position.y + _ySpeed;													
-						if(position.y % tileHeight == 0 )
-							state = IDLE;
+						_yGrid = Math.floor(_position.y/tileHeight); //to adjust to rounding errors
+						if(map[ _yGrid + 1][_xGrid] == 0){
+							_position.y = _position.y + _ySpeed;
+							_yGrid += 1;
+						}
+						if(_position.y % tileHeight == 0 ){
+							setIdle();
+						}
 							 break;
 					case LEFT: 
-						if(map[ _yGrid][_xGrid - 1] == 0)
-							position.x = position.x - _xSpeed;																				
-						if(position.x % tileWidth == 0)
-							state = IDLE;
+						if(map[ _yGrid][_xGrid - 1] == 0){							
+							_position.x = _position.x - _xSpeed;
+							_xGrid -= 1;
+						}
+						if(_position.x % tileWidth == 0){
+							setIdle();
+						}
 							 break;
 				}
 				owner.setProperty(gridPositionProperty, new Point(_xGrid, _yGrid));
 			}
-					
-			owner.setProperty(positionProperty, position);
+			if(_position)		
+			owner.setProperty(positionProperty, _position);
 		}
 				
 		public function get animation():String {
@@ -133,18 +169,17 @@ package controllers
 					if(direction == UP)
 						state = MOVING;											
 					direction = UP;
-					playAnimation("back");
+					playAnimation("up");
 				}else if(_left == 1){
 					if(direction == LEFT)
 						state = MOVING;
-					direction = LEFT;
-					state = MOVING;
+					direction = LEFT;					
 					playAnimation("left");	
 				}else if(_down == 1){
 					if(direction == DOWN)
 						state = MOVING;
 					direction = DOWN;					
-					playAnimation("front");
+					playAnimation("down");
 				}else if(_right == 1){
 					if(direction == RIGHT)
 						state = MOVING;
@@ -154,11 +189,25 @@ package controllers
 			}			
 		}
 		
+		private function setIdle():void{
+			state = IDLE;			
+			switch(direction){
+				case UP: playAnimation("upIdle");
+						break;
+				case DOWN: playAnimation("downIdle");
+						break;
+				case LEFT: playAnimation("leftIdle");
+						break;
+				case RIGHT: playAnimation("rightIdle");
+						break;
+			}
+		}
+		
 		private function playAnimation(str:String):void {
 			if (str != _animation) {
 				_animation = str;
 				owner.eventDispatcher.dispatchEvent(new Event("GuyChangeAnimation"));
-			}
+			}		
 		}
 		
 		private function _OnLeft(value:Number):void {
@@ -205,6 +254,8 @@ package controllers
 		override protected function onAdd():void {
 			super.onAdd();
 			
+			_position = owner.getProperty(positionProperty);
+			
 			owner.eventDispatcher.addEventListener(TalkEvent.END_TALK, onEndedTalking);
 		}
 		
@@ -233,6 +284,12 @@ package controllers
 		private var _yGrid:int;
 		private var _prevX:int;
 		private var _prevY:int;
+		
+		private var _idleMoment:int;
+		private var _idleTolerance:int = 10;
+		
+		private var _prevPosition:Point;
+		private var _position:Point;
 		
 	}
 

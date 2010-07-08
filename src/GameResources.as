@@ -13,14 +13,8 @@ package
 		[Embed(source = "../lib/office_map.xml", mimeType = "application/octet-stream")]
 		public var officeMap:Class;
 		
-		[Embed(source = '../lib/images/male/male_01.png')]
-		public var maleUp:Class;
-		[Embed(source = '../lib/images/male/male_02.png')]
-		public var maleLeft:Class;
-		[Embed(source = '../lib/images/male/male_04.png')]
-		public var maleRight:Class;
-		[Embed(source = '../lib/images/male/male_03.png')]
-		public var maleDown:Class;
+		[Embed(source="../lib/images/female/girl.png")]
+		public var girlImg:Class;
 		
 		[Embed(source = "../lib/images/free_tileset.png")]
 		public var tileset1:Class;

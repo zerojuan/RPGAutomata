@@ -1,5 +1,6 @@
 package components
 {
+	import com.pblabs.engine.PBE;
 	import com.pblabs.rendering2D.SimpleSpatialComponent;
 	
 	import flash.geom.Point;
@@ -10,18 +11,35 @@ package components
 		public var tileHeight:Number;
 		
 		public function set gridPosition(val:Point):void{
-			_gridPosition = val;		
+			if(_prevPosition){ //if there is a previous position already
+				if(!_gridPosition.equals(val)){					
+					_prevPosition = _gridPosition.clone();
+					_gridPosition = val;
+					//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
+				}
+			}else{
+				_gridPosition = val;
+				_prevPosition = _gridPosition.clone();
+			}			
 		}
 		
 		public function get gridPosition():Point{
 			return _gridPosition;
 		}
 		
+		public function get prevGridPosition():Point{
+			return _prevPosition;
+		}
+		
+		public function get currentGridPosition():Point{
+			return new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);
+		}
+		
 		override public  function onTick(tickRate:Number):void{
 			super.onTick(tickRate);
 			
-			_gridPosition.x = int(position.x / tileWidth);
-			_gridPosition.y = int(position.y / tileHeight);
+			//_gridPosition.x = int(position.x / tileWidth);
+			//_gridPosition.y = int(position.y / tileHeight);
 		}
 		
 		override protected function onAdd():void{
@@ -34,5 +52,6 @@ package components
 		}
 		
 		private var _gridPosition:Point;
+		private var _prevPosition:Point;
 	}
 }

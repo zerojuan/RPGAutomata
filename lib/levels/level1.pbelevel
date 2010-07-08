@@ -92,45 +92,34 @@
 			</gridPosition>
 			<spatialManager componentReference="SpatialDB"/>
 		</component>
+		<!-- 
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer" name="DebugRender">
+			<isSquare>true</isSquare>
+			<lineSize>3</lineSize>
+			<positionOffset>
+				<x>16</x>
+				<y>8</y>
+			</positionOffset>
+			<radius>16</radius>
+			<positionProperty>@Spatial.currentGridPosition</positionProperty>
+			<scene componentReference="Scene2D"/>
+		</component>
+		 -->
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
 			<scene componentReference="Scene2D"/>
-			<spriteSheet componentReference="GuyFrontSheet"/>
+			<spriteSheet componentReference="GirlNinjaSheet"/>
 			<positionOffset>
 				<x>16</x>
 				<y>8</y>
 			</positionOffset>	
 			<zIndex>4</zIndex>
-		</component>
-		<component type="com.pblabs.rendering2D.AnimationController" name="FrameAnimation">
-			<animations childType="com.pblabs.rendering2D.AnimationControllerInfo">
-				<front>
-					<frameRate>12</frameRate>
-					<loop>true</loop>
-					<spriteSheet componentReference="GuyFrontSheet"/>
-				</front>
-				<left>
-					<frameRate>12</frameRate>
-					<loop>true</loop>
-					<spriteSheet componentReference="GuyLeftSheet"/>
-				</left>
-				<right>
-					<frameRate>12</frameRate>
-					<loop>true</loop>
-					<spriteSheet componentReference="GuyRightSheet"/>
-				</right>
-				<back>
-					<frameRate>12</frameRate>
-					<loop>true</loop>
-					<spriteSheet componentReference="GuyBackSheet"/>
-				</back>
-			</animations>
-			<defaultAnimation>left</defaultAnimation>
-			<spriteSheetReference>@Render.spriteSheet</spriteSheetReference>
-			<currentFrameReference>@Render.spriteIndex</currentFrameReference>
+		</component>		
+		<component type="components.FamitsuAnimator" name="AnimatorComponent">
 			<currentAnimationReference>@Controller.animation</currentAnimationReference>
-			<changeAnimationEvent type="String">GuyChangeAnimation</changeAnimationEvent>
-		</component>
+			<spriteIndexReference>@Render.spriteIndex</spriteIndexReference>
+			<changeAnimationEvent>GuyChangeAnimation</changeAnimationEvent>
+		</component>	
 		<component type="components.StatComponent" name="Stats">
 			<maxStamina>100</maxStamina>
 			<maxHappiness>100</maxHappiness>
@@ -139,7 +128,8 @@
 			<positionProperty>@Spatial.position</positionProperty>
 			<velocityProperty>@Spatial.velocity</velocityProperty>
 			<gridPositionProperty>@Spatial.gridPosition</gridPositionProperty>
-			<conversationsLibProperty>#Conversations.ConversationManager.conversationLibrary</conversationsLibProperty>
+			<prevGridPositionProperty>@Spatial.prevGridPosition</prevGridPositionProperty>
+			<conversationsLibProperty>#Conversations.ConversationManager.conversationLibrary</conversationsLibProperty>			
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<speed>.125</speed>

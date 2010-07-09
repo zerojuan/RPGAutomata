@@ -1,10 +1,7 @@
 <things version="1">
 	<entity name="Scene2D">
 		<component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
-			<sceneView type="com.pblabs.rendering2D.ui.SceneView">
-				<width>640</width>
-				<height>480</height>
-			</sceneView>
+			<sceneViewName>MainView</sceneViewName>
 			<sceneAlignment>
 				TOP_LEFT
 			</sceneAlignment>
@@ -23,10 +20,7 @@
 	</entity>
 	<entity name="UI2D">
 		<component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
-			<sceneView type="com.pblabs.rendering2D.ui.SceneView">
-				<width>640</width>
-				<height>480</height>
-			</sceneView>
+			<sceneViewName>UIView</sceneViewName>
 		</component>
 	</entity>
 	<entity name="SpatialDB">

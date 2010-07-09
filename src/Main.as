@@ -18,6 +18,7 @@
 	import com.pblabs.rendering2D.spritesheet.CellCountDivider;
 	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
 	import com.pblabs.rendering2D.ui.SceneView;
+	import com.pblabs.screens.ScreenManager;
 	
 	import components.CollisionMap;
 	import components.ConversationManager;
@@ -100,8 +101,10 @@
 			PBE.levelManager.addFileReference(1, "../lib/levels/level1.pbelevel");
 			PBE.levelManager.addGroupReference(1, "SpriteSheets");
 			PBE.levelManager.addGroupReference(1, "LevelOne");
-			
-			PBE.levelManager.start(1);
+						
+									
+			ScreenManager.instance.registerScreen("game", new GameScreen());			
+			ScreenManager.instance.goto("game");
 			
 		}
 		

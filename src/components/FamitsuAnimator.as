@@ -1,5 +1,6 @@
 package components
 {	
+	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.AnimatedComponent;
 	import com.pblabs.engine.entity.PropertyReference;
 	
@@ -11,6 +12,8 @@ package components
 		
 		public var currentAnimationReference:PropertyReference;
 		
+		public var frameInterval:Number;
+		
 		public var changeAnimationEvent:String;
 		
 		private var _up:Array = [9,10,11];
@@ -20,6 +23,8 @@ package components
 		
 		private var _currArray:Array;
 		private var _currIndex:int;
+		
+		private var _elapsedTime:Number = 0;
 		
 		override public function onFrame(elapsed:Number):void
 		{
@@ -31,9 +36,14 @@ package components
 			
 			if(_currArray){
 				owner.setProperty(spriteIndexReference, _currArray[_currIndex]);
-				_currIndex++;
-				if(_currIndex > 2){
-					_currIndex = 0;
+				_elapsedTime += elapsed;	
+				if(_elapsedTime >= frameInterval){
+					_currIndex++;
+					PBE.log(this, "Next Frame: " + _currIndex + " Elapsed: " + _elapsedTime);
+					if(_currIndex > 2){
+						_currIndex = 0;
+					}
+					_elapsedTime = 0;
 				}
 			}else{
 				owner.setProperty(spriteIndexReference, _currIndex);

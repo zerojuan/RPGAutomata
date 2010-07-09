@@ -22,9 +22,11 @@
 	import components.CollisionMap;
 	import components.ConversationManager;
 	import components.FamitsuAnimator;
+	import components.RPGGameState;
 	import components.RPGSpatialComponent;
 	import components.RPGSpatialManagerComponent;
 	import components.StatComponent;
+	import components.TalkManager;
 	import components.TiledMapConverter;
 	
 	import controllers.GuyController;
@@ -33,6 +35,8 @@
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
+	
+	import rpg.TalkingPoint;
 	
 	/**
 	 * Main class
@@ -81,6 +85,9 @@
 			PBE.registerType(components.RPGSpatialManagerComponent);
 			PBE.registerType(components.ConversationManager);
 			PBE.registerType(components.FamitsuAnimator);
+			PBE.registerType(components.RPGGameState);
+			PBE.registerType(components.TalkManager);
+			PBE.registerType(rpg.TalkingPoint);
 			
 			
 			PBE.startup(this);

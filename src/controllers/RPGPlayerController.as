@@ -8,6 +8,7 @@ package controllers
 	import com.pblabs.engine.entity.PropertyReference;
 	
 	import components.RPGSpatialManagerComponent;
+	import components.TalkManager;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -22,8 +23,10 @@ package controllers
 		public var positionProperty:PropertyReference;
 		public var prevGridPositionProperty:PropertyReference;
 		public var gridPositionProperty:PropertyReference;
-		public var conversationsLibProperty:PropertyReference;
+		
 		public var mapReference:RPGSpatialManagerComponent;
+		
+		public var talkManager:TalkManager;
 		
 		public var animatorComponent:AnimatorComponent;
 		
@@ -230,12 +233,28 @@ package controllers
 			if(value == 0){
 				if(!isTalking){ //if not currently talking start a talking event
 					isTalking = true;
-					var conv:Array = owner.getProperty(conversationsLibProperty);				
-					owner.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.START_TALK, conv["test"]));
+					owner.eventDispatcher.dispatchEvent(
+						new TalkEvent(TalkEvent.START_TALK, talkManager.getTalk(getFrontCoord())));
 				}else{ //if i'm already talking fire a nextTalk event
 					owner.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.NEXT_TALK));
 				}			
 			}
+		}
+		
+		private function getFrontCoord():Point{
+			var gridCoord:Point = (owner.getProperty(gridPositionProperty) as Point).clone();
+			
+			switch(direction){
+				case UP:  gridCoord.y-=1;
+							break;
+				case DOWN: gridCoord.y+=1;
+							break;
+				case LEFT: gridCoord.x-=1;
+							break;
+				case RIGHT: gridCoord.x+=1;
+							break;
+			}
+			return gridCoord;
 		}
 		
 		private function _OnDash(value:Number):void{

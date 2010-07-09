@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conversations>
-	<conversation id="test">
+	<conversation id="talkToSelf">
 		<talk actor="ME" actorId="0">
-			HELLO ME?! This is a very very long stream!
+			Dude I am talking to myselves!
 		</talk>
+		<talk actor="ME" actorId="0">
+			And I am totally going to keep on talking..
+		</talk>
+		<talk actor="ME" actorID="0">
+			Until of course I shut up. SHUTTTING UP.. NOW!
+		</talk>
+	</conversation>
+	<conversation id="talkToSelfDone">
 		<talk actor="YOU" actorId="1">
-			HELLO YOU! And this too? What up!
+			I thought you were done talking??
+		</talk>
+		<talk actor="ME" actorId="0">
+			WTF! Who was that?
+		</talk>
+	</conversation>
+	<conversation id="laptop">
+		<talk actor="ME" actorId="0">
+			Ooooh.. look a laptop!
+		</talk>
+	</conversation>
+	<conversation id="laptopDone">
+		<talk actor="ME" actorId="0">
+			oh.. laptop. boring.
 		</talk>
 	</conversation>
 </conversations>

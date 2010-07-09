@@ -39,6 +39,28 @@
 			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
 		</component>
 	</entity>	
+	<entity name="GameStateDB">
+		<component type="components.RPGGameState" name="GameState">
+			<gameStates childType="Boolean">
+				<laptop>false</laptop>
+				<talkedToSelf>false</talkedToSelf>
+			</gameStates>
+			<playerName>Guy</playerName>
+		</component>
+		<component type="components.TalkManager" name="Manager">
+			<talkingPoints>
+				<_0>
+					<gridPosition>
+						<x>1</x>
+						<y>19</y>
+					</gridPosition>
+					<talkId>laptop</talkId>
+				</_0>
+			</talkingPoints>
+			<gameStateDB componentName="GameState"/>
+			<conversationLibrary>#Conversations.ConversationManager.conversationLibrary</conversationLibrary>
+		</component>
+	</entity>
 	<entity name="Conversations">
 		<component type="components.ConversationManager" name="ConversationManager">
 			<filename>../lib/conversations/conversations.xml</filename>
@@ -119,6 +141,7 @@
 			<currentAnimationReference>@Controller.animation</currentAnimationReference>
 			<spriteIndexReference>@Render.spriteIndex</spriteIndexReference>
 			<changeAnimationEvent>GuyChangeAnimation</changeAnimationEvent>
+			<frameInterval>0</frameInterval>
 		</component>	
 		<component type="components.StatComponent" name="Stats">
 			<maxStamina>100</maxStamina>
@@ -129,7 +152,7 @@
 			<velocityProperty>@Spatial.velocity</velocityProperty>
 			<gridPositionProperty>@Spatial.gridPosition</gridPositionProperty>
 			<prevGridPositionProperty>@Spatial.prevGridPosition</prevGridPositionProperty>
-			<conversationsLibProperty>#Conversations.ConversationManager.conversationLibrary</conversationsLibProperty>			
+			<talkManager entityName="GameStateDB" componentName="Manager"/>					
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<speed>.125</speed>
@@ -179,12 +202,13 @@
 		-->
 	</entity>	
 	
-	<group name="LevelOne">
+	<group name="LevelOne">		
 		<objectReference name="Scene2D"/>
 		<objectReference name="UI2D"/>
 		<objectReference name="SpatialDB"/>
 		<objectReference name="Conversations"/>		
 		<objectReference name="Guy"/>		
 		<objectReference name="TalkEntity"/>
+		<objectReference name="GameStateDB"/>
 	</group>
 </things>

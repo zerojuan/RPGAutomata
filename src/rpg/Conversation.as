@@ -4,6 +4,8 @@ package rpg
 	{
 		public var currIndex:int;
 		
+		public var locked:Boolean;
+		
 		public function Conversation(){
 			_dialogArray = new Array();
 			reset();

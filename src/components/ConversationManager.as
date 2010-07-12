@@ -43,6 +43,7 @@ package components
 			for(i = 0; i < xml.conversation.length(); i++){
 				
 				var conv:Conversation = new Conversation();
+				conv.locked = xml.conversation[i].@locked;
 				//Populate conversation objects with dialogs
 				for(var x:int = 0; x < xml.conversation[i].talk.length(); x++){
 					conv.push(new Dialog(xml.conversation[i].talk[x].@actor, xml.conversation[i].talk[x].@actorId, xml.conversation[i].talk[x])); 

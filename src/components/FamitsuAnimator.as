@@ -38,8 +38,7 @@ package components
 				owner.setProperty(spriteIndexReference, _currArray[_currIndex]);
 				_elapsedTime += elapsed;	
 				if(_elapsedTime >= frameInterval){
-					_currIndex++;
-					PBE.log(this, "Next Frame: " + _currIndex + " Elapsed: " + _elapsedTime);
+					_currIndex++;					
 					if(_currIndex > 2){
 						_currIndex = 0;
 					}

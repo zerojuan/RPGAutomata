@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conversations>
-	<conversation id="talkToSelf">
+	<conversation id="talkToSelf" locked="true">		
 		<talk actor="ME" actorId="0">
 			Dude I am talking to myselves!
 		</talk>
@@ -11,7 +11,7 @@
 			Until of course I shut up. SHUTTTING UP.. NOW!
 		</talk>
 	</conversation>
-	<conversation id="talkToSelfDone">
+	<conversation id="talkToSelfDone" locked="true">
 		<talk actor="YOU" actorId="1">
 			I thought you were done talking??
 		</talk>

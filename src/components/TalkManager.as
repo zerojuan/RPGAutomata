@@ -43,7 +43,7 @@ package components
 			return null;
 		}
 		
-		private function getTalkPoint(objectCoord):String{
+		private function getTalkPoint(objectCoord:Point):String{
 			var retArr:Array = new Array();
 			var talkPoint:TalkingPoint;
 			

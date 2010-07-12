@@ -31,6 +31,7 @@ package controllers
 		public var animatorComponent:AnimatorComponent;
 		
 		public var isTalking:Boolean = false;
+		public var isLocked:Boolean = false;
 		
 		public var tileWidth:int;
 		public var tileHeight:int;
@@ -77,9 +78,17 @@ package controllers
         }
 		
 		public override function onTick(tickRate:Number):void {
-						
-			checkInput();
+			if(isLocked){
+				state = IDLE;
+				return;
+			}
 			
+			checkInput();
+			updatePosition();
+			
+		}
+		
+		private function updatePosition():void{
 			if(state == MOVING){				
 				var map:Array = mapReference.collisionMap;		
 				var prevGridPosition:Point = owner.getProperty(prevGridPositionProperty);
@@ -99,7 +108,7 @@ package controllers
 				
 				_xSpeed = tileWidth * _speed;
 				_ySpeed = tileHeight * _speed;
-									
+				
 				_prevX = prevGridPosition.x;
 				_prevY = prevGridPosition.y;
 				
@@ -120,8 +129,8 @@ package controllers
 						if(_position.y % tileHeight == 0){
 							setIdle();
 						}
-							
-							 break;
+						
+						break;
 					case RIGHT:
 						_xGrid = Math.floor(_position.x/tileWidth); //to adjust to rounding errors
 						if(map[ _yGrid][_xGrid + 1] == 0){
@@ -131,7 +140,7 @@ package controllers
 						if(_position.x % tileWidth == 0){
 							setIdle();
 						}
-							 break;
+						break;
 					case DOWN: 
 						_yGrid = Math.floor(_position.y/tileHeight); //to adjust to rounding errors
 						if(map[ _yGrid + 1][_xGrid] == 0){
@@ -141,7 +150,7 @@ package controllers
 						if(_position.y % tileHeight == 0 ){
 							setIdle();
 						}
-							 break;
+						break;
 					case LEFT: 
 						if(map[ _yGrid][_xGrid - 1] == 0){							
 							_position.x = _position.x - _xSpeed;
@@ -150,12 +159,12 @@ package controllers
 						if(_position.x % tileWidth == 0){
 							setIdle();
 						}
-							 break;
+						break;
 				}
 				owner.setProperty(gridPositionProperty, new Point(_xGrid, _yGrid));
 			}
 			if(_position)		
-			owner.setProperty(positionProperty, _position);
+				owner.setProperty(positionProperty, _position);
 		}
 				
 		public function get animation():String {
@@ -166,7 +175,7 @@ package controllers
 			_animation = str;
 		}
 		
-		private function checkInput():void{
+		private function checkInput():void{			
 			if(state == IDLE){
 				if(_up == 1){										
 					if(direction == UP)
@@ -233,6 +242,7 @@ package controllers
 			if(value == 0){
 				if(!isTalking){ //if not currently talking start a talking event
 					isTalking = true;
+					isLocked = true;
 					owner.eventDispatcher.dispatchEvent(
 						new TalkEvent(TalkEvent.START_TALK, talkManager.getTalk(getFrontCoord())));
 				}else{ //if i'm already talking fire a nextTalk event
@@ -268,6 +278,7 @@ package controllers
 		private function onEndedTalking(evt:TalkEvent):void{
 			PBE.log(this, "Ended talking");
 			isTalking = false;
+			isLocked = false;
 		}
 		
 		override protected function onAdd():void {

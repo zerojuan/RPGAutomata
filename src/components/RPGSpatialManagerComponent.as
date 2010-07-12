@@ -10,5 +10,10 @@ package components
 			var collisionMap:Array = owner.getProperty(levelCollisionMapProperty);
 			return collisionMap;
 		}
+		
+		public function get objectArray():Array{
+			return _objectList;
+		}
+
 	}
 }

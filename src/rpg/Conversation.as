@@ -4,7 +4,7 @@ package rpg
 	{
 		public var currIndex:int;
 		
-		public var locked:Boolean;
+		public var locked:Boolean; //whether or not this conversation locks a character from moving
 		
 		public function Conversation(){
 			_dialogArray = new Array();

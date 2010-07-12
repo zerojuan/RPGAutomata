@@ -25,6 +25,7 @@
 	import components.FamitsuAnimator;
 	import components.RPGGameState;
 	import components.RPGSpatialComponent;
+	import components.RPGSpatialDebugComponent;
 	import components.RPGSpatialManagerComponent;
 	import components.StatComponent;
 	import components.TalkManager;
@@ -88,6 +89,7 @@
 			PBE.registerType(components.FamitsuAnimator);
 			PBE.registerType(components.RPGGameState);
 			PBE.registerType(components.TalkManager);
+			PBE.registerType(components.RPGSpatialDebugComponent);
 			PBE.registerType(rpg.TalkingPoint);
 			
 			

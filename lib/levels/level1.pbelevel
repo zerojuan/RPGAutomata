@@ -32,6 +32,10 @@
 		<component type="components.RPGSpatialManagerComponent" name="Manager">
 			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
 		</component>
+		<component type="components.RPGSpatialDebugComponent" name="Debug">
+			<spatialManager componentName="Manager"/>			
+			<scene componentReference="Scene2D"/>
+		</component>
 	</entity>	
 	<entity name="GameStateDB">
 		<component type="components.RPGGameState" name="GameState">

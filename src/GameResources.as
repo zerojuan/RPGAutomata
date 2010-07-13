@@ -10,6 +10,8 @@ package
 		public var level1:Class;
 		[Embed(source = '../lib/levels/spritesheets.pbelevel', mimeType = 'application/octet-stream')]
 		public var spritesheets:Class;
+		[Embed(source = '../lib/levels/templates.pbelevel', mimeType = 'application/octet-stream')]
+		public var templates:Class;
 		[Embed(source = "../lib/office_map.xml", mimeType = "application/octet-stream")]
 		public var officeMap:Class;
 		

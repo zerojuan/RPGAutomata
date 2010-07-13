@@ -97,9 +97,11 @@
 			PBE.addResources(new GameResources());
 			
 			PBE.levelManager.addFileReference(0, "../lib/levels/spritesheets.pbelevel");
+			PBE.levelManager.addFileReference(0,"../lib/levels/templates.pbelevel");
 			PBE.levelManager.addGroupReference(0, "SpriteSheets");
 				
 			PBE.levelManager.addFileReference(1, "../lib/levels/spritesheets.pbelevel");
+			PBE.levelManager.addFileReference(1,"../lib/levels/templates.pbelevel");
 			PBE.levelManager.addFileReference(1, "../lib/levels/level1.pbelevel");
 			PBE.levelManager.addGroupReference(1, "SpriteSheets");
 			PBE.levelManager.addGroupReference(1, "LevelOne");

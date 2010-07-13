@@ -163,42 +163,16 @@
 				<TalkPressed>X</TalkPressed>
 				<Dash>Z</Dash>
 			</input>
-		</component>
-		<!--
-		<component type="controllers.GuyController" name="Controller">		
-			<stats componentName="Stats"/>
-			<positionProperty>@Spatial.position</positionProperty>
-			<velocityProperty>@Spatial.velocity</velocityProperty>
-			<currentStateProperty>@FSM.stateMachine.currentStateName</currentStateProperty>
-			<animPauseProperty>@FrameAnimation.paused</animPauseProperty>			
-		</component>
-		<component type="com.pblabs.components.stateMachine.FSMComponent" name="FSM">
-			<stateMachine>
-				<states>
-					<steady type="com.pblabs.components.stateMachine.BasicState">
-						<transitions>
-							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
-								<targetState>walk</targetState>
-								<property>@Stats.happiness</property>
-								<value>0</value>
-							</_0>
-						</transitions>
-					</steady>
-					<walk type="com.pblabs.components.stateMachine.BasicState">
-						<transitions>
-							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
-								<targetState>steady</targetState>
-								<property>@Stats.stamina</property>
-								<value>0</value>
-							</_0>
-						</transitions>
-					</walk>
-				</states>
-				<defaultState>steady</defaultState>
-			</stateMachine>
-		</component>
-		-->
+		</component>		
 	</entity>	
+	<entity name="NPC1" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>2</x>
+				<y>25</y>
+			</gridPosition>
+		</component>
+	</entity>
 	
 	<group name="LevelOne">		
 		<objectReference name="Scene2D"/>
@@ -208,5 +182,6 @@
 		<objectReference name="Guy"/>		
 		<objectReference name="TalkEntity"/>
 		<objectReference name="GameStateDB"/>
+		<!-- <objectReference name="NPC1"/> -->
 	</group>
 </things>

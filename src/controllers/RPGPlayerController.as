@@ -87,76 +87,72 @@ package controllers
 			updatePosition();
 			
 		}
+				
 		
 		private function updatePosition():void{
 			if(state == MOVING){				
 				var map:Array = mapReference.collisionMap;		
 				var prevGridPosition:Point = owner.getProperty(prevGridPositionProperty);
 				var gridPosition:Point = owner.getProperty(gridPositionProperty);
-				if(_position){
-					_prevPosition = _position.clone(); 
-				}
-				_position = owner.getProperty(positionProperty);
 				
-				if(_position.equals(_prevPosition)){
-					_idleMoment++;
-					if(_idleMoment >= _idleTolerance){
-						_idleMoment = 0;
-						setIdle();
-					}
-				}
+				_position = owner.getProperty(positionProperty);				
 				
 				_xSpeed = tileWidth * _speed;
 				_ySpeed = tileHeight * _speed;
-				
-				_prevX = prevGridPosition.x;
-				_prevY = prevGridPosition.y;
-				
-				_xGrid = Math.ceil(_position.x/tileWidth);
-				_yGrid = Math.ceil(_position.y/tileHeight);
-				if(map[_yGrid][_xGrid] != 0){
-					_xGrid = _prevX;
-					_yGrid = _prevY;								
-					PBE.log(this, "STUCK!! at [" +_xGrid + "," +_yGrid +"]");
-					state = IDLE;					
-				}				
+											
+				_xGrid = gridPosition.x;
+				_yGrid = gridPosition.y;
+							
 				switch(direction){					
 					case UP: 
+						//Collision Detection:
 						if(map[_yGrid - 1][_xGrid] == 0){
 							_position.y = _position.y - _ySpeed;
-							_yGrid -= 1;
-						}
-						if(_position.y % tileHeight == 0){
+							_destPosition.y = (_yGrid-1) * 32;
+						}						
+						//Sometimes, position doesn't sync well especially when shifting from
+						//dash to walk in mid tile. So it is also necessary to check if it 
+						//exceeded the destination.
+						if(_position.y <= _destPosition.y){
+							if(_startPosition.y != _position.y)
+								_yGrid -= 1;
+							_position.y = _destPosition.y;
 							setIdle();
-						}
-						
+						}						
 						break;
-					case RIGHT:
-						_xGrid = Math.floor(_position.x/tileWidth); //to adjust to rounding errors
+					case RIGHT:						
 						if(map[ _yGrid][_xGrid + 1] == 0){
 							_position.x = _position.x + _xSpeed;
-							_xGrid += 1;
-						}
-						if(_position.x % tileWidth == 0){
+							_destPosition.x = (_xGrid + 1) * 32;
+						}					
+						if(_position.x >= _destPosition.x){
+							if(_startPosition.x != _position.x)
+								_xGrid += 1;
+							_position.x = _destPosition.x;
 							setIdle();
 						}
 						break;
-					case DOWN: 
-						_yGrid = Math.floor(_position.y/tileHeight); //to adjust to rounding errors
+					case DOWN: 						
 						if(map[ _yGrid + 1][_xGrid] == 0){
 							_position.y = _position.y + _ySpeed;
-							_yGrid += 1;
+							_destPosition.y = (_yGrid+1) * 32;
 						}
-						if(_position.y % tileHeight == 0 ){
+						if(_position.y >= _destPosition.y){
+							if(_startPosition.y != _position.y)
+								_yGrid += 1;
+							_position.y = _destPosition.y;
 							setIdle();
 						}
 						break;
-					case LEFT: 
+					case LEFT: 						
 						if(map[ _yGrid][_xGrid - 1] == 0){							
 							_position.x = _position.x - _xSpeed;
-							_xGrid -= 1;
-						}
-						if(_position.x % tileWidth == 0){
+							_destPosition.x = (_xGrid-1) * 32;
+						}						
+						if(_position.x <= _destPosition.x){
+							if(_startPosition.x != _position.x)
+								_xGrid -= 1;
+							_position.x = _destPosition.x;
 							setIdle();
 						}
 						break;
@@ -198,10 +194,14 @@ package controllers
 					direction = RIGHT;					
 					playAnimation("right");
 				}
+				if(state == MOVING){
+					_startPosition = (owner.getProperty(positionProperty) as Point).clone();
+				}
 			}			
 		}
 		
 		private function setIdle():void{
+			PBE.log(this, "Set to IDLE");
 			state = IDLE;			
 			switch(direction){
 				case UP: playAnimation("upIdle");
@@ -269,7 +269,7 @@ package controllers
 		
 		private function _OnDash(value:Number):void{
 			if(value == 1){
-				_speed = _origSpeed * 2;
+				_speed = .5; //_origSpeed * 2;
 			}else{
 				_speed = _origSpeed;
 			}
@@ -285,6 +285,8 @@ package controllers
 			super.onAdd();
 			
 			_position = owner.getProperty(positionProperty);
+			_destPosition = _position.clone();
+			_startPosition = _position.clone();
 			
 			owner.eventDispatcher.addEventListener(TalkEvent.END_TALK, onEndedTalking);
 		}
@@ -316,9 +318,10 @@ package controllers
 		private var _prevY:int;
 		
 		private var _idleMoment:int;
-		private var _idleTolerance:int = 10;
+		private var _idleTolerance:int = 20;
 		
-		private var _prevPosition:Point;
+		private var _destPosition:Point;
+		private var _startPosition:Point;
 		private var _position:Point;
 		
 	}

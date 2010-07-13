@@ -28,8 +28,6 @@ package controllers
 		
 		public var talkManager:TalkManager;
 		
-		public var animatorComponent:AnimatorComponent;
-		
 		public var isTalking:Boolean = false;
 		public var isLocked:Boolean = false;
 		

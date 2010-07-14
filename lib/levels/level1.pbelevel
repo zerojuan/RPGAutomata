@@ -105,13 +105,13 @@
 	</entity>
 	<entity name="Guy">
 		<component type="components.RPGSpatialComponent" name="Spatial">
+			<spatialManager componentReference="SpatialDB"/>
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<gridPosition>
 				<x>1</x>
 				<y>20</y>
-			</gridPosition>
-			<spatialManager componentReference="SpatialDB"/>
+			</gridPosition>			
 		</component>	
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>

@@ -38,13 +38,18 @@ package components
 			for(var i:int = 0; i < objList.length; i++){
 				var rpgElement:RPGSpatialComponent = objList[i] as RPGSpatialComponent;
 				drawSquare(rpgElement.gridPosition);
+				if(_manager.collisionMap){
+					if(_manager.collisionMap[rpgElement.gridPosition.y][rpgElement.gridPosition.x] != 0){
+						drawSquare(rpgElement.gridPosition, 0xFF0000);
+					}
+				}
 			}
 			
 			super.onFrame(elapsed);
 		}
 		
-		private function drawSquare(p:Point):void{
-			_sprite.graphics.beginFill(0x00FF00, .5);
+		private function drawSquare(p:Point, color:uint = 0x00FF00):void{
+			_sprite.graphics.beginFill(color, .5);
 			_sprite.graphics.drawRect(p.x * 32, p.y * 32, 32, 32);
 			_sprite.graphics.endFill();
 		}

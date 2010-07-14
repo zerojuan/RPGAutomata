@@ -16,11 +16,13 @@ package components
 					_prevPosition = _gridPosition.clone();
 					_gridPosition = val;
 					//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
+					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition);
 				}
 			}else{
 				_gridPosition = val;
 				_prevPosition = _gridPosition.clone();
-			}			
+				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition);
+			}						
 		}
 		
 		public function get gridPosition():Point{
@@ -33,19 +35,12 @@ package components
 		
 		public function get currentGridPosition():Point{
 			return new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);
-		}
-		
-		override public  function onTick(tickRate:Number):void{
-			super.onTick(tickRate);
-			
-			//_gridPosition.x = int(position.x / tileWidth);
-			//_gridPosition.y = int(position.y / tileHeight);
-		}
+		}				
 		
 		override protected function onAdd():void{
 			super.onAdd();
 			if(_gridPosition){
-				position = new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);				
+				position = new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);			
 			}else{
 				gridPosition = new Point(32,64);
 			}

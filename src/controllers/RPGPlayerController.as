@@ -29,7 +29,8 @@ package controllers
 		public var talkManager:TalkManager;
 		
 		//Sound References
-		public var stepSound:String;		
+		public var stepSound:String;	
+		public var stepSound2:String;
 		
 		public var isTalking:Boolean = false;
 		public var isLocked:Boolean = false;
@@ -95,7 +96,12 @@ package controllers
 		private function updateSound(tickRate:Number):void{
 			_timeSinceLastSound += tickRate;
 			if(_timeSinceLastSound > .2){
-				PBE.soundManager.play(stepSound);
+				if(_stepAlt){
+					PBE.soundManager.play(stepSound);
+				}else{
+					PBE.soundManager.play(stepSound2);
+				}
+				_stepAlt != _stepAlt;
 				_timeSinceLastSound = 0;
 			}
 		}
@@ -334,6 +340,7 @@ package controllers
 		private var _position:Point;
 		
 		private var _timeSinceLastSound:Number = 0;
+		private var _stepAlt:Boolean;
 	}
 
 }

@@ -44,6 +44,8 @@ package
 		public var buttonSnd:Class;
 		[Embed(source="../lib/sounds/step_snd.mp3")]
 		public var stepSnd:Class;
+		[Embed(source="../lib/sounds/step_snd2.mp3")]
+		public var stepSnd2:Class;
 		[Embed(source="../lib/sounds/talk_snd.mp3")]
 		public var talkSnd:Class;
 		

@@ -151,7 +151,8 @@
 				<TalkPressed>X</TalkPressed>
 				<Dash>Z</Dash>
 			</input>
-			<stepSound>../lib/sounds/step_snd.mp3</stepSound>			
+			<stepSound>../lib/sounds/step_snd.mp3</stepSound>
+			<stepSound2>../lib/sounds/step_snd2.mp3</stepSound2>			
 		</component>		
 	</entity>	
 	<entity name="NPC1" template="NPC">

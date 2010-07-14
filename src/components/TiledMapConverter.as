@@ -1,16 +1,17 @@
 package components 
 {
+	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.AnimatedComponent;
+	import com.pblabs.engine.debug.Logger;
 	import com.pblabs.engine.entity.EntityComponent;
 	import com.pblabs.engine.mxml.ResourceBinding;
-	import com.pblabs.engine.PBE;
-	import com.pblabs.engine.debug.Logger;
-	import com.pblabs.engine.resource.XMLResource;
 	import com.pblabs.engine.resource.ImageResource;
+	import com.pblabs.engine.resource.XMLResource;
 	import com.pblabs.rendering2D.BitmapRenderer;
 	import com.pblabs.rendering2D.DisplayObjectScene;
 	import com.pblabs.rendering2D.spritesheet.FixedSizeDivider;
-	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;	
+	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
+	
 	import flash.display.BitmapData;
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -154,6 +155,8 @@ package components
 					}
 				}
 			}
+			//Tell the stage that we're done loading
+			PBE.mainStage.dispatchEvent(new TilesetEvent(TilesetEvent.LOADED));
 		}
 		
 		private function locateTileset(tilenum:int):Tileset{

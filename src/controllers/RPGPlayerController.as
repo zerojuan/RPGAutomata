@@ -87,7 +87,9 @@ package controllers
 			
 			checkInput();
 			if(state == MOVING){
-				updatePosition(tickRate);
+				updatePosition(tickRate);			
+			}
+			if(state == MOVING){ //the state may have changed during updatePosition
 				updateSound(tickRate);
 			}
 			

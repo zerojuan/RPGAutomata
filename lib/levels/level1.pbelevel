@@ -100,6 +100,7 @@
 			<displayObjectProperty>@TextBoxRenderer.displayObject</displayObjectProperty>
 			<player>Guy</player>
 			<actorIndexReference>@ActorImageRenderer.spriteIndex</actorIndexReference>
+			<talkSound>../lib/sounds/talk_snd.mp3</talkSound>
 		</component>
 	</entity>
 	<entity name="Guy">
@@ -111,20 +112,7 @@
 				<y>20</y>
 			</gridPosition>
 			<spatialManager componentReference="SpatialDB"/>
-		</component>
-		<!-- 
-		<component type="com.pblabs.rendering2D.SimpleShapeRenderer" name="DebugRender">
-			<isSquare>true</isSquare>
-			<lineSize>3</lineSize>
-			<positionOffset>
-				<x>16</x>
-				<y>8</y>
-			</positionOffset>
-			<radius>16</radius>
-			<positionProperty>@Spatial.currentGridPosition</positionProperty>
-			<scene componentReference="Scene2D"/>
-		</component>
-		 -->
+		</component>	
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
 			<scene componentReference="Scene2D"/>
@@ -163,6 +151,7 @@
 				<TalkPressed>X</TalkPressed>
 				<Dash>Z</Dash>
 			</input>
+			<stepSound>../lib/sounds/step_snd.mp3</stepSound>			
 		</component>		
 	</entity>	
 	<entity name="NPC1" template="NPC">

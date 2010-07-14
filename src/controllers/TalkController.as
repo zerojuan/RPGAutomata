@@ -22,6 +22,8 @@ package controllers
 		public var talkAlpha:Number = 0;
 		public var arrowAlpha:Number = 0;
 		
+		public var talkSound:String;		
+		
 		private var _textOnScreen:String;
 		private var _count:int = 0;
 		private var _currentDialog:Dialog;
@@ -79,6 +81,7 @@ package controllers
 				//PBE.log(this, _textOnScreen);
 				_textField.caption = _textOnScreen;
 				_textField.refresh();
+				updateSound(tickRate);
 				arrowAlpha = 0;
 				if(_count > _currentDialog.text.length){
 					state = DONE_SCROLLING;
@@ -92,6 +95,14 @@ package controllers
 					_arrowPosition.y = _arrowInitPosition.y;
 				}
 				owner.setProperty(arrowPositionProperty, _arrowPosition);
+			}
+		}
+		
+		private function updateSound(tickRate:Number):void{
+			_timeSinceLastSound += tickRate;
+			if(_timeSinceLastSound > .05){
+				PBE.soundManager.play(talkSound);
+				_timeSinceLastSound = 0;
 			}
 		}
 		
@@ -130,5 +141,7 @@ package controllers
 		private var _playerName:String;
 		private var _player:IEntity;
 		private var _textField:PBLabel;
+		
+		private var _timeSinceLastSound:Number = 0;
 	}
 }

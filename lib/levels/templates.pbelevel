@@ -1,0 +1,66 @@
+<things version="1">
+	<template name="NPC">
+		<component type="components.RPGSpatialComponent" name="Spatial">
+			<tileWidth>32</tileWidth>
+			<tileHeight>32</tileHeight>
+			<gridPosition>
+				<x>1</x>
+				<y>20</y>
+			</gridPosition>
+			<spatialManager componentReference="SpatialDB"/>
+		</component>		
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="GirlNinjaSheet"/>
+			<positionOffset>
+				<x>16</x>
+				<y>8</y>
+			</positionOffset>	
+			<zIndex>4</zIndex>
+		</component>		
+		<component type="components.FamitsuAnimator" name="AnimatorComponent">
+			<currentAnimationReference>@Controller.animation</currentAnimationReference>
+			<spriteIndexReference>@Render.spriteIndex</spriteIndexReference>
+			<changeAnimationEvent>GuyChangeAnimation</changeAnimationEvent>
+			<frameInterval>0</frameInterval>
+		</component>	
+		<component type="components.StatComponent" name="Stats">
+			<maxStamina>100</maxStamina>
+			<maxHappiness>100</maxHappiness>
+		</component>
+					
+		<component type="controllers.GuyController" name="Controller">		
+			<stats componentName="Stats"/>
+			<positionProperty>@Spatial.position</positionProperty>
+			<velocityProperty>@Spatial.velocity</velocityProperty>
+			<currentStateProperty>@FSM.stateMachine.currentStateName</currentStateProperty>
+			<animPauseProperty>@FrameAnimation.paused</animPauseProperty>			
+		</component>
+		<component type="com.pblabs.components.stateMachine.FSMComponent" name="FSM">
+			<stateMachine>
+				<states>
+					<steady type="com.pblabs.components.stateMachine.BasicState">
+						<transitions>
+							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
+								<targetState>walk</targetState>
+								<property>@Stats.happiness</property>
+								<value>0</value>
+							</_0>
+						</transitions>
+					</steady>
+					<walk type="com.pblabs.components.stateMachine.BasicState">
+						<transitions>
+							<_0 type="com.pblabs.components.stateMachine.PropertyTransition">
+								<targetState>steady</targetState>
+								<property>@Stats.stamina</property>
+								<value>0</value>
+							</_0>
+						</transitions>
+					</walk>
+				</states>
+				<defaultState>steady</defaultState>
+			</stateMachine>
+		</component>
+	</template>	
+</things>

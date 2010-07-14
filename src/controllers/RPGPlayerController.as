@@ -28,6 +28,9 @@ package controllers
 		
 		public var talkManager:TalkManager;
 		
+		//Sound References
+		public var stepSound:String;		
+		
 		public var isTalking:Boolean = false;
 		public var isLocked:Boolean = false;
 		
@@ -82,81 +85,90 @@ package controllers
 			}
 			
 			checkInput();
-			updatePosition();
+			if(state == MOVING){
+				updatePosition(tickRate);
+				updateSound(tickRate);
+			}
 			
 		}
 				
-		
-		private function updatePosition():void{
-			if(state == MOVING){				
-				var map:Array = mapReference.collisionMap;		
-				var prevGridPosition:Point = owner.getProperty(prevGridPositionProperty);
-				var gridPosition:Point = owner.getProperty(gridPositionProperty);
-				
-				_position = owner.getProperty(positionProperty);				
-				
-				_xSpeed = tileWidth * _speed;
-				_ySpeed = tileHeight * _speed;
-											
-				_xGrid = gridPosition.x;
-				_yGrid = gridPosition.y;
-							
-				switch(direction){					
-					case UP: 
-						//Collision Detection:
-						if(map[_yGrid - 1][_xGrid] == 0){
-							_position.y = _position.y - _ySpeed;
-							_destPosition.y = (_yGrid-1) * 32;
-						}						
-						//Sometimes, position doesn't sync well especially when shifting from
-						//dash to walk in mid tile. So it is also necessary to check if it 
-						//exceeded the destination.
-						if(_position.y <= _destPosition.y){
-							if(_startPosition.y != _position.y)
-								_yGrid -= 1;
-							_position.y = _destPosition.y;
-							setIdle();
-						}						
-						break;
-					case RIGHT:						
-						if(map[ _yGrid][_xGrid + 1] == 0){
-							_position.x = _position.x + _xSpeed;
-							_destPosition.x = (_xGrid + 1) * 32;
-						}					
-						if(_position.x >= _destPosition.x){
-							if(_startPosition.x != _position.x)
-								_xGrid += 1;
-							_position.x = _destPosition.x;
-							setIdle();
-						}
-						break;
-					case DOWN: 						
-						if(map[ _yGrid + 1][_xGrid] == 0){
-							_position.y = _position.y + _ySpeed;
-							_destPosition.y = (_yGrid+1) * 32;
-						}
-						if(_position.y >= _destPosition.y){
-							if(_startPosition.y != _position.y)
-								_yGrid += 1;
-							_position.y = _destPosition.y;
-							setIdle();
-						}
-						break;
-					case LEFT: 						
-						if(map[ _yGrid][_xGrid - 1] == 0){							
-							_position.x = _position.x - _xSpeed;
-							_destPosition.x = (_xGrid-1) * 32;
-						}						
-						if(_position.x <= _destPosition.x){
-							if(_startPosition.x != _position.x)
-								_xGrid -= 1;
-							_position.x = _destPosition.x;
-							setIdle();
-						}
-						break;
-				}
-				owner.setProperty(gridPositionProperty, new Point(_xGrid, _yGrid));
+		private function updateSound(tickRate:Number):void{
+			_timeSinceLastSound += tickRate;
+			if(_timeSinceLastSound > .2){
+				PBE.soundManager.play(stepSound);
+				_timeSinceLastSound = 0;
 			}
+		}
+		
+		private function updatePosition(tickRate:Number):void{
+			var map:Array = mapReference.collisionMap;		
+			var prevGridPosition:Point = owner.getProperty(prevGridPositionProperty);
+			var gridPosition:Point = owner.getProperty(gridPositionProperty);
+			
+			_position = owner.getProperty(positionProperty);				
+			
+			//TODO: speed formula with tickrate needs to be tweaked
+			_xSpeed = tileWidth * _speed + (tickRate);
+			_ySpeed = tileHeight * _speed + (tickRate);
+			
+			_xGrid = gridPosition.x;
+			_yGrid = gridPosition.y;
+			
+			switch(direction){					
+				case UP: 
+					//Collision Detection:
+					if(map[_yGrid - 1][_xGrid] == 0){
+						_position.y = _position.y - _ySpeed;
+						_destPosition.y = (_yGrid-1) * 32;
+					}						
+					//Sometimes, position doesn't sync well especially when shifting from
+					//dash to walk in mid tile. So it is also necessary to check if it 
+					//exceeded the destination.
+					if(_position.y <= _destPosition.y){
+						if(_startPosition.y != _position.y)
+							_yGrid -= 1;
+						_position.y = _destPosition.y;
+						setIdle();
+					}						
+					break;
+				case RIGHT:						
+					if(map[ _yGrid][_xGrid + 1] == 0){
+						_position.x = _position.x + _xSpeed;
+						_destPosition.x = (_xGrid + 1) * 32;
+					}					
+					if(_position.x >= _destPosition.x){
+						if(_startPosition.x != _position.x)
+							_xGrid += 1;
+						_position.x = _destPosition.x;
+						setIdle();
+					}
+					break;
+				case DOWN: 						
+					if(map[ _yGrid + 1][_xGrid] == 0){
+						_position.y = _position.y + _ySpeed;
+						_destPosition.y = (_yGrid+1) * 32;
+					}
+					if(_position.y >= _destPosition.y){
+						if(_startPosition.y != _position.y)
+							_yGrid += 1;
+						_position.y = _destPosition.y;
+						setIdle();
+					}
+					break;
+				case LEFT: 						
+					if(map[ _yGrid][_xGrid - 1] == 0){							
+						_position.x = _position.x - _xSpeed;
+						_destPosition.x = (_xGrid-1) * 32;
+					}						
+					if(_position.x <= _destPosition.x){
+						if(_startPosition.x != _position.x)
+							_xGrid -= 1;
+						_position.x = _destPosition.x;
+						setIdle();
+					}
+					break;
+			}				
+				owner.setProperty(gridPositionProperty, new Point(_xGrid, _yGrid));
 			if(_position)		
 				owner.setProperty(positionProperty, _position);
 		}
@@ -192,14 +204,13 @@ package controllers
 					direction = RIGHT;					
 					playAnimation("right");
 				}
-				if(state == MOVING){
+				if(state == MOVING){										
 					_startPosition = (owner.getProperty(positionProperty) as Point).clone();
 				}
 			}			
 		}
 		
-		private function setIdle():void{
-			PBE.log(this, "Set to IDLE");
+		private function setIdle():void{			
 			state = IDLE;			
 			switch(direction){
 				case UP: playAnimation("upIdle");
@@ -322,6 +333,7 @@ package controllers
 		private var _startPosition:Point;
 		private var _position:Point;
 		
+		private var _timeSinceLastSound:Number = 0;
 	}
 
 }

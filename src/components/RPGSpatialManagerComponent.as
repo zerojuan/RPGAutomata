@@ -5,6 +5,7 @@ package components
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
 	
 	import flash.geom.Point;
+	import flash.sampler.NewObjectSample;
 
 	public class RPGSpatialManagerComponent extends BasicSpatialManager2D{
 		public var levelCollisionMapProperty:PropertyReference;
@@ -18,8 +19,8 @@ package components
 		public function updateCollisionMap(_prevPosition:Point, _currPosition:Point):void{
 			var collisionMap:Array = owner.getProperty(levelCollisionMapProperty);
 			if(!collisionMap){
-				Logger.warn(this, "updateCollisionMap", "CollisionMap not yet ready. Unable to update collision map.");
-				return;
+				Logger.warn(this, "updateCollisionMap", "CollisionMap not yet ready. Unable to update collision map.");				
+				//return;
 			}
 			if(_prevPosition){
 				collisionMap[_prevPosition.y][_prevPosition.x] = 0;

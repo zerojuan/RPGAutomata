@@ -1,11 +1,14 @@
 package controllers
 {
-	import com.pblabs.engine.PBE;
 	import com.pblabs.components.stateMachine.TransitionEvent;
+	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.entity.PropertyReference;
 	
 	import components.RPGSpatialManagerComponent;
+	
+	import flash.events.Event;
+	import flash.geom.Point;
 
 	public class NPCController extends TickedComponent{
 				
@@ -31,7 +34,7 @@ package controllers
 		}
 		
 		public function set speed(val:Number):void{
-			_speed = _origSpeed = val;			
+			_speed = val;			
 		}
 		
 		public function get animation():String{
@@ -52,14 +55,23 @@ package controllers
 		private function onStateTransition(evt:TransitionEvent):void{
 			PBE.log(this, "State transition: " + evt.newStateName); 
 			_currentState = evt.newStateName;
+			if(_currentState == "steady"){
+				var gridPosition:Point = owner.getProperty(gridPositionProperty) as Point;
+				owner.setProperty(gridPositionProperty, gridPosition);				
+			}else if(_currentState == "walk"){
+				
+			}
 		}
 		
 		override public function onTick(tickRate:Number):void{
-			
+			if(_currentState == "steady"){				
+				var gridPosition:Point = owner.getProperty(gridPositionProperty) as Point;
+				owner.setProperty(gridPositionProperty, gridPosition);
+			}
 		}
 		
 		override protected function onAdd():void{
-			super.onAdd();	
+			super.onAdd();							
 			
 			owner.eventDispatcher.addEventListener(TransitionEvent.TRANSITION, onStateTransition);
 		}
@@ -67,11 +79,11 @@ package controllers
 		override protected function onRemove():void{
 			super.onRemove();
 			
-			owner.eventDispatcher.removeEventListener(TransitionEvent.Transition, onStateTransition);
+			owner.eventDispatcher.removeEventListener(TransitionEvent.TRANSITION, onStateTransition);
 		}
 		
-		private var _currentState:String;
-		private var _animation:String;
+		private var _currentState:String = "steady";
+		private var _animation:String = "up";
 		private var _speed:Number;
 		
 	}

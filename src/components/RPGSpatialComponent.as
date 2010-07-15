@@ -11,18 +11,23 @@ package components
 		public var tileHeight:Number;
 		
 		public function set gridPosition(val:Point):void{
-			if(_prevPosition){ //if there is a previous position already
-				if(!_gridPosition.equals(val)){					
-					_prevPosition = _gridPosition.clone();
+			try{
+				if(_prevPosition){ //if there is a previous position already
+					if(!_gridPosition.equals(val) || _isRegisteredToGrid == false){					
+						_prevPosition = _gridPosition.clone();
+						_gridPosition = val;
+						//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
+						(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition);
+					}				
+				}else{
 					_gridPosition = val;
-					//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
-					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition);
-				}
-			}else{
-				_gridPosition = val;
-				_prevPosition = _gridPosition.clone();
-				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition);
-			}						
+					_prevPosition = _gridPosition.clone();
+					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition);
+				}	
+				_isRegisteredToGrid = true;
+			}catch(e:Error){				
+				_isRegisteredToGrid = false;
+			}			
 		}
 		
 		public function get gridPosition():Point{
@@ -37,6 +42,12 @@ package components
 			return new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);
 		}				
 		
+		override public function onTick(tickRate:Number):void{			
+			if(!_isRegisteredToGrid){ //keep trying to register				
+				gridPosition = _gridPosition;
+			}			
+		}
+		
 		override protected function onAdd():void{
 			super.onAdd();
 			if(_gridPosition){
@@ -48,5 +59,7 @@ package components
 		
 		private var _gridPosition:Point;
 		private var _prevPosition:Point;
+		
+		private var _isRegisteredToGrid:Boolean = false;
 	}
 }

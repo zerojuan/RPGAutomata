@@ -172,6 +172,6 @@
 		<objectReference name="Guy"/>		
 		<objectReference name="TalkEntity"/>
 		<objectReference name="GameStateDB"/>
-		<!-- <objectReference name="NPC1"/> -->
+		<objectReference name="NPC1"/>
 	</group>
 </things>

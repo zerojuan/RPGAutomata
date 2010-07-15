@@ -1,13 +1,13 @@
 <things version="1">
 	<template name="NPC">
 		<component type="components.RPGSpatialComponent" name="Spatial">
+			<spatialManager componentReference="SpatialDB"/>
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<gridPosition>
 				<x>1</x>
 				<y>20</y>
-			</gridPosition>
-			<spatialManager componentReference="SpatialDB"/>
+			</gridPosition>			
 		</component>		
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
@@ -30,12 +30,10 @@
 			<maxHappiness>100</maxHappiness>
 		</component>
 					
-		<component type="controllers.GuyController" name="Controller">		
-			<stats componentName="Stats"/>
+		<component type="controllers.NPCController" name="Controller">					
 			<positionProperty>@Spatial.position</positionProperty>
-			<velocityProperty>@Spatial.velocity</velocityProperty>
-			<currentStateProperty>@FSM.stateMachine.currentStateName</currentStateProperty>
-			<animPauseProperty>@FrameAnimation.paused</animPauseProperty>			
+			<gridPositionProperty>@Spatial.gridPosition</gridPositionProperty>
+			<mapReference componentReference="SpatialDB"/>										
 		</component>
 		<component type="com.pblabs.components.stateMachine.FSMComponent" name="FSM">
 			<stateMachine>

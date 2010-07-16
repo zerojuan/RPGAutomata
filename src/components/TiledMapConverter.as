@@ -26,6 +26,8 @@ package components
 		public var playerZIndex:int;
 		public var collisionLayer:Array;
 		
+		public var assetDirectory:String;
+		
 		public function get scene():DisplayObjectScene {
 			return _scene;
 		}
@@ -116,7 +118,7 @@ package components
 				ts.tileWidth = xml.tileset[i].attribute("tilewidth");
 				ts.firstGID = xml.tileset[i].attribute("firstgid");
 				ts.name = xml.tileset[i].attribute("name");
-				ts.imageSource = xml.tileset[i].image.attribute("source");
+				ts.imageSource = assetDirectory + xml.tileset[i].image.attribute("source");
 				
 				tileset[i] = ts;
 				PBE.resourceManager.load(ts.imageSource, ImageResource, onImageLoaded, onImageFailed);								

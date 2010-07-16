@@ -19,7 +19,7 @@ package components
 		public function updateCollisionMap(_prevPosition:Point, _currPosition:Point):void{
 			var collisionMap:Array = owner.getProperty(levelCollisionMapProperty);
 			if(!collisionMap){
-				Logger.warn(this, "updateCollisionMap", "CollisionMap not yet ready. Unable to update collision map.");				
+				//Logger.warn(this, "updateCollisionMap", "CollisionMap not yet ready. Unable to update collision map.");				
 				//return;
 			}
 			if(_prevPosition){

@@ -19,7 +19,7 @@ package components
 						//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
 						(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition);
 					}				
-				}else{
+				}else{					
 					_gridPosition = val;
 					_prevPosition = _gridPosition.clone();
 					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition);

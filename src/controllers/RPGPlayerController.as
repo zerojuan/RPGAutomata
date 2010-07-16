@@ -7,11 +7,15 @@ package controllers
 	import com.pblabs.engine.core.InputMap;
 	import com.pblabs.engine.entity.PropertyReference;
 	
+	import components.RPGSpatialComponent;
 	import components.RPGSpatialManagerComponent;
 	import components.TalkManager;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
+	
+	import rpg.Conversation;
+	import rpg.TalkingPoint;
 
 	/**
 	 * Controller for our RPG character
@@ -258,10 +262,27 @@ package controllers
 		private function _OnTalk(value:Number):void{
 			if(value == 0){
 				if(!isTalking){ //if not currently talking start a talking event
-					isTalking = true;
-					isLocked = true;
-					owner.eventDispatcher.dispatchEvent(
-						new TalkEvent(TalkEvent.START_TALK, talkManager.getTalk(getFrontCoord())));
+					var conversation:Conversation;
+					var frontCoord:Point = getFrontCoord();
+					var frontObject:RPGSpatialComponent = mapReference.getObjectInGrid(frontCoord);					
+					if(frontObject){ //if talking to an object
+						var npcController:NPCController = frontObject.owner.lookupComponentByName("Controller") as NPCController;
+						if(npcController && npcController.talkId){
+							conversation = talkManager.getTalkById(npcController.talkId);
+							npcController.talkingTo(owner, owner.getProperty(gridPositionProperty) as Point); 
+						}						
+					}else{ //maybe i'm talking to a part of the scene
+						conversation = talkManager.getTalkByCoord(frontCoord);						
+					}
+					
+					if(conversation){
+						isTalking = true;
+						isLocked = conversation.locked;
+						owner.eventDispatcher.dispatchEvent(
+							new TalkEvent(TalkEvent.START_TALK, conversation));
+					}else{
+						isTalking = false;
+					}										
 				}else{ //if i'm already talking fire a nextTalk event
 					owner.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.NEXT_TALK));
 				}			

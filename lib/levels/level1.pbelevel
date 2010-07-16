@@ -33,10 +33,12 @@
 		<component type="components.RPGSpatialManagerComponent" name="Manager">
 			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
 		</component>
+		<!-- 
 		<component type="components.RPGSpatialDebugComponent" name="Debug">
 			<spatialManager componentName="Manager"/>			
 			<scene componentReference="Scene2D"/>
 		</component>
+		 -->
 	</entity>	
 	<entity name="GameStateDB">
 		<component type="components.RPGGameState" name="GameState">
@@ -159,9 +161,35 @@
 	<entity name="NPC1" template="NPC">
 		<component name="Spatial">
 			<gridPosition>
-				<x>2</x>
-				<y>25</y>
+				<x>14</x>
+				<y>16</y>
 			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC2" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>16</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC3" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>18</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+			<talkId>twinNPC</talkId>
 		</component>
 	</entity>
 	
@@ -174,5 +202,7 @@
 		<objectReference name="TalkEntity"/>
 		<objectReference name="GameStateDB"/>
 		<objectReference name="NPC1"/>
+		<objectReference name="NPC2"/>
+		<objectReference name="NPC3"/>
 	</group>
 </things>

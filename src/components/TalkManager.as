@@ -17,11 +17,21 @@ package components
 		
 		public var conversationLibrary:PropertyReference;
 		
-		public function getTalk(objectCoord:Point):Conversation{
-			var convLib:Array = owner.getProperty(conversationLibrary);
+		public function getTalkByCoord(objectCoord:Point):Conversation{			
 			
 			var talkPoint:String = getTalkPoint(objectCoord);
 			//based on the returned talkpoints, evaluate which is most best
+			return getConversation(talkPoint);
+		}
+		
+		public function getTalkById(talkId:String):Conversation{			
+			
+			return getConversation(talkId);
+		}
+		
+		private function getConversation(talkPoint:String):Conversation{
+			var convLib:Array = owner.getProperty(conversationLibrary);
+			
 			if(talkPoint){
 				if(talkPoint == "laptop"){
 					if(!gameStateDB.gameStates["laptop"]){
@@ -30,6 +40,8 @@ package components
 					}else{
 						return convLib["laptopDone"];
 					}
+				}else if(talkPoint == "twinNPC"){
+					return convLib["twinNPC"];
 				}
 			}else{ //talk to self
 				if(!gameStateDB.gameStates["talkedToSelf"]){

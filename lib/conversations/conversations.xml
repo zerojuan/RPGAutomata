@@ -29,4 +29,12 @@
 			oh.. laptop. boring.
 		</talk>
 	</conversation>
+	<conversation id="twinNPC">
+		<talk actor="ME" actorId="0">
+			Oh hello you!
+		</talk>
+		<talk actor="YOU" actorId="1">
+			Hi..
+		</talk>
+	</conversation>
 </conversations>

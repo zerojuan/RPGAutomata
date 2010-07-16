@@ -30,6 +30,16 @@ package components
 			}
 		}
 		
+		public function getObjectInGrid(coord:Point):RPGSpatialComponent{
+			for(var i:int = 0; i < _objectList.length; i++){
+				var rpgObject:RPGSpatialComponent = _objectList[i] as RPGSpatialComponent;
+				if(rpgObject.gridPosition.equals(coord)){
+					return rpgObject;
+				}
+			}
+			return null;
+		}
+		
 		public function get objectArray():Array{
 			return _objectList;
 		}

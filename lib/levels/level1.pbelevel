@@ -26,7 +26,8 @@
 	<entity name="SpatialDB">
 		<component type="components.TiledMapConverter" name="Converter">
 			<scene componentReference="Scene2D"/>
-			<tmxFilename>../lib/office_map.xml</tmxFilename>
+			<tmxFilename>../lib/office_map.tmx</tmxFilename>
+			<assetDirectory>../lib/</assetDirectory>
 			<playerZIndex>4</playerZIndex>
 		</component>
 		<component type="components.RPGSpatialManagerComponent" name="Manager">

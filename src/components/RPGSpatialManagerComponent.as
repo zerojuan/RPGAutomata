@@ -16,17 +16,19 @@ package components
 		}
 		
 		//Update the collisionMap, called when a SpatialComponent has moved
-		public function updateCollisionMap(_prevPosition:Point, _currPosition:Point):void{
+		public function updateCollisionMap(_prevPosition:Point, _currPosition:Point, _width:Number = 1, _height:Number = 1):void{
 			var collisionMap:Array = owner.getProperty(levelCollisionMapProperty);
+			var i:int = 0;
+			var c:int = 0;
 			if(!collisionMap){
 				//Logger.warn(this, "updateCollisionMap", "CollisionMap not yet ready. Unable to update collision map.");				
 				//return;
 			}
 			if(_prevPosition){
-				collisionMap[_prevPosition.y][_prevPosition.x] = 0;
+				setGridValue(_prevPosition, _width, _height, 0);
 			}
 			if(_currPosition){
-				collisionMap[_currPosition.y][_currPosition.x] = 1;
+				setGridValue(_currPosition, _width, _height, 1);
 			}
 		}
 		
@@ -38,6 +40,14 @@ package components
 				}
 			}
 			return null;
+		}
+		
+		private function setGridValue(origin:Point, width:Number, height:Number, value:Number):void{
+			var i:int;
+			for(i = 0; i < height; i++)
+				collisionMap[origin.y+i][origin.x] = value;
+			for(i = 0; i < width; i++)
+				collisionMap[origin.y][origin.x+i] = value;
 		}
 		
 		public function get objectArray():Array{

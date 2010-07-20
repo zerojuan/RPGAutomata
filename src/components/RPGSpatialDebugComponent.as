@@ -38,19 +38,29 @@ package components
 			for(var i:int = 0; i < objList.length; i++){
 				var rpgElement:RPGSpatialComponent = objList[i] as RPGSpatialComponent;
 				drawSquare(rpgElement.gridPosition);
+				
 				if(_manager.collisionMap){
 					if(_manager.collisionMap[rpgElement.gridPosition.y][rpgElement.gridPosition.x] != 0){
-						drawSquare(rpgElement.gridPosition, 0xFF0000);
+						drawSquare(rpgElement.gridPosition, 0xFF0000, rpgElement.gridWidth, rpgElement.gridHeight);
 					}
 				}
 			}
-			
+			/*
+			if(_manager.collisionMap)
+				for(var row:int = 0; row < _manager.collisionMap.length; row++){
+					for(var col:int = 0; col < _manager.collisionMap[row].length; col++){
+						if(_manager.collisionMap[row][col] > 0){
+							drawSquare(new Point(col,row));
+						}
+					}
+				}
+			*/
 			super.onFrame(elapsed);
 		}
 		
-		private function drawSquare(p:Point, color:uint = 0x00FF00):void{
+		private function drawSquare(p:Point, color:uint = 0x00FF00, width:Number = 1, height:Number = 1):void{
 			_sprite.graphics.beginFill(color, .5);
-			_sprite.graphics.drawRect(p.x * 32, p.y * 32, 32, 32);
+			_sprite.graphics.drawRect(p.x * 32, p.y * 32, 32*width, 32*height);
 			_sprite.graphics.endFill();
 		}
 		

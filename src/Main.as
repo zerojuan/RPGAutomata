@@ -31,6 +31,7 @@
 	import components.TalkManager;
 	import components.TiledMapConverter;
 	
+	import controllers.GateController;
 	import controllers.GuyController;
 	import controllers.NPCController;
 	import controllers.RPGPlayerController;
@@ -92,6 +93,7 @@
 			PBE.registerType(components.TalkManager);
 			PBE.registerType(components.RPGSpatialDebugComponent);
 			PBE.registerType(controllers.NPCController);
+			PBE.registerType(controllers.GateController);
 			PBE.registerType(rpg.TalkingPoint);
 			
 			

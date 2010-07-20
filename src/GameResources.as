@@ -49,6 +49,11 @@ package
 		[Embed(source="../lib/sounds/talk_snd.mp3")]
 		public var talkSnd:Class;
 		
+		[Embed(source="../lib/images/objects/gate-lower.png")]
+		public var lowerGate:Class;
+		[Embed(source="../lib/images/objects/gate-top.png")]
+		public var upperGate:Class;
+		
 	}
 
 }

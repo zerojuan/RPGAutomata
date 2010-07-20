@@ -10,6 +10,9 @@ package components
 		public var tileWidth:Number;
 		public var tileHeight:Number;
 		
+		public var gridWidth:Number = 1;
+		public var gridHeight:Number = 1;
+		
 		public function set gridPosition(val:Point):void{
 			try{
 				if(_prevPosition){ //if there is a previous position already
@@ -17,17 +20,25 @@ package components
 						_prevPosition = _gridPosition.clone();
 						_gridPosition = val;
 						//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
-						(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition);
+						(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition, gridWidth, gridHeight);
 					}				
 				}else{					
 					_gridPosition = val;
 					_prevPosition = _gridPosition.clone();
-					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition);
+					(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition, gridWidth, gridHeight);
 				}	
 				_isRegisteredToGrid = true;
 			}catch(e:Error){				
 				_isRegisteredToGrid = false;
 			}			
+		}
+		
+		public function disableFromGrid(val:Boolean):void{
+			if(val){
+				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_gridPosition, null, gridWidth, gridHeight);
+			}else{
+				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition, gridWidth, gridHeight);
+			}
 		}
 		
 		public function get gridPosition():Point{

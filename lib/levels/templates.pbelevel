@@ -12,12 +12,56 @@
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
 			<scene componentReference="Scene2D"/>
-			<spriteSheet componentReference="GirlNinjaSheet"/>
+			<spriteSheet componentReference="NPCSheet"/>
 			<positionOffset>
 				<x>16</x>
 				<y>8</y>
 			</positionOffset>	
 			<zIndex>4</zIndex>
+		</component>
+		<component type="com.pblabs.animation.AnimatorComponent" name="FrameAnimation">
+      	  <animations childType="com.pblabs.animation.Animator">
+	        <ellipsis type="">
+	          <animationType>PING_PONG_ANIMATION</animationType>
+	          <duration>0.6</duration>
+	          <repeatCount>-1</repeatCount>
+	          <startValue type="int">0</startValue>
+	          <targetValue type="int">3</targetValue>
+	        </ellipsis>
+	        <exclamation type="">
+	          <animationType>LOOP_ANIMATION</animationType>
+	          <duration>0.6</duration>
+	          <repeatCount>-1</repeatCount>
+	          <startValue type="int">5</startValue>
+	          <targetValue type="int">7</targetValue>
+	        </exclamation>
+	        <lol type="">
+	          <animationType>LOOP_ANIMATION</animationType>
+	          <duration>0.6</duration>
+	          <repeatCount>-1</repeatCount>
+	          <startValue type="int">10</startValue>
+	          <targetValue type="int">13</targetValue>
+	        </lol>
+	        <music type="">
+	          <animationType>LOOP_ANIMATION</animationType>
+	          <duration>0.6</duration>
+	          <repeatCount>-1</repeatCount>
+	          <startValue type="int">15</startValue>
+	          <targetValue type="int">17</targetValue>
+	        </music>
+	      </animations>
+	      <defaultAnimation>lol</defaultAnimation>
+	      <reference>@EmoticonRender.spriteIndex</reference>
+    	</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="EmoticonRender">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="EmoticonSheet"/>
+			<positionOffset>
+				<x>28</x>
+				<y>-8</y>				
+			</positionOffset>
+			<zIndex>10</zIndex>
 		</component>		
 		<component type="components.FamitsuAnimator" name="AnimatorComponent">
 			<currentAnimationReference>@Controller.animation</currentAnimationReference>

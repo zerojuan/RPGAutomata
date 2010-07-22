@@ -82,14 +82,14 @@ package controllers
 		}
 		
 		private function onEndTalk(evt:TalkEvent):void{
-			PBE.log(this, "ENding talk " + _origFacing);
+			//PBE.log(this, "ENding talk " + _origFacing);
 			_ownerRef.eventDispatcher.removeEventListener(TalkEvent.END_TALK, onEndTalk);
 			facing = _origFacing;
 			owner.eventDispatcher.dispatchEvent(new Event("GuyChangeAnimation"));
 		}
 		
 		private function onStateTransition(evt:TransitionEvent):void{
-			PBE.log(this, "State transition: " + evt.newStateName); 
+			//PBE.log(this, "State transition: " + evt.newStateName); 
 			_currentState = evt.newStateName;
 			if(_currentState == "steady"){
 				var gridPosition:Point = owner.getProperty(gridPositionProperty) as Point;

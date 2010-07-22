@@ -1,6 +1,8 @@
 package
 {
+	import com.greensock.TweenLite;
 	import com.pblabs.engine.PBE;
+	import com.pblabs.engine.core.LevelEvent;
 	import com.pblabs.engine.core.LevelManager;
 	import com.pblabs.rendering2D.ui.SceneView;
 	import com.pblabs.screens.BaseScreen;
@@ -25,16 +27,28 @@ package
 			addChild(uiView);
 			
 			PBE.mainStage.addEventListener(TilesetEvent.LOADED, onTilesetLoaded);
+			PBE.mainStage.addEventListener("GameOver", onGameOver);
+			//LevelManager.instance.
+			//PBE.mainStage.addEventListener(LevelEvent.LEVEL_LOADED_EVENT, onTilesetLoaded);
 		}
 		
 		override public function onShow():void{
-			LevelManager.instance.start(1);
+			LevelManager.instance.start(1);			
 		}
 		
 		private function onTilesetLoaded(evt:Event):void{
 			//wait till the tiles are loaded before showing the level
-			//TODO: Create a more appropriate transition
-			mainView.alpha = 1;
+			//TODO: Create a more appropriate transition			
+			TweenLite.to(mainView, 1, {alpha:1});
+		}
+		
+		private function onGameOver(evt:Event):void{
+			TweenLite.to(mainView, 1, {alpha:0, onComplete:gotoGameOver});			
+		}
+		
+		private function gotoGameOver():void{
+			PBE.log(this, "GO");
+			Main.gotoGameOverScreen();
 		}
 	}
 }

@@ -10,6 +10,8 @@ package
 		public var level1:Class;
 		[Embed(source = '../lib/levels/spritesheets.pbelevel', mimeType = 'application/octet-stream')]
 		public var spritesheets:Class;
+		[Embed(source = '../lib/levels/npcs.pbelevel', mimeType = 'application/octet-stream')]
+		public var npcs:Class;
 		[Embed(source = '../lib/levels/templates.pbelevel', mimeType = 'application/octet-stream')]
 		public var templates:Class;
 		[Embed(source = "../lib/office_map.tmx", mimeType = "application/octet-stream")]
@@ -17,6 +19,10 @@ package
 		
 		[Embed(source="../lib/images/female/girl.png")]
 		public var girlImg:Class;
+		[Embed(source="../lib/images/male/hero.png")]
+		public var heroImg:Class;
+		[Embed(source="../lib/images/male/npc.png")]
+		public var npcImg:Class;
 		
 		[Embed(source = "../lib/images/free_tileset.png")]
 		public var tileset1:Class;
@@ -24,6 +30,10 @@ package
 		public var tileset2:Class;
 		[Embed(source = "../lib/images/office-tileset.png")]
 		public var tileset3:Class;
+		
+		
+		[Embed(source = "../lib/images/emoticons.png")]
+		public var emoticons:Class;
 		
 		[Embed(source="../lib/images/textbox.png")]
 		public var textBox:Class;

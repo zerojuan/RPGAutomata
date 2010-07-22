@@ -116,10 +116,20 @@ package controllers
 			}
 			
 			_textField = new PBLabel();
-			_textField.width = 480;
-			_textField.x = 120;
-			_textField.y = 15;
-			_textField.fontSize = 18;
+			
+			
+			
+			if(actorIndexReference){
+				_textField.width = 480;
+				_textField.x = 120;
+				_textField.y = 15;
+				_textField.fontSize = 18;
+			}else{
+				_textField.width = 500;
+				_textField.x = 20;
+				_textField.y = 15;
+				_textField.fontSize = 23;
+			}
 			var displayObject:Sprite = owner.getProperty(displayObjectProperty) as Sprite;
 			displayObject.addChild(_textField);
 			

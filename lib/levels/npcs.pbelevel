@@ -1,0 +1,210 @@
+<things version="1">
+	<entity name="NPC1" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>14</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC2" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>16</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC3" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>18</x>
+				<y>16</y>
+			</gridPosition>			
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+			<talkId>twinNPC</talkId>
+		</component>
+	</entity>
+	<entity name="NPC4" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>14</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC5" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>16</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC6" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>18</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC7" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>14</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>up</facing>
+		</component>
+	</entity>
+	<entity name="NPC9" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>16</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>up</facing>
+		</component>
+	</entity>
+	<entity name="NPC10" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>18</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>up</facing>
+		</component>
+	</entity>
+	<entity name="NPC11" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>1</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>up</facing>
+		</component>
+	</entity>
+	<entity name="NPC12" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>4</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>up</facing>
+		</component>
+	</entity>
+	<entity name="NPC13" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>1</x>
+				<y>17</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC14" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>4</x>
+				<y>17</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>down</facing>
+		</component>
+	</entity>
+	<entity name="NPC15" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>11</x>
+				<y>6</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>right</facing>
+		</component>
+	</entity>
+	<entity name="NPC16" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>11</x>
+				<y>3</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>right</facing>
+		</component>
+	</entity>
+	<entity name="NPC17" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>14</x>
+				<y>5</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>left</facing>
+		</component>
+	</entity>
+	<entity name="NPC18" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>14</x>
+				<y>3</y>
+			</gridPosition>
+		</component>
+		<component name="Controller">
+			<facing>left</facing>
+		</component>
+	</entity>
+	<group name="NPCs">
+		<objectReference name="NPC1"/>
+		<objectReference name="NPC2"/>
+		<objectReference name="NPC3"/>
+		<objectReference name="NPC4"/>
+		<objectReference name="NPC5"/>
+		<objectReference name="NPC6"/>
+		<objectReference name="NPC7"/>
+		<objectReference name="NPC8"/>
+		<objectReference name="NPC9"/>
+		<objectReference name="NPC10"/>
+		<objectReference name="NPC11"/>
+		<objectReference name="NPC12"/>
+		<objectReference name="NPC13"/>
+		<objectReference name="NPC14"/>
+		<objectReference name="NPC15"/>
+		<objectReference name="NPC16"/>
+		<objectReference name="NPC17"/>
+		<objectReference name="NPC18"/>
+	</group>
+</things>

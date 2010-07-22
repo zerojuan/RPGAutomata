@@ -84,6 +84,11 @@ package controllers
         }
 		
 		public override function onTick(tickRate:Number):void {
+			var gridPosition:Point = owner.getProperty(gridPositionProperty);
+			if(gridPosition.equals(_exitPoint)){
+				PBE.mainStage.dispatchEvent(new Event("GameOver"));
+				state = IDLE;
+			}
 			if(isLocked){
 				state = IDLE;
 				return;
@@ -364,6 +369,8 @@ package controllers
 		
 		private var _timeSinceLastSound:Number = 0;
 		private var _stepAlt:Boolean;
+		
+		private var _exitPoint:Point = new Point(14,48);
 	}
 
 }

@@ -1,7 +1,7 @@
 <things version="1">
 	<entity name="Scene2D">
 		<component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
-			<sceneViewName>MainView</sceneViewName>
+			<sceneViewName>MainView</sceneViewName>	
 			<sceneAlignment>
 				TOP_LEFT
 			</sceneAlignment>
@@ -33,12 +33,12 @@
 		<component type="components.RPGSpatialManagerComponent" name="Manager">
 			<levelCollisionMapProperty>@Converter.collisionLayer</levelCollisionMapProperty>			
 		</component>
-		<!-- 
+ 		<!-- 
 		<component type="components.RPGSpatialDebugComponent" name="Debug">
 			<spatialManager componentName="Manager"/>			
 			<scene componentReference="Scene2D"/>
 		</component>
-		 -->
+ -->
 	</entity>	
 	<entity name="GameStateDB">
 		<component type="components.RPGGameState" name="GameState">
@@ -68,6 +68,7 @@
 		</component>
 	</entity>
 	<entity name="TalkEntity">
+		<!-- 
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="ActorImageRenderer">
 			<position>
 				<x>-250</x>
@@ -78,6 +79,7 @@
 			<spriteSheet componentReference="ActorImageSheet"/>
 			<scene componentReference="UI2D"/>
 		</component>
+		 -->
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="TextBoxRenderer">
 			<position>
 				<x>0</x>
@@ -102,8 +104,82 @@
 			<arrowPositionProperty>@ArrowRenderer.position</arrowPositionProperty>
 			<displayObjectProperty>@TextBoxRenderer.displayObject</displayObjectProperty>
 			<player>Guy</player>
-			<actorIndexReference>@ActorImageRenderer.spriteIndex</actorIndexReference>
+			<!-- <actorIndexReference>@ActorImageRenderer.spriteIndex</actorIndexReference> -->
 			<talkSound>../lib/sounds/talk_snd.mp3</talkSound>
+		</component>
+	</entity>
+	<entity name="OfficeEntrance">
+		<component type="components.RPGSpatialComponent" name="Spatial">
+			<spatialManager componentReference="SpatialDB"/>
+			<tileWidth>32</tileWidth>
+			<tileHeight>32</tileHeight>
+			<gridPosition>
+				<x>7</x>
+				<y>22</y>
+			</gridPosition>
+			<gridWidth>3</gridWidth>
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="LowerGateSheet"/>				
+			<zIndex>3</zIndex>
+			<positionOffset>
+				<x>48</x>
+				<y>16</y>
+			</positionOffset>			
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="TopRender">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="UpperGateSheet"/>				
+			<zIndex>5</zIndex>
+			<positionOffset>
+				<x>48</x>
+				<y>-16</y>
+			</positionOffset>					
+		</component>
+		<component type="controllers.GateController" name="Controller">
+			<upperGateFrame>@Render.spriteIndex</upperGateFrame>
+			<lowerGateFrame>@TopRender.spriteIndex</lowerGateFrame>
+			<spatialReference componentName="Spatial"/>
+		</component>
+	</entity>
+	<entity name="GateEntrance">
+		<component type="components.RPGSpatialComponent" name="Spatial">
+			<spatialManager componentReference="SpatialDB"/>
+			<tileWidth>32</tileWidth>
+			<tileHeight>32</tileHeight>
+			<gridPosition>
+				<x>13</x>
+				<y>44</y>
+			</gridPosition>
+			<gridWidth>3</gridWidth>
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="LowerGateSheet"/>				
+			<zIndex>3</zIndex>
+			<positionOffset>
+				<x>48</x>
+				<y>16</y>
+			</positionOffset>			
+		</component>
+		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="TopRender">
+			<positionProperty>@Spatial.position</positionProperty>
+			<scene componentReference="Scene2D"/>
+			<spriteSheet componentReference="UpperGateSheet"/>				
+			<zIndex>5</zIndex>
+			<positionOffset>
+				<x>48</x>
+				<y>-16</y>
+			</positionOffset>					
+		</component>
+		<component type="controllers.GateController" name="Controller">
+			<upperGateFrame>@Render.spriteIndex</upperGateFrame>
+			<lowerGateFrame>@TopRender.spriteIndex</lowerGateFrame>
+			<spatialReference componentName="Spatial"/>
 		</component>
 	</entity>
 	<entity name="Guy">
@@ -112,14 +188,14 @@
 			<tileWidth>32</tileWidth>
 			<tileHeight>32</tileHeight>
 			<gridPosition>
-				<x>1</x>
-				<y>20</y>
-			</gridPosition>			
+				<x>14</x>
+				<y>45</y>
+			</gridPosition>							
 		</component>	
 		<component type="com.pblabs.rendering2D.SpriteSheetRenderer" name="Render">
 			<positionProperty>@Spatial.position</positionProperty>
 			<scene componentReference="Scene2D"/>
-			<spriteSheet componentReference="GirlNinjaSheet"/>
+			<spriteSheet componentReference="HeroSheet"/>
 			<positionOffset>
 				<x>16</x>
 				<y>8</y>
@@ -151,47 +227,14 @@
 				<GoRight>RIGHT</GoRight>
 				<GoUp>UP</GoUp>
 				<GoDown>DOWN</GoDown>
-				<TalkPressed>X</TalkPressed>
-				<Dash>Z</Dash>
+				<TalkPressed>Z</TalkPressed>
+				<Dash>X</Dash>
 			</input>
 			<stepSound>../lib/sounds/step_snd.mp3</stepSound>
 			<stepSound2>../lib/sounds/step_snd2.mp3</stepSound2>			
 		</component>		
 	</entity>	
-	<entity name="NPC1" template="NPC">
-		<component name="Spatial">
-			<gridPosition>
-				<x>14</x>
-				<y>16</y>
-			</gridPosition>
-		</component>
-		<component name="Controller">
-			<facing>down</facing>
-		</component>
-	</entity>
-	<entity name="NPC2" template="NPC">
-		<component name="Spatial">
-			<gridPosition>
-				<x>16</x>
-				<y>16</y>
-			</gridPosition>
-		</component>
-		<component name="Controller">
-			<facing>down</facing>
-		</component>
-	</entity>
-	<entity name="NPC3" template="NPC">
-		<component name="Spatial">
-			<gridPosition>
-				<x>18</x>
-				<y>16</y>
-			</gridPosition>
-		</component>
-		<component name="Controller">
-			<facing>down</facing>
-			<talkId>twinNPC</talkId>
-		</component>
-	</entity>
+	
 	
 	<group name="LevelOne">		
 		<objectReference name="Scene2D"/>
@@ -201,8 +244,7 @@
 		<objectReference name="Guy"/>		
 		<objectReference name="TalkEntity"/>
 		<objectReference name="GameStateDB"/>
-		<objectReference name="NPC1"/>
-		<objectReference name="NPC2"/>
-		<objectReference name="NPC3"/>
+		<objectReference name="OfficeEntrance"/>
+		<objectReference name="GateEntrance"/>		
 	</group>
 </things>

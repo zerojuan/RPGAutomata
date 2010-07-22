@@ -7,6 +7,7 @@
 	import com.pblabs.components.stateMachine.PropertyTransition;
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.core.InputKey;
+	import com.pblabs.engine.core.LevelManager;
 	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.rendering2D.AnimationController;
 	import com.pblabs.rendering2D.AnimationControllerInfo;
@@ -107,13 +108,23 @@
 			PBE.levelManager.addFileReference(1, "../lib/levels/spritesheets.pbelevel");
 			PBE.levelManager.addFileReference(1,"../lib/levels/templates.pbelevel");
 			PBE.levelManager.addFileReference(1, "../lib/levels/level1.pbelevel");
+			PBE.levelManager.addFileReference(1, "../lib/levels/npcs.pbelevel");
 			PBE.levelManager.addGroupReference(1, "SpriteSheets");
 			PBE.levelManager.addGroupReference(1, "LevelOne");
+			PBE.levelManager.addGroupReference(1, "NPCs");
 						
-									
-			ScreenManager.instance.registerScreen("game", new GameScreen());			
+			ScreenManager.instance.registerScreen("menu", new MenuScreen());						
+			ScreenManager.instance.registerScreen("game", new GameScreen());
+			ScreenManager.instance.registerScreen("gameover", new GameoverScreen());
+			ScreenManager.instance.goto("game");									
+		}
+		
+		public static function gotoGameScreen():void{
 			ScreenManager.instance.goto("game");
-			
+		}
+		
+		public static function gotoGameOverScreen():void{
+			ScreenManager.instance.goto("gameover");
 		}
 		
 	}

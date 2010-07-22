@@ -18,19 +18,59 @@
 			</divider>
 		</component>
 	</entity>	
-	<entity name="GirlNinjaSheet">
+	<entity name="HeroSheet">
 		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
-			<image filename="../lib/images/female/girl.png"/>
+			<image filename="../lib/images/male/hero.png"/>
 			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
 				<xCount>3</xCount>
 				<yCount>4</yCount>
 			</divider>
 		</component>
+	</entity>
+	<entity name="NPCSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/male/npc.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>3</xCount>
+				<yCount>4</yCount>
+			</divider>
+		</component>
+	</entity>
+	<entity name="UpperGateSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent" name="Sheet">
+			<image filename="../lib/images/objects/gate-top.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>1</xCount>
+				<yCount>4</yCount>
+			</divider>
+		</component>
 	</entity>	
+	<entity name="LowerGateSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent">
+			<image filename="../lib/images/objects/gate-lower.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>1</xCount>
+				<yCount>4</yCount>
+			</divider>
+		</component>
+	</entity>
+	<entity name="EmoticonSheet">
+		<component type="com.pblabs.rendering2D.spritesheet.SpriteSheetComponent">
+			<image filename="../lib/images/emoticons.png"/>
+			<divider type="com.pblabs.rendering2D.spritesheet.CellCountDivider">
+				<xCount>5</xCount>
+				<yCount>5</yCount>
+			</divider>
+		</component>
+	</entity>
 	<group name="SpriteSheets">
 		<objectReference name="TextBoxSheet"/>
 		<objectReference name="ArrowSheet"/>
 		<objectReference name="ActorImageSheet"/>		
-		<objectReference name="GirlNinjaSheet"/>
+		<objectReference name="HeroSheet"/>
+		<objectReference name="NPCSheet"/>
+		<objectReference name="UpperGateSheet"/>
+		<objectReference name="LowerGateSheet"/>
+		<objectReference name="EmoticonSheet"/>
 	</group>
 </things>

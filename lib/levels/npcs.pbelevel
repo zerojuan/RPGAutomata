@@ -29,8 +29,7 @@
 			</gridPosition>			
 		</component>
 		<component name="Controller">
-			<facing>down</facing>
-			<talkId>twinNPC</talkId>
+			<facing>down</facing>			
 		</component>
 	</entity>
 	<entity name="NPC4" template="NPC">
@@ -143,6 +142,7 @@
 			<facing>down</facing>
 		</component>
 	</entity>
+	<!-- UPPER DRINKING BEER -->
 	<entity name="NPC15" template="NPC">
 		<component name="Spatial">
 			<gridPosition>
@@ -187,6 +187,459 @@
 			<facing>left</facing>
 		</component>
 	</entity>
+	<!-- 3D ROOM -->
+	<entity name="NPC19" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>20</x>
+				<y>29</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC20" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>22</x>
+				<y>29</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC21" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>25</x>
+				<y>29</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC22" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>20</x>
+				<y>31</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC23" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>23</x>
+				<y>31</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC24" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>26</x>
+				<y>31</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC25" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>29</x>
+				<y>31</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC26" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>29</x>
+				<y>34</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC27" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>26</x>
+				<y>34</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC28" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>20</x>
+				<y>34</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC29" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>23</x>
+				<y>34</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC30" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>20</x>
+				<y>36</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC31" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>23</x>
+				<y>36</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC32" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>26</x>
+				<y>36</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC33" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>29</x>
+				<y>36</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC34" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>20</x>
+				<y>39</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC35" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>23</x>
+				<y>39</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC36" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>26</x>
+				<y>39</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="NPC37" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>29</x>
+				<y>39</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>music</defaultAnimation>
+		</component>
+	</entity>
+	<!-- Art Dept -->
+	<entity name="ART10" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>34</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART11" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>36</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART12" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>40</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART13" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>42</x>
+				<y>11</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART20" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>34</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART21" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>36</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART22" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>40</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART23" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>42</x>
+				<y>14</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART30" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>34</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART31" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>37</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART32" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>40</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART33" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>42</x>
+				<y>16</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART40" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>34</x>
+				<y>19</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART41" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>37</x>
+				<y>19</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART42" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>40</x>
+				<y>19</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART43" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>42</x>
+				<y>19</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART50" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>33</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART51" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>35</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART52" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>37</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART53" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>39</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART54" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>41</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
+	<entity name="ART55" template="NPC">
+		<component name="Spatial">
+			<gridPosition>
+				<x>43</x>
+				<y>21</y>
+			</gridPosition>
+		</component>
+		<component name="FrameAnimation">
+			<defaultAnimation>lol</defaultAnimation>
+		</component>
+	</entity>
 	<group name="NPCs">
 		<objectReference name="NPC1"/>
 		<objectReference name="NPC2"/>
@@ -195,7 +648,7 @@
 		<objectReference name="NPC5"/>
 		<objectReference name="NPC6"/>
 		<objectReference name="NPC7"/>
-		<objectReference name="NPC8"/>
+<!-- 		<objectReference name="NPC8"/> -->
 		<objectReference name="NPC9"/>
 		<objectReference name="NPC10"/>
 		<objectReference name="NPC11"/>
@@ -206,5 +659,46 @@
 		<objectReference name="NPC16"/>
 		<objectReference name="NPC17"/>
 		<objectReference name="NPC18"/>
+		<objectReference name="NPC19"/>
+		<objectReference name="NPC20"/>
+		<objectReference name="NPC21"/>
+		<objectReference name="NPC22"/>
+		<objectReference name="NPC23"/>
+		<objectReference name="NPC24"/>
+		<objectReference name="NPC25"/>
+		<objectReference name="NPC26"/>
+		<objectReference name="NPC27"/>
+		<objectReference name="NPC28"/>
+		<objectReference name="NPC29"/>
+		<objectReference name="NPC30"/>
+		<objectReference name="NPC31"/>
+		<objectReference name="NPC32"/>
+		<objectReference name="NPC33"/>
+		<objectReference name="NPC34"/>
+		<objectReference name="NPC35"/>
+		<objectReference name="NPC36"/>
+		<objectReference name="NPC37"/>
+		<objectReference name="ART10"/>
+		<objectReference name="ART11"/>
+		<objectReference name="ART12"/>
+		<objectReference name="ART13"/>		
+		<objectReference name="ART20"/>
+		<objectReference name="ART21"/>
+		<objectReference name="ART22"/>
+		<objectReference name="ART23"/>
+		<objectReference name="ART30"/>
+		<objectReference name="ART31"/>
+		<objectReference name="ART32"/>
+		<objectReference name="ART33"/>
+		<objectReference name="ART40"/>
+		<objectReference name="ART41"/>
+		<objectReference name="ART42"/>
+		<objectReference name="ART43"/>
+		<objectReference name="ART50"/>
+		<objectReference name="ART51"/>
+		<objectReference name="ART52"/>
+		<objectReference name="ART53"/>
+		<objectReference name="ART54"/>
+		<objectReference name="ART55"/>
 	</group>
 </things>

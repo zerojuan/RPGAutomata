@@ -26,15 +26,303 @@
 	</conversation>
 	<conversation id="laptopDone">
 		<talk actor="ME" actorId="0">
-			oh.. laptop. boring.
+			"Paalala: Don't Forget to Logout."
 		</talk>
 	</conversation>
-	<conversation id="twinNPC">
+	<conversation id="npcTalk0">
 		<talk actor="ME" actorId="0">
-			Oh hello you!
+			...
 		</talk>
 		<talk actor="YOU" actorId="1">
-			Hi..
+			...
 		</talk>
 	</conversation>
+	<conversation id="npcTalk1">
+		<talk actor="ME" actorId="0">
+			.....
+		</talk>
+		<talk actor="YOU" actorId="1">
+			...
+		</talk>
+	</conversation>
+	<conversation id="npcTalk2">
+		<talk actor="ME" actorId="0">
+			......
+		</talk>
+		<talk actor="YOU" actorId="1">
+			....
+		</talk>		
+	</conversation>
+	<conversation id="npcTalk3">
+		<talk actor="ME" actorId="0">
+			......
+		</talk>
+		<talk actor="YOU" actorId="1">
+			.....
+		</talk>		
+	</conversation>
+	<conversation id="npcTalk4">
+		<talk actor="ME" actorId="0">
+			Uh..
+		</talk>
+		<talk actor="YOU" actorId="1">
+			.. ok.
+		</talk>		
+	</conversation>
+	<conversation id="npcTalk5">
+		<talk actor="ME" actorId="0">
+			.. It's so happy here!
+		</talk>			
+	</conversation>
+	<conversation id="elevator">
+		<talk actor="ME" actorId="0">
+			"WARNING: Door out of order"
+		</talk>
+	</conversation>
+	<conversation id="elevatorDone">
+		<talk actor="ME" actorId="0">
+			"WARNING: Door out of order"
+		</talk>
+		<talk actor="ME" actorId="0">
+			Toot. toot.
+		</talk>
+	</conversation>
+	<conversation id="caygo">
+		<talk actor="ME" actorId="0">
+			"CAYGO: Clean As You Go"
+		</talk>		
+	</conversation>
+	<conversation id="caygoDone">
+		<talk actor="ME" actorId="0">
+			"CAYGO: Clean As You Go"
+		</talk>		
+	</conversation>
+	<conversation id="ref">
+		<talk actor="ME" actorId="0">
+			Wait a minute...
+		</talk>
+		<talk actor="ME" actorId="0">
+			we don't have frigiderr. And that penguin!
+		</talk>		
+	</conversation>
+	<conversation id="refDone">
+		<talk actor="ME" actorId="0">
+			I like penguins!
+		</talk>			
+	</conversation>
+	<conversation id="oven">
+		<talk actor="ME" actorId="0">
+			I've never seen anyone cook here.
+		</talk>		
+	</conversation>
+	<conversation id="ovenDone">
+		<talk actor="ME" actorId="0">
+			But I like the smell of lunchtime.
+		</talk>		
+	</conversation>
+	<conversation id="bathroomMale">
+		<talk actor="ME" actorId="0">
+			It's clean
+		</talk>		
+	</conversation>
+	<conversation id="bathroomFemale">
+		<talk actor="ME" actorId="0">
+			I shouldn't be here. Girls only.
+		</talk>		
+	</conversation>
+	<conversation id="tree">
+		<talk actor="ME" actorId="0">
+			This tree shouldn't be here.
+		</talk>
+		<talk actor="ME" actorId="0">
+			But I'm glad it's here.
+		</talk>
+		<talk actor="ME" actorId="0">
+			Everyone wants to be green.
+		</talk>
+		<talk actor="ME" actorId="0">
+			But they can't put a tree in their office?
+		</talk>				
+		<talk actor="ME" actorId="0">
+			That's why we're hardcore!
+		</talk>
+	</conversation>
+	<conversation id="treeDone">
+		<talk actor="ME" actorId="0">
+			...
+		</talk>
+		<talk actor="ME" actorId="0">
+			I hope this tree really exists.
+		</talk>
+		<talk actor="ME" actorId="0">
+			Instead of a store room
+		</talk>
+		<talk actor="ME" actorId="0">
+			Full of unsold copies of the one great game that came out of this office.
+		</talk>			
+	</conversation>
+	<conversation id="lounge">
+		<talk actor="ME" actorId="0">
+			It's locked.
+		</talk>			
+	</conversation>
+	<conversation id="loungeDone">
+		<talk actor="ME" actorId="0">
+			There's tv in there.
+		</talk>
+		<talk actor="ME" actorId="0">
+			But it's locked.
+		</talk>			
+	</conversation>
+	<conversation id="fruitsAndBeer">
+		<talk actor="ME" actorId="0">
+			Fruits. And beer.
+		</talk>
+		<talk actor="ME" actorId="0">
+			This is why I love this place.
+		</talk>				
+	</conversation>
+	<conversation id="beer">
+		<talk actor="ME" actorId="0">
+			Everyday we come here and drink.
+		</talk>
+		<talk actor="ME" actorId="0">
+			We don't ever need to go outside.
+		</talk>				
+	</conversation>
+	<conversation id="businessStuff">
+		<talk actor="ME" actorId="0">
+			Mostly business stuff.
+		</talk>
+		<talk actor="ME" actorId="0">
+			It says Facebook games are the rage these days.
+		</talk>	
+		<talk actor="ME" actorId="0">
+			It's taking too long to load..
+		</talk>			
+	</conversation>
+	<conversation id="businessStuffDone">
+		<talk actor="ME" actorId="0">
+			There! Facebook. 
+		</talk>
+		<talk actor="ME" actorId="0">
+			I like Mafia Wars.
+		</talk>
+		<talk actor="ME" actorId="0">
+			But Friendster.. they give away iPads!
+		</talk>
+		<talk actor="ME" actorId="0">
+			Friendster and iPads. That's the future. Right there.
+		</talk>				
+	</conversation>
+	<conversation id="mainFrame">
+		<talk actor="ME" actorId="0">
+			I like our servers.
+		</talk>
+		<talk actor="ME" actorId="0">
+			It's super fast..
+		</talk>
+		<talk actor="ME" actorId="0">
+			like a jellyfish.
+		</talk>					
+	</conversation>
+	<conversation id="mainFrameDone">
+		<talk actor="ME" actorId="0">
+			Zoooom!
+		</talk>						
+	</conversation>
+	<conversation id="algorithms">
+		<talk actor="ME" actorId="0">
+			We like talking about our algorithms here.
+		</talk>						
+		<talk actor="ME" actorId="0">
+			And also game design and all that.
+		</talk>
+	</conversation>
+	<conversation id="algorithmsDone">
+		<talk actor="ME" actorId="0">
+			Totally hardcore!
+		</talk>								
+	</conversation>
+	<conversation id="questionnaire">
+		<talk actor="ME" actorId="0">
+			What's this?
+		</talk>
+		<talk actor="ME" actorId="0">
+			Employee Evaluation Form
+		</talk>
+		<talk actor="ME" actorId="0">
+			I wonder who's going to get promoted.
+		</talk>								
+	</conversation>
+	<conversation id="questionnaireDone">
+		<talk actor="ME" actorId="0">
+			Employee eval..
+		</talk>
+		<talk actor="ME" actorId="0">
+			They say promotions are rare these days..
+		</talk>									
+	</conversation>	
+	<conversation id="codeQuote">
+		<talk actor="ME" actorId="0">
+			"To make a computer game, you need a computer"
+		</talk>
+		<talk actor="ME" actorId="0">
+			and peoples
+		</talk>
+	</conversation>
+	<conversation id="artQuote">
+		<talk actor="ME" actorId="0">
+			"Be proud you are an artist, the future depends on you"
+		</talk>		
+	</conversation>
+	<conversation id="3dQuote">
+		<talk actor="ME" actorId="0">
+			"If Michaelangelo was alive today, he'll use Maya"
+		</talk>
+		<talk actor="ME" actorId="0">
+			"That thing's as expensive as marble" 
+		</talk>
+		<talk actor="ME" actorId="0">
+			Oh. And nunchucks! 
+		</talk>		
+	</conversation>
+	<conversation id="email">
+		<talk actor="ME" actorId="0">
+			Email: "Please backup your code bases."
+		</talk>
+		<talk actor="ME" actorId="0">
+			"And be sure there is proper documentation." 
+		</talk>
+		<talk actor="ME" actorId="0">
+			Ok. 
+		</talk>
+		<talk actor="ME" actorId="0">
+			... ... ... 
+		</talk>
+		<talk actor="ME" actorId="0">
+			Done! 
+		</talk>		
+	</conversation>
+	<conversation id="emailDone">
+		<talk actor="ME" actorId="0">
+			Don't forget to logout!!
+		</talk>			
+	</conversation>
+	<conversation id="books">
+		<talk actor="ME" actorId="0">
+			The latest in video gaming technology
+		</talk>
+		<talk actor="ME" actorId="0">
+			And agile project management
+		</talk>
+		<talk actor="ME" actorId="0">
+			And magazines
+		</talk>			
+	</conversation>
+	<conversation id="booksDone">
+		<talk actor="ME" actorId="0">
+			NERD!
+		</talk>				
+	</conversation>	
 </conversations>

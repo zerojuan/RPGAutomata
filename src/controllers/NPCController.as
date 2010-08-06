@@ -6,6 +6,7 @@ package controllers
 	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.engine.entity.PropertyReference;
 	
+	import components.RPGSpatialComponent;
 	import components.RPGSpatialManagerComponent;
 	
 	import flash.events.Event;
@@ -19,6 +20,8 @@ package controllers
 		public var mapReference:RPGSpatialManagerComponent;
 		
 		public var talkId:String;
+		
+		public var playerReference:RPGSpatialComponent;
 		
 		public static const IDLE:int = 0;
 		public static const MOVING:int = 1;
@@ -34,7 +37,7 @@ package controllers
 		
 		public function set facing(val:String):void{
 			_facing = val;
-			_animation = _facing;
+			playAnimation(_facing + "Idle");
 		}
 		
 		public function get facing():String{
@@ -58,9 +61,10 @@ package controllers
 		}
 		
 		private function playAnimation(str:String):void {
+			//PBE.log(this, str + " vs " + _animation);
 			if (str != _animation) {
-				_animation = str;
-				owner.eventDispatcher.dispatchEvent(new Event("GuyChangeAnimation"));
+				_animation = str;				
+				owner.eventDispatcher.dispatchEvent(new Event("NPCChangeAnimation"));
 			}		
 		}
 		
@@ -78,14 +82,14 @@ package controllers
 			}else if(gridPosition.y < talker.y){
 				facing = "down";
 			}
-			owner.eventDispatcher.dispatchEvent(new Event("GuyChangeAnimation"));		
+			owner.eventDispatcher.dispatchEvent(new Event("NPCChangeAnimation"));		
 		}
 		
 		private function onEndTalk(evt:TalkEvent):void{
 			//PBE.log(this, "ENding talk " + _origFacing);
 			_ownerRef.eventDispatcher.removeEventListener(TalkEvent.END_TALK, onEndTalk);
 			facing = _origFacing;
-			owner.eventDispatcher.dispatchEvent(new Event("GuyChangeAnimation"));
+			owner.eventDispatcher.dispatchEvent(new Event("NPCChangeAnimation"));
 		}
 		
 		private function onStateTransition(evt:TransitionEvent):void{
@@ -103,6 +107,17 @@ package controllers
 			if(_currentState == "steady"){				
 				var gridPosition:Point = owner.getProperty(gridPositionProperty) as Point;
 				owner.setProperty(gridPositionProperty, gridPosition);
+				var talker:Point = playerReference.gridPosition;
+				//compute face				
+				if(gridPosition.x > talker.x){
+					facing = "left";
+				}else if(gridPosition.x < talker.x){
+					facing = "right";
+				}else if(gridPosition.y > talker.y){
+					facing = "up";
+				}else if(gridPosition.y < talker.y){
+					facing = "down";
+				}							
 			}
 		}
 		

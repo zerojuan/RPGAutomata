@@ -79,7 +79,7 @@ package controllers
                 _inputMap.mapActionToHandler("GoUp", _OnUp);
 				_inputMap.mapActionToHandler("GoDown", _OnDown);
 				_inputMap.mapActionToHandler("TalkPressed", _OnTalk);
-				_inputMap.mapActionToHandler("Dash", _OnDash);
+				_inputMap.mapActionToHandler("Dash", _OnDash);				
             }
         }
 		
@@ -330,13 +330,14 @@ package controllers
 			_position = owner.getProperty(positionProperty);
 			_destPosition = _position.clone();
 			_startPosition = _position.clone();
+			playAnimation("upIdle");
 			
 			owner.eventDispatcher.addEventListener(TalkEvent.END_TALK, onEndedTalking);
 		}
 		
 		override protected function onRemove():void {
 			super.onRemove();
-			
+			_inputMap.destroy();
 			owner.eventDispatcher.removeEventListener(TalkEvent.END_TALK, onEndedTalking);
 		}
 		

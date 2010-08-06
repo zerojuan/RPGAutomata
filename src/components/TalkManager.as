@@ -1,5 +1,6 @@
 package components
 {
+	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.entity.EntityComponent;
 	import com.pblabs.engine.entity.PropertyReference;
 	
@@ -11,7 +12,7 @@ package components
 	public class TalkManager extends EntityComponent{
 		
 		[TypeHint(type="rpg.TalkingPoint")]
-		public var talkingPoints:Array = new Array();
+		public var talkingPoints:Array = new Array();				
 		
 		public var gameStateDB:RPGGameState;
 		
@@ -32,24 +33,30 @@ package components
 		private function getConversation(talkPoint:String):Conversation{
 			var convLib:Array = owner.getProperty(conversationLibrary);
 			
-			if(talkPoint){
-				if(talkPoint == "laptop"){
-					if(!gameStateDB.gameStates["laptop"]){
-						gameStateDB.activeState = "laptop";
-						return convLib["laptop"];
+			if(talkPoint){				
+				PBE.log(this, talkPoint + " : " + gameStateDB.gameStates[talkPoint]);
+				if(gameStateDB.gameStates[talkPoint] == undefined){
+					return convLib[talkPoint]
+				}else if(talkPoint == "npcTalk"){
+					if(gameStateDB.talkNum>5)
+						gameStateDB.talkNum = 5;
+					return convLib["npcTalk"+gameStateDB.talkNum++];
+				}else{					
+					if(!gameStateDB.gameStates[talkPoint]){
+						gameStateDB.activeState = talkPoint;
+						return convLib[talkPoint];
 					}else{
-						return convLib["laptopDone"];
-					}
-				}else if(talkPoint == "twinNPC"){
-					return convLib["twinNPC"];
+						return convLib[talkPoint+"Done"];
+					}				
+					
 				}
 			}else{ //talk to self
-				if(!gameStateDB.gameStates["talkedToSelf"]){
+				/*if(!gameStateDB.gameStates["talkedToSelf"]){
 					gameStateDB.activeState = "talkedToSelf";
 					return convLib["talkToSelf"];
 				}else{
 					return convLib["talkToSelfDone"];
-				}
+				}*/
 			}
 			
 			return null;

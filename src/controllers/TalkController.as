@@ -1,5 +1,7 @@
 package controllers
 {	
+	import com.greensock.TweenLite;
+	import com.greensock.easing.Cubic;
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.debug.Logger;
@@ -49,7 +51,8 @@ package controllers
 			owner.setProperty(actorIndexReference, _currentDialog.actorId);
 			_count = 0;		
 			state = SCROLLING;
-			talkAlpha = 1;
+			TweenLite.to(this, .5, {talkAlpha: 1, ease:Cubic.easeIn});
+			//talkAlpha = 1;
 			arrowAlpha = 0;
 		}
 		
@@ -66,7 +69,7 @@ package controllers
 					_player.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.END_TALK));					
 					state = HIDDEN;
 					_currentConversation.reset();
-					talkAlpha = 0;
+					TweenLite.to(this, .5, {talkAlpha: 0});
 					arrowAlpha = 0;
 				}else{
 					owner.setProperty(actorIndexReference, _currentDialog.actorId);

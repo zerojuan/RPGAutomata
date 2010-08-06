@@ -40,6 +40,7 @@
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	
 	import rpg.TalkingPoint;
 	
@@ -47,6 +48,7 @@
 	 * Main class
 	 * @author Julius
 	 */
+	[Frame(factoryClass="CustomPreloader")]
 	[SWF(width="640", height="480", backgroundColor="#FFFFFF")]
 	public class Main extends Sprite 
 	{
@@ -97,6 +99,7 @@
 			PBE.registerType(controllers.GateController);
 			PBE.registerType(rpg.TalkingPoint);
 			
+			PBE.IS_SHIPPING_BUILD = true;
 			
 			PBE.startup(this);
 			PBE.addResources(new GameResources());
@@ -116,7 +119,16 @@
 			ScreenManager.instance.registerScreen("menu", new MenuScreen());						
 			ScreenManager.instance.registerScreen("game", new GameScreen());
 			ScreenManager.instance.registerScreen("gameover", new GameoverScreen());
-			ScreenManager.instance.goto("game");									
+			ScreenManager.instance.goto("menu");		
+			LevelManager.instance.start();
+			PBE.mainStage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+		}
+		
+		private function onKeyUp(evt:KeyboardEvent):void{			
+			if(evt.keyCode == 83){						
+				//TweenLite.to(this, .5, {alpha:0, onComplete:gotoNextScreen});				
+				PBE.soundManager.muted = !PBE.soundManager.muted;
+			}
 		}
 		
 		public static function gotoGameScreen():void{
@@ -125,6 +137,10 @@
 		
 		public static function gotoGameOverScreen():void{
 			ScreenManager.instance.goto("gameover");
+		}
+		
+		public static function gotoMenuScreen():void{
+			ScreenManager.instance.goto("menu");
 		}
 		
 	}

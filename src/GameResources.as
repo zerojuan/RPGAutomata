@@ -26,7 +26,7 @@ package
 		
 		[Embed(source = "../lib/images/free_tileset.png")]
 		public var tileset1:Class;
-		[Embed(source = "../lib/images/free_tileset_version_8.png")]
+		[Embed(source = "../lib/images/trees.png")]
 		public var tileset2:Class;
 		[Embed(source = "../lib/images/office-tileset.png")]
 		public var tileset3:Class;
@@ -58,6 +58,9 @@ package
 		public var stepSnd2:Class;
 		[Embed(source="../lib/sounds/talk_snd.mp3")]
 		public var talkSnd:Class;
+		
+		[Embed(source="../lib/sounds/musicbox.mp3")]
+		public var musicBox:Class;
 		
 		[Embed(source="../lib/images/objects/gate-lower.png")]
 		public var lowerGate:Class;

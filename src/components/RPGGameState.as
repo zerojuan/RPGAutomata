@@ -12,6 +12,8 @@ package components
 		
 		public var activeState:String; //The gameState that may or may not change
 		
+		public var talkNum:int = 0;
+		
 		override protected function onAdd():void{
 			super.onAdd();
 			

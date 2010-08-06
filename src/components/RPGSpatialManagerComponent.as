@@ -42,6 +42,10 @@ package components
 			return null;
 		}
 		
+		public function getGridValue(coord:Point):int{
+			return collisionMap[coord.y][coord.x];
+		}
+		
 		private function setGridValue(origin:Point, width:Number, height:Number, value:Number):void{
 			var i:int;
 			for(i = 0; i < height; i++)

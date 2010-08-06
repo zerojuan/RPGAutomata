@@ -34,11 +34,29 @@ package components
 		}
 		
 		public function disableFromGrid(val:Boolean):void{
-			if(val){
+			_disabled = true;
+			if(val){			
 				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_gridPosition, null, gridWidth, gridHeight);
 			}else{
 				(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(null, _gridPosition, gridWidth, gridHeight);
 			}
+		}
+		
+		/**
+		 * Check another object overlaps in my position
+		 */
+		public function gridOverlapped():Boolean{
+			if(_disabled){
+				for(var i:int = 0; i < gridWidth; i++){
+					for(var c:int = 0; c < gridHeight; c++){
+						var p:Point = new Point(gridPosition.x + i, gridPosition.y + c);
+						if((spatialManager as RPGSpatialManagerComponent).getGridValue(p) > 0){
+							return true;
+						}
+					}
+				}
+			}
+			return false;
 		}
 		
 		public function get gridPosition():Point{
@@ -70,6 +88,8 @@ package components
 		
 		private var _gridPosition:Point;
 		private var _prevPosition:Point;
+		
+		private var _disabled:Boolean;
 		
 		private var _isRegisteredToGrid:Boolean = false;
 	}

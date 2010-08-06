@@ -53,7 +53,7 @@ package controllers
 				owner.setProperty(upperGateFrame, _currFrame);
 				owner.setProperty(lowerGateFrame, _currFrame);
 			}else if(_state == OPEN){				
-				if(_elapsedTime > 2){
+				if(_elapsedTime > 2 && !spatialReference.gridOverlapped()){
 					spatialReference.disableFromGrid(false);
 					_elapsedTime = 0;
 					state = TRANSITION;					

@@ -106,7 +106,7 @@ package controllers
 		override public function onTick(tickRate:Number):void{
 			if(_currentState == "steady"){				
 				var gridPosition:Point = owner.getProperty(gridPositionProperty) as Point;
-				owner.setProperty(gridPositionProperty, gridPosition);
+				//owner.setProperty(gridPositionProperty, gridPosition);
 				var talker:Point = playerReference.gridPosition;
 				//compute face				
 				if(gridPosition.x > talker.x){

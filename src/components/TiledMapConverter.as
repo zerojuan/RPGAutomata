@@ -12,11 +12,15 @@ package components
 	import com.pblabs.rendering2D.spritesheet.FixedSizeDivider;
 	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
 	
+	import events.TilesetEvent;
+	
 	import flash.display.BitmapData;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
+
 	/**
 	 * ...
 	 * @author Julius
@@ -27,6 +31,8 @@ package components
 		public var collisionLayer:Array;
 		
 		public var assetDirectory:String;
+		
+		private var tileLayers:Vector.<TileLayerComponent> = new Vector.<TileLayerComponent>;
 		
 		public function get scene():DisplayObjectScene {
 			return _scene;
@@ -72,11 +78,21 @@ package components
             _tmxMap = value;            
         }
 		
+		private function lookupLayerByName(str:String):TileLayerComponent{
+			for each(var layer:TileLayerComponent in tileLayers){
+				if(layer.name == str){
+					return layer;
+				}
+			}
+			return null;
+		}
 		
 		protected function onXMLLoaded(resource:XMLResource):void {
 			_tmxMap = resource;
 			var i:int;
 			var xml:XML = _tmxMap.XMLData;
+			
+			tilesetsLoaded = 0;
 			
 			//tileLength = xml.layer.data.tile.length();
 			spriteWidth = xml.attribute("width");
@@ -86,22 +102,37 @@ package components
 			//spriteSource = xml.tileset.image.attribute("source");					
 			
 			for (i = 0; i < xml.layer.length(); i++ ) {
-				var bitmapRenderer:TileLayerComponent = new TileLayerComponent();
-				bitmapRenderer.scene = scene;
-				bitmapRenderer.owner = this.owner;
+				var tileData:XMLList = xml.layer[i].data;
+				var tiles:Array = new Array();
+				var tileCoordinates:Array = new Array();
+				
+				var layerName:String = xml.layer[i].attribute("name");
+				PBE.log(this, "Looking up component: " + layerName);
+				var bitmapRenderer:TileLayerComponent = lookupLayerByName(layerName);
+				var registered:Boolean = false;
+				if(bitmapRenderer){
+					PBE.log(this, "Layer already exists, using that layer");
+					registered = true;
+				}else{
+					PBE.log(this, "Registering new layer");
+					bitmapRenderer = new TileLayerComponent();					
+				}
+				
+				bitmapRenderer.bitmapData = new BitmapData(spriteWidth * tileWidth, spriteHeight * tileHeight, true, 0x00ffffff);
+				bitmapRenderer.scene = scene;																
+				//check where we want to put our player in
 				if (i >= playerZIndex) {
 					bitmapRenderer.zIndex = i + 1;
 				}else {
 					bitmapRenderer.zIndex = i;
 				}
 				
-				bitmapRenderer.bitmapData = new BitmapData(spriteWidth * tileWidth, spriteHeight * tileHeight, true, 0x00ffffff);
-				
 				mapLayers[i] = bitmapRenderer;
-								
-				var tileData:XMLList = xml.layer[i].data;
-				var tiles:Array = new Array();
-				var tileCoordinates:Array = new Array();
+				if(!registered){
+					bitmapRenderer.register(this.owner, layerName);
+					tileLayers.push(bitmapRenderer);
+				}
+				
 				
 				if (xml.layer[i].properties.property && xml.layer[i].properties.property.attribute("name") == "collision") {					
 					collisionLayer = parseCSV(tileData);					
@@ -156,7 +187,7 @@ package components
 						}
 					}
 				}
-			}
+			}			
 			//Tell the stage that we're done loading
 			PBE.mainStage.dispatchEvent(new TilesetEvent(TilesetEvent.LOADED));
 		}

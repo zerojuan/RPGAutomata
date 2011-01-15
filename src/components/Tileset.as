@@ -36,8 +36,8 @@ package components
 			maxX = _image.width / tileWidth;
 			maxY = _image.height / tileHeight;
 			lastGID = firstGID + (maxX * maxY);
-			trace(_image.width + ", " + tileWidth);
-			trace(maxX + "," + maxY + " = " + lastGID);
+			trace("Tileset Image Dimension:[ "+ _image.width + ", " + tileWidth + "]");
+			trace("MaxXY(" + maxX + "," + maxY + ") = LastGID(" + lastGID+")");
 		}
 		
 		public function get image():BitmapData {

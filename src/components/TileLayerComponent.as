@@ -1,7 +1,10 @@
 package components 
 {
+	import com.pblabs.engine.PBE;
 	import com.pblabs.rendering2D.BitmapRenderer;
+	
 	import flash.events.Event;
+
 	/**
 	 * ...
 	 * @author Julius
@@ -16,8 +19,9 @@ package components
 			_source = str;
 		}
 						
-		override protected function onAdd():void {
+		override protected function onAdd():void {			
 			owner.eventDispatcher.addEventListener("TilesetLoadingComplete", onTilesetsLoaded);
+			super.onAdd();
 		}				
 		
 		override protected function onRemove():void {

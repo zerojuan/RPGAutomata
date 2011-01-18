@@ -1,9 +1,18 @@
 package core.components.keyboard
 {
+	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.core.InputMap;
 
-	public class RPGBaseController
+	public class BasicInputController extends TickedComponent
 	{
+		
+		public static const IDLE:int = 0;
+		public static const MOVING:int = 1;
+		
+		public static const UP:int = 1;
+		public static const RIGHT:int = 2;
+		public static const DOWN:int = 3;
+		public static const LEFT:int = 4;
 		
 		public function get input():InputMap{
 			return _inputMap;

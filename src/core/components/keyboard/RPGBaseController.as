@@ -14,46 +14,46 @@ package core.components.keyboard
 			
 			if (_inputMap != null)
 			{
-				_inputMap.mapActionToHandler("GoLeft", _OnLeft);
-				_inputMap.mapActionToHandler("GoRight", _OnRight);
-				_inputMap.mapActionToHandler("GoUp", _OnUp);
-				_inputMap.mapActionToHandler("GoDown", _OnDown);
-				_inputMap.mapActionToHandler("TalkPressed", _OnTalk);
-				_inputMap.mapActionToHandler("Dash", _OnDash);
+				_inputMap.mapActionToHandler("GoLeft", OnLeft);
+				_inputMap.mapActionToHandler("GoRight", OnRight);
+				_inputMap.mapActionToHandler("GoUp", OnUp);
+				_inputMap.mapActionToHandler("GoDown", OnDown);
+				_inputMap.mapActionToHandler("TalkPressed", OnTalk);
+				_inputMap.mapActionToHandler("Dash", OnDash);
 			}
 		}
 		
-		protected function _OnLeft(value:Number):void{
-			_left = value;
+		protected function OnLeft(value:Number):void{
+			left = value;
 		}
 		
-		protected function _OnRight(value:Number):void{
-			_right = value;
+		protected function OnRight(value:Number):void{
+			right = value;
 		}
 		
-		protected function _OnUp(value:Number):void{
-			_up = value;
+		protected function OnUp(value:Number):void{
+			up = value;
 		}
 		
-		protected function _OnDown(value:Number):void{
-			_down = value;
+		protected function OnDown(value:Number):void{
+			down = value;
 		}
 		
-		protected function _OnTalk(value:Number):void{
+		protected function OnTalk(value:Number):void{
 			
 		}
 		
-		protected function _OnDash(value:Number):void{
+		protected function OnDash(value:Number):void{
 			
 		}
 		
 		private var _inputMap:InputMap;
 		
-		private var _left:Number = 0;
-		private var _right:Number = 0;
-		private var _up:Number = 0;
-		private var _down:Number = 0;
-		private var _dash:Number = 0;
-		private var _talking:Number = 0;
+		protected var left:Number = 0;
+		protected var right:Number = 0;
+		protected var up:Number = 0;
+		protected var down:Number = 0;
+		protected var dash:Number = 0;
+		protected var talking:Number = 0;
 	}
 }

@@ -7,6 +7,8 @@ package controllers
 	import com.pblabs.engine.entity.PropertyReference;
 	import com.pblabs.rendering2D.ui.PBLabel;
 	
+	import events.TalkEvent;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.geom.Point;

@@ -3,7 +3,7 @@ package controllers
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.entity.PropertyReference;
 	
-	import components.RPGSpatialComponent;
+	import core.components.RPGSpatialComponent;
 	
 	import flash.geom.Point;
 

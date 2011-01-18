@@ -6,7 +6,9 @@ package controllers
 	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.engine.entity.PropertyReference;
 	
-	import components.RPGSpatialManagerComponent;
+	import core.components.RPGSpatialManagerComponent;
+	
+	import events.TalkEvent;
 	
 	import flash.events.Event;
 	import flash.geom.Point;

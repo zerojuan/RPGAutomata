@@ -1,4 +1,4 @@
-package rpg
+package core.rpg
 {
 	import flash.geom.Point;
 

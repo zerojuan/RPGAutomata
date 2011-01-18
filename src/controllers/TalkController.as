@@ -7,14 +7,12 @@ package controllers
 	import com.pblabs.engine.entity.PropertyReference;
 	import com.pblabs.rendering2D.ui.PBLabel;
 	
-	import events.TalkEvent;
+	import core.components.events.TalkEvent;
+	import core.rpg.Conversation;
+	import core.rpg.Dialog;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.geom.Point;
-	
-	import rpg.Conversation;
-	import rpg.Dialog;
 
 	public class TalkController extends TickedComponent
 	{

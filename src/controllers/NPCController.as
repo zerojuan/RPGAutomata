@@ -8,7 +8,7 @@ package controllers
 	
 	import core.components.RPGSpatialManagerComponent;
 	
-	import events.TalkEvent;
+	import core.components.events.TalkEvent;
 	
 	import flash.events.Event;
 	import flash.geom.Point;

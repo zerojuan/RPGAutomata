@@ -9,12 +9,12 @@ package controllers
 	import core.components.RPGSpatialComponent;
 	import core.components.RPGSpatialManagerComponent;
 	
-	import events.TalkEvent;
+	import core.components.events.TalkEvent;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	
-	import rpg.Conversation;
+	import core.rpg.Conversation;
 
 	/**
 	 * Controller for our RPG character

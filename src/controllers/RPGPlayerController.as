@@ -281,7 +281,7 @@ package controllers
 					
 					if(conversation){
 						isTalking = true;
-						isLocked = conversation.locked;
+						//isLocked = conversation.locked;
 						owner.eventDispatcher.dispatchEvent(
 							new TalkEvent(TalkEvent.START_TALK, conversation));
 					}else{

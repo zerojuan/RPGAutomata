@@ -45,7 +45,7 @@ package controllers
 		private function onStartedTalking(evt:TalkEvent):void{
 			Logger.info(this, "onStartedTalking", "Started a conversation");
 			_currentConversation = evt.conversation;
-			_currentDialog = _currentConversation.next();
+			//_currentDialog = _currentConversation.next();
 			owner.setProperty(actorIndexReference, _currentDialog.actorId);
 			_count = 0;		
 			state = SCROLLING;
@@ -59,13 +59,13 @@ package controllers
 				_textOnScreen = _currentDialog.text;
 				_count = _currentDialog.text.length+1;
 			}else if(state == DONE_SCROLLING){
-				_currentDialog = _currentConversation.next();
+				//_currentDialog = _currentConversation.next();
 				_count = 0;
 				state = SCROLLING;
 				if(_currentDialog == null){
 					_player.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.END_TALK));					
 					state = HIDDEN;
-					_currentConversation.reset();
+					//_currentConversation.reset();
 					talkAlpha = 0;
 					arrowAlpha = 0;
 				}else{

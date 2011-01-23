@@ -1,35 +1,26 @@
 package core.rpg
 {
+	import flash.geom.Point;
+
 	public class Conversation
 	{
-		public var currIndex:int;
+		public var charId:String;
 		
-		public var locked:Boolean; //whether or not this conversation locks a character from moving
+		public var coordinate:Point;
+		/**
+		 * Keep an array of states, so a character can have different things to say
+		 */
+		public var states:Array;
 		
-		public function Conversation(){
-			_dialogArray = new Array();
-			reset();
-		}
-		
-		public function push(d:Dialog):void{
-			_dialogArray.push(d);
-		}
-		
-		public function reset():void{
-			currIndex = 0;
-		}
-		
-		public function current():Dialog{
-			return _dialogArray[currIndex];
-		}
-		
-		public function next():Dialog{
-			if(currIndex > _dialogArray.length)
-				return null;
+		public function getDialogId():String{
+			for each(var state:Object in states){
+				if(state.codition){
+					return state.dialogRootId;
+				}
+			}
 			
-			return _dialogArray[currIndex++];
+			
+			return "";
 		}
-		
-		private var _dialogArray:Array;
 	}
 }

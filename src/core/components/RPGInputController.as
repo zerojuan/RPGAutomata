@@ -38,7 +38,9 @@ package core.components
 		 */
 		public var disabledAction:Boolean = false;
 		
-		
+		public function get animation():String{
+			return _animation;
+		}				
 		
 		public function get speed():Number{
 			return _speed;
@@ -219,6 +221,18 @@ package core.components
 					break;
 			}
 			return gridCoord;
+		}
+		
+		override protected function onAdd():void{
+			super.onAdd();
+			
+			_position = owner.getProperty(positionProperty);
+			_destPosition = _position.clone();
+			_startPosition = _position.clone();
+		}
+		
+		override protected function onRemove():void{
+			super.onRemove();						
 		}
 		
 		private var _speed:Number;

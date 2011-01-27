@@ -13,29 +13,39 @@ package core.components
 		 */
 		public var inputSource:RPGInputController;
 		/**
-		 * Reference to the world, so we can try to guess what ther player is trying to do
+		 * Reference to the world, so we can try to guess what the player is trying to do
 		 */
 		public var mapReference:RPGSpatialManagerComponent;
 		
 		private function onAction(evt:RPGActionEvent):void{
 			var frontCoord:Point = evt.frontCoordinates;
 			var rpgObject:RPGSpatialComponent = mapReference.getObjectInGrid(frontCoord);
-			if(rpgObject){
+			if(rpgObject){ //if talking to an object
 				
-			}else{
-				
+			}else{ //if talking as a monologue
+				removeEventListeners();
 			}
 		}
 		
 		
 		protected function onEndAction(evt:RPGActionEvent):void{
-			
+			addEventListeners();
 		}
 		
-		override protected function onAdd():void{
+		private function addEventListeners():void{
 			if(inputSource){
 				inputSource.owner.eventDispatcher.addEventListener(RPGActionEvent.ACTION, onAction);
 			}
+		}
+		
+		private function removeEventListeners():void{
+			if(inputSource){
+				inputSource.owner.eventDispatcher.removeEventListener(RPGActionEvent.ACTION, onAction);
+			}
+		}
+		
+		override protected function onAdd():void{
+			addEventListeners();
 			owner.eventDispatcher.addEventListener(RPGActionEvent.END_ACTION, onEndAction);
 		}
 		

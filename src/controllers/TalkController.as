@@ -46,7 +46,7 @@ package controllers
 			Logger.info(this, "onStartedTalking", "Started a conversation");
 			_currentConversation = evt.conversation;
 			//_currentDialog = _currentConversation.next();
-			owner.setProperty(actorIndexReference, _currentDialog.actorId);
+			//owner.setProperty(actorIndexReference, _currentDialog.actorId);
 			_count = 0;		
 			state = SCROLLING;
 			talkAlpha = 1;
@@ -69,7 +69,7 @@ package controllers
 					talkAlpha = 0;
 					arrowAlpha = 0;
 				}else{
-					owner.setProperty(actorIndexReference, _currentDialog.actorId);
+			//		owner.setProperty(actorIndexReference, _currentDialog.actorId);
 				}
 			}
 		}

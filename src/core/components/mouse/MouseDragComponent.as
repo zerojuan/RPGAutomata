@@ -28,6 +28,8 @@ package core.components.mouse
 			
 			startPosition.x = PBE.mainStage.mouseX;
 			startPosition.y = PBE.mainStage.mouseY;
+			
+			scene.trackObject = null;
 		}
 		
 		private function onMouseUp(evt:MouseEvent):void{

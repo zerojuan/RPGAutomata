@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialogs>
+	<dialog id="MrRamonIntro">
+		<text>Hi, my name is Ramon. Ramon Revilla.</text>
+		<actor>Mr. Ramon</actor>
+		<exitA id="MrRamonAsks"/>
+	</dialog>
+	<dialog id="MrRamonAsks">
+		<text>So, what brings you here?</text>
+		<actor>Mr. Ramon</actor>
+		<exitA id="MrRamonAsksDenied">I am looking for a Jedi.</exitA>
+		<exitB id="MrRamonAsksCorrect">I am just a traveler</exitB>		
+	</dialog>
+	<dialog id="MrRamonAsksDenied">
+		<text>WHAT? Get out of my sight you idiot!</text>
+		<actor>Mr. Ramon</actor>
+		<exitA id="MrRamonAsks"/>
+	</dialog>
+	<dialog id="MrRamonAsksCorrect">
+		<text>That's just great now, isn't it?</text>
+		<actor>Mr. Ramon</actor>
+		<exit>firstTimeTalking</exit>
+	</dialog>
+</dialogs>

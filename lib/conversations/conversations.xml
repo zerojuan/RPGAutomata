@@ -1,40 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conversations>
-	<conversation id="talkToSelf" locked="true">		
-		<talk actor="ME" actorId="0">
-			Dude I am talking to myselves!
-		</talk>
-		<talk actor="ME" actorId="0">
-			And I am totally going to keep on talking..
-		</talk>
-		<talk actor="ME" actorID="0">
-			Until of course I shut up. SHUTTTING UP.. NOW!
-		</talk>
+	<conversation>
+		<charId>Mr. Ramon</charId>
+		<states>
+			<firstTimeTalking>
+				MrRamonIntro
+			</firstTimeTalking>
+			<secondTimeTalking>
+				MrRamonSecond
+			</secondTimeTalking>
+			<thirdTimeTalking>
+				MrRamonThird
+			</thirdTimeTalking>
+		</states>		
 	</conversation>
-	<conversation id="talkToSelfDone" locked="true">
-		<talk actor="YOU" actorId="1">
-			I thought you were done talking??
-		</talk>
-		<talk actor="ME" actorId="0">
-			WTF! Who was that?
-		</talk>
-	</conversation>
-	<conversation id="laptop">
-		<talk actor="ME" actorId="0">
-			Ooooh.. look a laptop!
-		</talk>
-	</conversation>
-	<conversation id="laptopDone">
-		<talk actor="ME" actorId="0">
-			oh.. laptop. boring.
-		</talk>
-	</conversation>
-	<conversation id="twinNPC">
-		<talk actor="ME" actorId="0">
-			Oh hello you!
-		</talk>
-		<talk actor="YOU" actorId="1">
-			Hi..
-		</talk>
+	<conversation>
+		<charId>Mr. Albert</charId>
+		<states>
+			<firstTimeTalking>
+				MrAlbertIntro
+			</firstTimeTalking>
+			<secondTimeTalking>
+				MrAlbertSecond
+			</secondTimeTalking>
+			<thirdTimeTalking>
+				MrAlbertThird
+			</thirdTimeTalking>
+		</states>		
 	</conversation>
 </conversations>

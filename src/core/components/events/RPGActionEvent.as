@@ -15,9 +15,9 @@ package core.components.events
 		/**
 		 * The result of the action
 		 */
-		public var actionResult:int = 0;
+		public var actionResult:String;
 		
-		public function RPGActionEvent(type:String, frontCoord:Point = null, actionResult:int = -1)
+		public function RPGActionEvent(type:String, frontCoord:Point = null, actionResult:String="")
 		{
 			super(type);
 			frontCoordinates = frontCoord;

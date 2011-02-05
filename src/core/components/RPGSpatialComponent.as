@@ -20,7 +20,7 @@ package core.components
 					if(!_gridPosition.equals(val) || _isRegisteredToGrid == false){					
 						_prevPosition = _gridPosition.clone();
 						_gridPosition = val;
-						PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
+						//PBE.log(this, "Changed Position: " + _prevPosition + " " + _gridPosition);
 						owner.eventDispatcher.dispatchEvent(new Event("PositionChange"));
 						(spatialManager as RPGSpatialManagerComponent).updateCollisionMap(_prevPosition, _gridPosition, gridWidth, gridHeight);
 					}				

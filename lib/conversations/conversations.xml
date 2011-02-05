@@ -2,30 +2,14 @@
 <conversations>
 	<conversation>
 		<charId>Mr. Ramon</charId>
-		<states>
-			<firstTimeTalking>
-				MrRamonIntro
-			</firstTimeTalking>
-			<secondTimeTalking>
-				MrRamonSecond
-			</secondTimeTalking>
-			<thirdTimeTalking>
-				MrRamonThird
-			</thirdTimeTalking>
-		</states>		
+		<state id="firstTimeTalking" dialogRootId="MrRamonIntro"/>
+		<state id="secondTimeTalking" dialogRootId="MrRamonSecond"/>
+		<state id="thirdTimeTalking" dialogRootId="MrRamonThird"/>			
 	</conversation>
 	<conversation>
 		<charId>Mr. Albert</charId>
-		<states>
-			<firstTimeTalking>
-				MrAlbertIntro
-			</firstTimeTalking>
-			<secondTimeTalking>
-				MrAlbertSecond
-			</secondTimeTalking>
-			<thirdTimeTalking>
-				MrAlbertThird
-			</thirdTimeTalking>
-		</states>		
+		<state id="firstTimeTalking" dialogRootId="MrAlbertIntro"/>
+		<state id="secondTimeTalking" dialogRootId="MrAlbertSecond"/>
+		<state id="thirdTimeTalking" dialogRootId="MrAlbertThird"/>		
 	</conversation>
 </conversations>

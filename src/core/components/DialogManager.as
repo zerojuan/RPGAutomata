@@ -9,7 +9,7 @@ package core.components
 
 	public class DialogManager extends EntityComponent
 	{
-		public var dialogLibrary:Array;
+		public var dialogLibrary:Array = [];
 		
 		public function get filename():String{
 			return _dialogs == null ? null:_dialogs.filename;
@@ -44,19 +44,21 @@ package core.components
 				if(dialog.exit == ""){
 					dialog.exitA = new Object();
 					dialog.exitB = new Object();
-					dialog.exitA.id = xml.dialog[i].exitA.@id;
-					dialog.exitB.text = xml.dialog[i].exitB;
-					if(dialog.exitB.text != ""){
-						dialog.exitA.text = xml.dialog[i].exitA;
-						dialog.exitB.text = xml.dialog[i].exitB;
-						dialog.exitB.id = xml.dialog[i].exitB.@id;						
+					dialog.exitA.id = xml.dialog[i].exitA.@id.toString();
+					dialog.exitB.text = xml.dialog[i].exitB.@text;					
+					if(dialog.exitB.text.toString() != ""){
+						dialog.exitA.text = xml.dialog[i].exitA.@text.toString();
+						dialog.exitB.text = xml.dialog[i].exitB.@text.toString();
+						dialog.exitB.id = xml.dialog[i].exitB.@id.toString();						
 					}else{
 						dialog.exitB = null;
 					}
 					dialog.exit = null;
 				}
-				trace(PBE.log(this, dialog.toString()));
+				PBE.log(this, "Adding " + xml.dialog[i].@id + ".");
+				dialogLibrary[xml.dialog[i].@id] = dialog;
 			}
+			//PBE.log(this, "Added " + dialogLibrary.length + " into the DialogLibrary");
 		}
 		
 		protected function onXMLFailed(resource:XMLResource):void{

@@ -65,9 +65,9 @@ package core.components
 			}else{
 				_currArray = null;
 				if(_currentAnimation == "upIdle"){
-					_currIndex = 10;
+					_currIndex = 9;
 				}else if(_currentAnimation == "downIdle"){
-					_currIndex = 1;
+					_currIndex = 0;
 				}else if(_currentAnimation == "rightIdle"){
 					_currIndex = 7;
 				}else if(_currentAnimation == "leftIdle"){

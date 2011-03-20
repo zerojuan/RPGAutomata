@@ -45,9 +45,9 @@ package core.components
 		private function setGridValue(origin:Point, width:Number, height:Number, value:Number):void{
 			var i:int;
 			for(i = 0; i < height; i++)
-				collisionMap[origin.y+i][origin.x] = value;
+				collisionMap[origin.x][origin.y+i] = value;
 			for(i = 0; i < width; i++)
-				collisionMap[origin.y][origin.x+i] = value;
+				collisionMap[origin.x+i][origin.y] = value;
 		}
 		
 		public function get objectArray():Array{

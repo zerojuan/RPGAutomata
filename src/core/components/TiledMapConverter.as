@@ -57,6 +57,19 @@ package core.components
 			_scene = value;
 		}
 		/**
+		 * If true, layers with the same name will be overwritten
+		 */
+		public function get overwriteLayers():Boolean{
+			return _overwriteLayers;
+		}
+		/**
+		 * If true, layers with the same name will be overwritten
+		 */
+		public function set overwriteLayers(val:Boolean):void{
+			_overwriteLayers = val;
+		}
+		
+		/**
          * The filename of the TMX file
          */
         public function get tmxFilename():String{
@@ -128,7 +141,7 @@ package core.components
 				//TODO: Make a public variable to control whether to overwrite a layer or not
 				var bitmapRenderer:TileLayerComponent = lookupLayerByName(layerName);
 				var registered:Boolean = false;
-				if(bitmapRenderer){
+				if(bitmapRenderer && !overwriteLayers){
 					PBE.log(this, "Layer already exists, using that layer");
 					registered = true;
 				}else{
@@ -177,11 +190,23 @@ package core.components
 		 * Helper function for parsing CSVs into an array
 		 */
 		private function parseCSV(data:String):Array {
-			var result:Array = new Array();
-			result = data.split('\n');
-			for (var i:int = 0; i < result.length; i++) {
-				result[i] = result[i].split(",");
-			}			
+			var temp:Array = [];
+			var result:Array = [];
+			temp = data.split('\n');
+			for (var i:int = 0; i < temp.length; i++) {
+				temp[i] = temp[i].split(",");
+				if(temp[i][temp[i].length-1] == ""){ //sometimes there is an extra blank space at the end of a line that gets added to the array
+					temp[i].pop(); //let's remove that
+				}
+			}
+			//Convert the [y][x] coordinate of the csv parser 
+			//into [x][y]. Makes more sense that way
+			for(var x:int = 0; x < temp[0].length; x++){
+				result[x] = [];
+				for(var y:int = 0; y < temp.length; y++){
+					result[x][y] = temp[y][x];
+				}
+			}
 			return result;
 		}
 		/**
@@ -196,7 +221,7 @@ package core.components
 				for (var spriteForX:Number = 0; spriteForX < spriteWidth; spriteForX++) {
 					for (var spriteForY:Number = 0; spriteForY < spriteHeight; spriteForY++) {
 						
-						var tileNum:int = int(layers[i][spriteForY][spriteForX]);
+						var tileNum:int = int(layers[i][spriteForX][spriteForY]);
 						var destY:int = spriteForY * tileHeight;
 						var destX:int = spriteForX * tileWidth;
 						
@@ -208,7 +233,7 @@ package core.components
 							var sourceX:int = actualNum % (tiles.cols) - 1;											
 							mapLayers[i].bitmapData.copyPixels(tiles.image, new Rectangle(sourceX * tileWidth, sourceY * tileHeight, tileWidth, tileHeight), new Point(destX, destY));
 						}else{
-							Logger.error(this, "onTilesetsLoaded", "Unable to locate tiles. GID must be out of range");
+							Logger.error(this, "onTilesetsLoaded", "Unable to locate tiles. GID must be out of range " + tileNum);
 						}
 					}
 				}
@@ -292,6 +317,7 @@ package core.components
 		private var mapLayers:Array;
 		private var tilesetLength:uint; //how many tilesets do we have?
 		private var tilesetsLoaded:uint = 0;
+		private var _overwriteLayers:Boolean;
 		private var _tmxMap:XMLResource;
 		private var _scene:DisplayObjectScene;
 	}

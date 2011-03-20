@@ -130,7 +130,7 @@ package core.components
 			switch(direction){					
 				case UP: 
 					//Collision Detection:
-					if(map[_yGrid - 1][_xGrid] == 0){
+					if(map[_xGrid][_yGrid - 1] == 0){
 						_position.y = _position.y - _ySpeed;
 						_destPosition.y = (_yGrid-1) * 32;
 					}						
@@ -145,7 +145,7 @@ package core.components
 					}						
 					break;
 				case RIGHT:						
-					if(map[ _yGrid][_xGrid + 1] == 0){
+					if(map[_xGrid + 1][ _yGrid] == 0){
 						_position.x = _position.x + _xSpeed;
 						_destPosition.x = (_xGrid + 1) * 32;
 					}					
@@ -157,7 +157,7 @@ package core.components
 					}
 					break;
 				case DOWN: 						
-					if(map[ _yGrid + 1][_xGrid] == 0){
+					if(map[_xGrid][ _yGrid + 1] == 0){
 						_position.y = _position.y + _ySpeed;
 						_destPosition.y = (_yGrid+1) * 32;
 					}
@@ -169,7 +169,7 @@ package core.components
 					}
 					break;
 				case LEFT: 						
-					if(map[ _yGrid][_xGrid - 1] == 0){							
+					if(map[_xGrid - 1][ _yGrid] == 0){							
 						_position.x = _position.x - _xSpeed;
 						_destPosition.x = (_xGrid-1) * 32;
 					}						

@@ -201,13 +201,14 @@ package core.components
 						var destX:int = spriteForX * tileWidth;
 						
 						var tiles:Tileset = locateTileset(tileNum);
-						//TODO: add error logging if tiles are not located
 						if (tiles) {													
 							var actualNum:int = tileNum - (tiles.firstGID - 1);
 						
 							var sourceY:int = Math.ceil(actualNum / (tiles.cols)) - 1;						
 							var sourceX:int = actualNum % (tiles.cols) - 1;											
 							mapLayers[i].bitmapData.copyPixels(tiles.image, new Rectangle(sourceX * tileWidth, sourceY * tileHeight, tileWidth, tileHeight), new Point(destX, destY));
+						}else{
+							Logger.error(this, "onTilesetsLoaded", "Unable to locate tiles. GID must be out of range");
 						}
 					}
 				}

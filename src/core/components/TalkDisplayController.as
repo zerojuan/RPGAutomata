@@ -1,7 +1,6 @@
 package core.components
 {
 	import com.pblabs.engine.PBE;
-	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.debug.Logger;
 	import com.pblabs.engine.entity.PropertyReference;
 	import com.pblabs.rendering2D.ui.PBLabel;
@@ -12,7 +11,6 @@ package core.components
 	import core.rpg.Conversation;
 	import core.rpg.Dialog;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.geom.Point;
 

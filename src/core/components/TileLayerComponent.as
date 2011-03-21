@@ -12,6 +12,7 @@ package core.components
 	 */
 	public class TileLayerComponent extends BitmapRenderer
 	{
+		
 		public function get source():String {
 			return _source;
 		}

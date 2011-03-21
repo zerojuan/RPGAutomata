@@ -113,6 +113,15 @@ package core.components
 			return null;
 		}
 		/**
+		 * Removes all layers from the display list
+		 */
+		private function unregisterAllLayers():void{
+			for each(var layer:TileLayerComponent in tileLayers){
+				layer.unregister();
+			}
+			tileLayers = new Vector.<TileLayerComponent>;
+		}
+		/**
 		 * Parse the TMX file.
 		 * 
 		 * This only initiates the loading of the graphic assets.
@@ -124,12 +133,19 @@ package core.components
 			var i:int;
 			var xml:XML = _tmxMap.XMLData;
 			
-			tilesetsLoaded = 0;
+			tilesetsLoadCount = 0;
 			
 			spriteWidth = xml.attribute("width");
 			spriteHeight = xml.attribute("height");
 			tileWidth = xml.attribute("tilewidth");
 			tileHeight = xml.attribute("tileheight");
+			
+			if(overwriteLayers){
+				mapLayers = [];
+				tilesets = [];
+				layers = [];
+				unregisterAllLayers();
+			}
 			
 			for (i = 0; i < xml.layer.length(); i++ ) {
 				var tileData:XMLList = xml.layer[i].data;
@@ -137,20 +153,22 @@ package core.components
 				var tileCoordinates:Array = new Array();
 				
 				var layerName:String = xml.layer[i].attribute("name");
+				
 				PBE.log(this, "Looking up component: " + layerName);
 				//TODO: Make a public variable to control whether to overwrite a layer or not
 				var bitmapRenderer:TileLayerComponent = lookupLayerByName(layerName);
-				var registered:Boolean = false;
-				if(bitmapRenderer && !overwriteLayers){
+				var registered:Boolean = false; 
+				if(bitmapRenderer){
 					PBE.log(this, "Layer already exists, using that layer");
 					registered = true;
 				}else{
 					PBE.log(this, "Registering new layer");
-					bitmapRenderer = new TileLayerComponent();					
+					bitmapRenderer = new TileLayerComponent();	
 				}
 				
 				bitmapRenderer.bitmapData = new BitmapData(spriteWidth * tileWidth, spriteHeight * tileHeight, true, 0x00ffffff);
-				bitmapRenderer.scene = scene;																
+				bitmapRenderer.scene = scene;
+																				
 				//check where we want to put our player in
 				if (i >= playerZIndex) {
 					bitmapRenderer.zIndex = i + 1;
@@ -225,7 +243,7 @@ package core.components
 						var destY:int = spriteForY * tileHeight;
 						var destX:int = spriteForX * tileWidth;
 						
-						var tiles:Tileset = locateTileset(tileNum);
+						var tiles:Tileset = locateTileset(tileNum+1);
 						if (tiles) {													
 							var actualNum:int = tileNum - (tiles.firstGID - 1);
 						
@@ -268,9 +286,9 @@ package core.components
 				}
 			}
 			
-			tilesetsLoaded++;		
+			tilesetsLoadCount++;		
 			//if all tilesets are loaded
-			if (tilesetsLoaded == tilesetLength) { 								
+			if (tilesetsLoadCount == tilesetLength) { 								
 				onTilesetsLoaded();
 			}
 		}
@@ -316,8 +334,8 @@ package core.components
 		private var tilesets:Array;
 		private var mapLayers:Array;
 		private var tilesetLength:uint; //how many tilesets do we have?
-		private var tilesetsLoaded:uint = 0;
-		private var _overwriteLayers:Boolean;
+		private var tilesetsLoadCount:uint = 0;
+		private var _overwriteLayers:Boolean = true;
 		private var _tmxMap:XMLResource;
 		private var _scene:DisplayObjectScene;
 	}

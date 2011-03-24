@@ -1,26 +1,18 @@
 package core.components 
 {
 	import com.pblabs.engine.PBE;
-	import com.pblabs.engine.components.AnimatedComponent;
 	import com.pblabs.engine.debug.Logger;
 	import com.pblabs.engine.entity.EntityComponent;
-	import com.pblabs.engine.mxml.ResourceBinding;
 	import com.pblabs.engine.resource.ImageResource;
 	import com.pblabs.engine.resource.XMLResource;
-	import com.pblabs.rendering2D.BitmapRenderer;
 	import com.pblabs.rendering2D.DisplayObjectScene;
-	import com.pblabs.rendering2D.spritesheet.FixedSizeDivider;
-	import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
 	
 	import core.components.events.TilesetEvent;
 	import core.tilemap.Tileset;
 	
 	import flash.display.BitmapData;
-	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import flash.utils.Dictionary;
 
 	/**
 	 * Creates TileLayers based on a TMX file
@@ -141,6 +133,7 @@ package core.components
 			tileHeight = xml.attribute("tileheight");
 			
 			if(overwriteLayers){
+				//reset everything
 				mapLayers = [];
 				tilesets = [];
 				layers = [];
@@ -155,7 +148,7 @@ package core.components
 				var layerName:String = xml.layer[i].attribute("name");
 				
 				PBE.log(this, "Looking up component: " + layerName);
-				//TODO: Make a public variable to control whether to overwrite a layer or not
+
 				var bitmapRenderer:TileLayerComponent = lookupLayerByName(layerName);
 				var registered:Boolean = false; 
 				if(bitmapRenderer){
@@ -177,13 +170,16 @@ package core.components
 				}
 				
 				mapLayers[i] = bitmapRenderer;
+				
 				if(!registered){
+					//add renderer to the render list
 					bitmapRenderer.register(this.owner, layerName);
 					tileLayers.push(bitmapRenderer);
 				}
 				
 				
 				if (xml.layer[i].properties.property && xml.layer[i].properties.property.attribute("name") == "collision") {					
+					//isolate collision layer
 					collisionLayer = parseCSV(tileData);					
 				}else {
 					layers[i] = parseCSV(tileData);
@@ -192,7 +188,7 @@ package core.components
 												
 			tilesetLength = xml.tileset.length();
 			for (i = 0; i < tilesetLength; i++ ) {
-				
+				//Create the tilesets that the tiles will use
 				var ts:Tileset = new Tileset();
 				ts.tileHeight = xml.tileset[i].attribute("tileheight");
 				ts.tileWidth = xml.tileset[i].attribute("tilewidth");

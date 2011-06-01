@@ -234,7 +234,6 @@ package core.components
 				
 				for (var spriteForX:Number = 0; spriteForX < spriteWidth; spriteForX++) {
 					for (var spriteForY:Number = 0; spriteForY < spriteHeight; spriteForY++) {
-						
 						var tileNum:int = int(layers[i][spriteForX][spriteForY]);
 						var destY:int = spriteForY * tileHeight;
 						var destX:int = spriteForX * tileWidth;

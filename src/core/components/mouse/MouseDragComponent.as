@@ -19,7 +19,8 @@ package core.components.mouse
 		
 		protected override function onAdd():void{
 			super.onAdd();
-			PBE.mainStage.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			
+			scene.sceneView.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 			PBE.mainStage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 		}
 		

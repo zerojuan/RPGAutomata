@@ -13,6 +13,8 @@ package core.components
 	
 	import flash.display.Sprite;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import flash.text.TextFormat;
 
 	/**
 	 * Controller for the scrolling text display
@@ -217,15 +219,24 @@ package core.components
 			super.onAdd();
 					
 			_textField = new PBLabel();
-			_textField.fontColor = 0x000000;
+			_textField.fontColor = 0xFFFFFF;		
+			_textField.extents = new Rectangle(0,0, 200, 200);
+			var _textFormat:TextFormat = new TextFormat("Anime Ace");			
+			_textField.textFormat = _textFormat;
 			_choiceA = new PBLabel();
 			_choiceB = new PBLabel();
-			_choiceA.fontColor = 0x000000;
-			_choiceB.fontColor = 0x000000;
+			_choiceA.fontColor = 0xFFFFFF;
+			_choiceB.fontColor = 0xFFFFFF;
 			_choiceA.visible = false;
 			_choiceB.visible = false;
 			_choiceA.caption = "Choice A";
 			_choiceB.caption = "Choice B";
+			_choiceA.textFormat = _textFormat;
+			_choiceB.textFormat = _textFormat;
+			_choiceA.fontSize = 6;
+			_choiceB.fontSize = 6;
+			_choiceA.height = 200;
+			_choiceB.height = 200;
 			_choiceA.refresh();
 			_choiceB.refresh();
 			
@@ -242,10 +253,11 @@ package core.components
 				_textField.y = 15;
 				_textField.fontSize = 18;
 			}else{
-				_textField.width = 500;
+				_textField.width = 300;
 				_textField.x = 20;
 				_textField.y = 15;
-				_textField.fontSize = 23;
+				_textField.fontSize = 6;
+				_textField.height = 200;
 			}
 			//var displayObject:Sprite = owner.getProperty(displayObjectProperty) as Sprite;
 			//displayObject.addChild(_textField);

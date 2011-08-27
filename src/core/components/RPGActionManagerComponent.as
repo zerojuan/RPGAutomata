@@ -14,11 +14,11 @@ package core.components
 		/**
 		 * We need to this to check, because now there is this infinite loop cycle for talking
 		 */ 
-		private var _justDoneTalking:Boolean = false;
+		protected var _justDoneTalking:Boolean = false;
 		
-		private var _currentConversation:Conversation;
+		protected var _currentConversation:Conversation;
 		
-		private var _inputSource:RPGInputController;
+		protected var _inputSource:RPGInputController;
 		/**
 		 * Reference to the world, so we can try to guess what the player is trying to do
 		 */
@@ -27,6 +27,8 @@ package core.components
 		public var conversationManager:ConversationManager;
 		
 		public var talkDisplayController:TalkDisplayController;
+		
+		public var locationDialogManager:LocationDialogManager;
 		
 		public var gameDatabase:GameDatabase;
 		
@@ -38,19 +40,26 @@ package core.components
 				return;
 			}
 			if(rpgObject){ //if talking to an object
-				_currentConversation = conversationManager.getConversationByCharacterId(rpgObject.owner.name);
-				if(_currentConversation == null){
-					return;
-				}
-				talkDisplayController.owner.eventDispatcher.dispatchEvent(new TalkEvent(TalkEvent.START_TALK, _currentConversation));
-				talkDisplayController.owner.eventDispatcher.addEventListener(RPGActionEvent.END_ACTION, onEndAction);
-				//disable me for now
-				_inputSource.disabledAction = true;
-				_inputSource.isLocked = true;
-				removeEventListeners();
-			}else{ //if talking as a monologue
-				//removeEventListeners();
+				startConversationOnID(rpgObject.owner.name);
+			}else{ 
+				//if talking to a non character object
+				if(locationDialogManager){
+					var locationID:String = locationDialogManager.getActionInGrid(frontCoord);				
+					if(locationID){
+						startConversationOnID(locationID);					
+					}else{
+						//do nothing
+					}
+					//removeEventListeners();
+				}				
 			}
+		}
+		
+		protected function startConversationOnID(id:String):void{			
+			//disable me for now
+			_inputSource.disabledAction = true;
+			_inputSource.isLocked = true;
+			removeEventListeners();					
 		}
 		/**
 		 * Reference to where we need to listen to ACTION_EVENTS

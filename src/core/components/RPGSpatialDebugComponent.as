@@ -40,8 +40,12 @@ package core.components
 				drawSquare(rpgElement.gridPosition);
 				
 				if(_manager.collisionMap){
-					if(_manager.collisionMap[rpgElement.gridPosition.y][rpgElement.gridPosition.x] != 0){
-						drawSquare(rpgElement.gridPosition, 0xFF0000, rpgElement.gridWidth, rpgElement.gridHeight);
+					try{
+						if(_manager.collisionMap[rpgElement.gridPosition.x][rpgElement.gridPosition.y] != 0){
+							drawSquare(rpgElement.gridPosition, 0xFF0000, rpgElement.gridWidth, rpgElement.gridHeight);
+						}
+					}catch(e:Error){
+						//Logger.info(this, "onFrame", "Error on debug draw of SpatialComponent");
 					}
 				}
 			}

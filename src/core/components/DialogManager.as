@@ -36,6 +36,8 @@ package core.components
 			var i:int;
 			var xml:XML = _dialogs.XMLData;
 			
+			dialogLibrary = [];
+			
 			for(i = 0; i < xml.dialog.length(); i++){
 				var dialog:Dialog = new Dialog();
 				dialog.text = xml.dialog[i].text;

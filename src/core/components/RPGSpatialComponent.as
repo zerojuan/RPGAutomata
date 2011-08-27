@@ -53,7 +53,13 @@ package core.components
 		
 		public function get currentGridPosition():Point{
 			return new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);
-		}				
+		}		
+		
+		public function resetGridPosition(val:Point):void{
+			_gridPosition = val;
+			position = new Point(_gridPosition.x * tileWidth, _gridPosition.y * tileHeight);
+			_prevPosition = null;			
+		}
 		
 		override public function onTick(tickRate:Number):void{			
 			if(!_isRegisteredToGrid){ //keep trying to register				

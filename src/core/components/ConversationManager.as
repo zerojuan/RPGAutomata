@@ -50,7 +50,7 @@ package core.components
 			var i:int;
 			var xml:XML = _conversations.XMLData;
 			
-			conversationLibrary = new Array();
+			conversationLibrary = [];
 			
 			//Populate conversationLibrary with conversation objects
 			for(i = 0; i < xml.conversation.length(); i++){

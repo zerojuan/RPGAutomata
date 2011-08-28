@@ -10,11 +10,7 @@ package core.components
 	import flash.geom.Point;
 
 	public class RPGActionManagerComponent extends EntityComponent
-	{
-		/**
-		 * We need to this to check, because now there is this infinite loop cycle for talking
-		 */ 
-		protected var _justDoneTalking:Boolean = false;
+	{		
 		
 		protected var _currentConversation:Conversation;
 		
@@ -35,10 +31,7 @@ package core.components
 		private function onAction(evt:RPGActionEvent):void{
 			var frontCoord:Point = evt.frontCoordinates;
 			var rpgObject:RPGSpatialComponent = mapReference.getObjectInGrid(frontCoord);
-			if(_justDoneTalking){
-				_justDoneTalking = false;
-				return;
-			}
+			
 			if(rpgObject){ //if talking to an object
 				startConversationOnID(rpgObject.owner.name);
 			}else{ 
@@ -83,10 +76,7 @@ package core.components
 			_currentConversation.defaultStateDone();
 			_inputSource.disabledAction = false;
 			_inputSource.isLocked = false;
-			addEventListeners();
-			_justDoneTalking = true;
-			
-			
+			addEventListeners();									
 		}
 		
 		private function addEventListeners():void{

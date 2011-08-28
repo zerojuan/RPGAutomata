@@ -51,7 +51,12 @@ package core.components
 		private static const SCROLLING:int = 1;
 		private static const DONE_SCROLLING:int = 2;
 	
-		private var state:int = HIDDEN;				
+		private var state:int = HIDDEN;		
+		
+		/**
+		 * Flag to check if we just started a conversation, so that onTalk won't bother
+		 */
+		private var startedConversation:Boolean = false;
 		
 		/**
 		 * Event handler when someone triggered a started talking event
@@ -63,7 +68,7 @@ package core.components
 			Logger.info(this, "onStartedTalking", "Started a conversation at " + evt.conversation.charId);
 			_currentConversation = evt.conversation;
 			_currentDialog = dialogManager.dialogLibrary[_currentConversation.getDialogId()];
-			
+			startedConversation = true;
 			initDisplay();
 		}
 		/**
@@ -94,6 +99,7 @@ package core.components
 			arrowAlpha = 0;
 			talkAlpha = 0;
 			state = HIDDEN;
+			var exit:String = _currentDialog.exit;
 			owner.eventDispatcher.dispatchEvent(new RPGActionEvent(RPGActionEvent.END_ACTION, null, _currentDialog.exit));
 		}
 		/**
@@ -180,19 +186,24 @@ package core.components
 		 * Overriden from BasicInputController. Called whenever the talk button is pressed.
 		 */
 		override protected function OnTalk(value:Number):void{
-			if(_currentConversation){
-				if(value == 0){
+			if(value == 0){
+				if(startedConversation){
+					startedConversation = false;
+					return;
+				}
+				if(_currentConversation){					
 					if(state == SCROLLING){
 						state = DONE_SCROLLING;
-					}else{
-						if(_currentDialog.exit && _currentDialog.exit != ""){
+					}else if(talkAlpha != 0){
+						if(_currentDialog.exit && _currentDialog.exit != ""){							
 							endTalk();
 						}else{
 							nextTalk();
 						}
 					}
 				}
-			}
+			}	
+					
 		}
 		/**
 		 * Used for moving the choice cursor

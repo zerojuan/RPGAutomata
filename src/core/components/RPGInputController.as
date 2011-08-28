@@ -67,9 +67,9 @@ package core.components
 			}			
 		}
 		
-		override protected function OnTalk(value:Number):void{		
-			if(!disabledAction){
-				if(value == 0){
+		override protected function OnTalk(value:Number):void{
+			if(value == 0){
+				if(!disabledAction){			
 					var frontCoord:Point = getFrontCoord();
 					owner.eventDispatcher.dispatchEvent(new RPGActionEvent(RPGActionEvent.ACTION, frontCoord));					
 				}

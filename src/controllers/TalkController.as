@@ -8,8 +8,8 @@ package controllers
 	import com.pblabs.rendering2D.ui.PBLabel;
 	
 	import core.components.events.TalkEvent;
-	import core.rpg.Conversation;
-	import core.rpg.Dialog;
+	import core.data.rpg.Conversation;
+	import core.data.rpg.Dialog;
 	
 	import flash.display.Sprite;
 	import flash.geom.Point;

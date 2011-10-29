@@ -1,4 +1,4 @@
-package core.components.mouse
+package core.components.input.mouse
 {
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.debug.Logger;

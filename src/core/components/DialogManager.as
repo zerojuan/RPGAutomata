@@ -5,7 +5,7 @@ package core.components
 	import com.pblabs.engine.entity.EntityComponent;
 	import com.pblabs.engine.resource.XMLResource;
 	
-	import core.rpg.Dialog;
+	import core.data.rpg.Dialog;
 
 	public class DialogManager extends EntityComponent
 	{

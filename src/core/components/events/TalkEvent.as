@@ -2,7 +2,7 @@ package core.components.events
 {
 	import flash.events.Event;
 	
-	import core.rpg.Conversation;
+	import core.data.rpg.Conversation;
 
 	public class TalkEvent extends Event
 	{

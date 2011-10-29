@@ -1,4 +1,4 @@
-package core.rpg
+package core.data.rpg
 {
 	import com.pblabs.engine.PBE;
 	

@@ -1,15 +1,16 @@
-package core.components
+package core.components.input
 {
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.entity.PropertyReference;
 	
 	import core.components.events.RPGActionEvent;
 	import core.components.events.TalkEvent;
-	import core.components.keyboard.BasicInputController;
-	import core.rpg.Conversation;
+	import core.components.input.keyboard.BasicInputController;
+	import core.data.rpg.Conversation;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
+	import core.components.RPGSpatialManagerComponent;
 
 	public class RPGInputController extends BasicInputController
 	{

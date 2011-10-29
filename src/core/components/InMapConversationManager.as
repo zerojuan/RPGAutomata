@@ -6,9 +6,13 @@ package core.components
 	import com.pblabs.engine.resource.XMLResource;
 	
 	import flash.geom.Point;
+	import core.data.rpg.InMapAction;
 
-	public class LocationDialogManager extends EntityComponent{
-		public var dialogLibrary:Array = [];
+	/**
+	 * Store conversations that are based on map locations
+	 */
+	public class InMapConversationManager extends EntityComponent{
+		public var inMapActionLibrary:Array = [];
 				
 		public function get filename():String{
 			return _dialogs == null ? null:_dialogs.filename;
@@ -23,7 +27,7 @@ package core.components
 		}
 		
 		public function getActionInGrid(val:Point):String{
-			for each(var action:LocationBasedAction in dialogLibrary){
+			for each(var action:InMapAction in inMapActionLibrary){
 				if(action.location.equals(val)){
 					return action.id;
 				}
@@ -36,15 +40,15 @@ package core.components
 			var i:int;
 			var xml:XML = _dialogs.XMLData;
 			
-			dialogLibrary = [];
+			inMapActionLibrary = [];
 			
 			for(i = 0; i < xml.action.length(); i++){
-				var locDialog:LocationBasedAction = new LocationBasedAction();
+				var locDialog:InMapAction = new InMapAction();
 				locDialog.location = new Point();
 				locDialog.location.x = xml.action[i].x;
 				locDialog.location.y = xml.action[i].y;
 				locDialog.id = xml.action[i].id;
-				dialogLibrary[i] = locDialog;
+				inMapActionLibrary[i] = locDialog;
 			}
 		}
 		

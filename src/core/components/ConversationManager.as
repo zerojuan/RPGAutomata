@@ -5,7 +5,7 @@ package core.components
 	import com.pblabs.engine.entity.EntityComponent;
 	import com.pblabs.engine.resource.XMLResource;
 	
-	import core.rpg.Conversation;
+	import core.data.rpg.Conversation;
 	
 	/**
 	 * Handles the conversion of the conversation.xml file.
@@ -41,7 +41,6 @@ package core.components
 					return conv;
 				}
 			}
-			
 			return null;
 		}
 		
@@ -54,7 +53,6 @@ package core.components
 			
 			//Populate conversationLibrary with conversation objects
 			for(i = 0; i < xml.conversation.length(); i++){
-				
 				var conv:Conversation = new Conversation();
 				conv.charId = xml.conversation[i].charId;
 				conv.defaultId = xml.conversation[i].defaultState.@id;
@@ -68,7 +66,6 @@ package core.components
 				}
 				conversationLibrary.push(conv);				
 			}
-			
 		}
 		
 		protected function onXMLFailed(resource:XMLResource):void{

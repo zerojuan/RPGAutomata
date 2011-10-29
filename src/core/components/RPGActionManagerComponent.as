@@ -5,9 +5,10 @@ package core.components
 	import core.GameDatabase;
 	import core.components.events.RPGActionEvent;
 	import core.components.events.TalkEvent;
-	import core.rpg.Conversation;
+	import core.data.rpg.Conversation;
 	
 	import flash.geom.Point;
+	import core.components.input.RPGInputController;
 
 	public class RPGActionManagerComponent extends EntityComponent
 	{		
@@ -24,7 +25,7 @@ package core.components
 		
 		public var talkDisplayController:TalkDisplayController;
 		
-		public var locationDialogManager:LocationDialogManager;
+		public var locationDialogManager:InMapConversationManager;
 		
 		public var gameDatabase:GameDatabase;
 		

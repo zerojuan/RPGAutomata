@@ -1,7 +1,8 @@
-package core.components.keyboard
+package core.components.input.keyboard
 {
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.core.InputMap;
+	import com.pblabs.engine.debug.Logger;
 
 	public class BasicInputController extends TickedComponent
 	{
@@ -19,8 +20,13 @@ package core.components.keyboard
 		}
 		
 		public function set input(value:InputMap):void{
-			_inputMap = value;
+			if(_inputMap){
+				Logger.print(this, "Input Map already existed before");
+				_inputMap = new InputMap();
+			}
 			
+			_inputMap = value;
+		
 			if (_inputMap != null)
 			{
 				_inputMap.mapActionToHandler("GoLeft", OnLeft);

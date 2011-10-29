@@ -7,9 +7,9 @@ package core.components
 	
 	import core.components.events.RPGActionEvent;
 	import core.components.events.TalkEvent;
-	import core.components.keyboard.BasicInputController;
-	import core.rpg.Conversation;
-	import core.rpg.Dialog;
+	import core.components.input.keyboard.BasicInputController;
+	import core.data.rpg.Conversation;
+	import core.data.rpg.Dialog;
 	
 	import flash.display.Sprite;
 	import flash.geom.Point;

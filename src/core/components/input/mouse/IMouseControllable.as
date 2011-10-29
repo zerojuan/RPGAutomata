@@ -1,4 +1,4 @@
-package core.components.mouse
+package core.components.input.mouse
 {
 	public interface IMouseControllable
 	{

@@ -1,4 +1,4 @@
-package core.tilemap 
+package core.data.tilemap 
 {
 	import com.pblabs.engine.debug.Logger;
 	

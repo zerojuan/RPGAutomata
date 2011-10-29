@@ -48,19 +48,6 @@
 			</gameStates>
 			<playerName>Guy</playerName>
 		</component>
-		<component type="components.TalkManager" name="Manager">
-			<talkingPoints>
-				<_0>
-					<gridPosition>
-						<x>1</x>
-						<y>19</y>
-					</gridPosition>
-					<talkId>laptop</talkId>
-				</_0>
-			</talkingPoints>
-			<gameStateDB componentName="GameState"/>
-			<conversationLibrary>#Conversations.ConversationManager.conversationLibrary</conversationLibrary>
-		</component>
 	</entity>
 	<entity name="Conversations">
 		<component type="components.ConversationManager" name="ConversationManager">

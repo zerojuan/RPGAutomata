@@ -8,7 +8,7 @@ package core.components
 	import com.pblabs.rendering2D.DisplayObjectScene;
 	
 	import core.components.events.TilesetEvent;
-	import core.tilemap.Tileset;
+	import core.data.tilemap.Tileset;
 	
 	import flash.display.BitmapData;
 	import flash.geom.Point;

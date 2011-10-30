@@ -25,7 +25,7 @@ package core.components
 		
 		public var talkDisplayController:TalkDisplayController;
 		
-		public var locationDialogManager:InMapConversationManager;
+		public var inMapConversationManager:InMapConversationManager;
 		
 		public var gameDatabase:GameDatabase;
 		
@@ -37,8 +37,8 @@ package core.components
 				startConversationOnID(rpgObject.owner.name);
 			}else{ 
 				//if talking to a non character object
-				if(locationDialogManager){
-					var locationID:String = locationDialogManager.getActionInGrid(frontCoord);				
+				if(inMapConversationManager){
+					var locationID:String = inMapConversationManager.getActionInGrid(frontCoord);				
 					if(locationID){
 						startConversationOnID(locationID);					
 					}else{

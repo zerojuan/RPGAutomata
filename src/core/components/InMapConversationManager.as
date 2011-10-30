@@ -15,13 +15,13 @@ package core.components
 		public var inMapActionLibrary:Array = [];
 				
 		public function get filename():String{
-			return _dialogs == null ? null:_dialogs.filename;
+			return _inMapActions == null ? null:_inMapActions.filename;
 		}
 		
 		public function set filename(value:String):void{
-			if(_dialogs){
-				PBE.resourceManager.unload(_dialogs.filename, XMLResource);
-				_dialogs = null;
+			if(_inMapActions){
+				PBE.resourceManager.unload(_inMapActions.filename, XMLResource);
+				_inMapActions = null;
 			}
 			PBE.resourceManager.load(value, XMLResource, onXMLLoaded, onXMLFailed);
 		}
@@ -36,19 +36,19 @@ package core.components
 		}
 		
 		protected function onXMLLoaded(resource:XMLResource):void{
-			_dialogs = resource;
+			_inMapActions = resource;
 			var i:int;
-			var xml:XML = _dialogs.XMLData;
+			var xml:XML = _inMapActions.XMLData;
 			
 			inMapActionLibrary = [];
 			
 			for(i = 0; i < xml.action.length(); i++){
-				var locDialog:InMapAction = new InMapAction();
-				locDialog.location = new Point();
-				locDialog.location.x = xml.action[i].x;
-				locDialog.location.y = xml.action[i].y;
-				locDialog.id = xml.action[i].id;
-				inMapActionLibrary[i] = locDialog;
+				var inMapAction:InMapAction = new InMapAction();
+				inMapAction.location = new Point();
+				inMapAction.location.x = xml.action[i].x;
+				inMapAction.location.y = xml.action[i].y;
+				inMapAction.id = xml.action[i].id;
+				inMapActionLibrary[i] = inMapAction;
 			}
 		}
 		
@@ -56,6 +56,6 @@ package core.components
 			Logger.error(this, "onXMLFailed", "Failed to load '" + (resource ? resource.filename : "(unknown)") + "'");
 		}
 		
-		private var _dialogs:XMLResource;
+		private var _inMapActions:XMLResource;
 	}
 }
